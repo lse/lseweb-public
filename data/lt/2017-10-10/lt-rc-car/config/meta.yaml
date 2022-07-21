@@ -1,0 +1,11 @@
+title: "My RC car just got itself a CAN Bus"
+description: ""
+abstract: "itasha rc car quarkslab canbus ecu"
+authors: "Stanislas 'P1kachu' Lejay"
+date: "LSE - October 10th, 2017"
+files:
+    - "src/slides.md"
+rjs_path: "reveal.js"
+separator: "\n\n---\n\n"
+rjs_theme: "black"
+hjs_theme: "darkula"

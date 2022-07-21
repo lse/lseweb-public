@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>LSE Summer Week 2012 - Talks</title>
+        <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+        <style>
+            p {
+                text-align: justify;
+                margin-left: 5em;
+            }
+            span.schedule {
+                display: block;
+                width: 3em;
+                float: left;
+                margin: 1em 0;
+                padding: 0;
+                font-weight: bold;
+            }
+            h2, h3 { clear: both; }
+        </style>
+    </head>
+    <body>
+    <div style="margin: 0 auto; max-width: 900px;">
+      <h1>LSE Summer Week - 16-20 Juillet 2012</h1>
+
+      <h2>Lieu et plan d'accès</h2>
+
+      <p>Amphith&eacute;&acirc;tre 4, EPITA, 24 rue Pasteur, 94276 Le Kremlin-Bicêtre.</p>
+
+      <p>Transports en commun : métro 7 (station Porte d'Italie), bus
+      47/125/131/185/186 (station Roger Salengro-Fontainebleau).</p>
+
+      <div style="text-align: center">
+        <img src="/images/plan-conferences.png" alt="Plan d'accès">
+      </div>
+
+      <h2>Lundi 16</h2>
+
+<h3 id="1">CSAT (Pierre-Marie de Rodat)</h3>
+<span class="schedule">18h00 18h30</span>
+<p>Afin d’étudier le fonctionnement d’un binaire, on a souvent recours
+à un programme (comme IDA) permettant d’analyser statiquement le code
+du-dit binaire. De tels programmes permettent de désassembler ce code
+en assembleur (dans le cas d’objdump) voire même d’analyser le flot
+d’exécution du code (CFG) pour rendre la structure du code plus
+compréhensible, de donner des noms à différentes adresses virtuelles,
+etc. CSAT est une tentative d’écriture d’un tel outil interactif (avec
+un objectif collaboratif… sur le long terme ;-) ).</p>
+
+<h3 id="2">L'architecture ARM (Julien Freche)</h3>
+<span class="schedule">18h30 19h00</span>
+<p>L’architecture ARM est aujourd’hui un incontournable dans le monde
+de la mobilité et s’étend parfois au delà de celui-ci. Nous verrons le
+jeu d’instruction proposé par cette architecture (en particulier le jeu
+d’instruction v6/v7), et les problématiques rencontrées lorsque l’on
+veut émuler celle-ci. Nous verrons également au long de la conférence
+différentes nouveautés introduites par la norme C++11 et en quoi elles
+peuvent être utiles dans un projet comme un émulateur.</p>
+
+<h3 id="3">Datameat: un système de fichier axé sur les métadonnées (Victor
+    Apercé)</h3>
+<span class="schedule">19h00 20h00</span>
+<p>Les systèmes de fichiers actuels possèdent beaucoup de choses qui
+appartiennent au monde des bases de données. Pourquoi ne pas utiliser
+ces fonctionnalités déjà présentes dans les systèmes de fichier
+modernes pour une meilleure gestion des métadonnées ? Cette conférence
+porte l’architecture du système de fichier Datameat et sur les
+techniques utilisées dans son implémentation (B-Tree, locking, …).</p>
+
+<h3 id="4">FrASM (Pierre-Marie de Rodat)</h3>
+<span class="schedule">20h00 20h30</span>
+<p>Lors du reverse d’une machine (qu’elle soit virtuelle ou non), on
+est souvent amené à manipuler du bytecode (ou un « simple » binaire)
+dans le but de tester le comportement de la machine concernée. Il est
+dans de tels cas très pratique de créer un assembleur pour cette
+architecture au lieu de manipuler directement les fichiers binaires.
+Frasm est un framework en Python permettant de créer rapidement et
+simplement de tels assembleurs. La conférence en présentera son
+fonctionnement et montrera un exemple d’assembleur réalisé avec le
+framework (Chip-8, MIPS).</p>
+
+<h2>Mardi 17</h2>
+
+<h3 id="5">Émulation de consoles de jeu, pourquoi et comment ?  (Pierre
+    Bourdon & Nicolas Hureau)</h3>
+<span class="schedule">18h00 19h30</span>
+<p>Les émulateurs de consoles modernes sont des projets complexes et
+assez immenses : par exemple, 250K lignes de code pour Dolphin
+(émulateur GC/Wii), qui touchent à des domaines variés tels que la
+recompilation de code à la volée (JIT) ou l’implémentation d’un GPU à
+pipeline fixe sur une carte graphique de PC moderne. Nous verrons
+quelles sont les différentes techniques permettant d’émuler une console
+de jeu moderne ainsi que les problèmes associés afin de mieux
+comprendre comment fonctionnent ces logiciels.</p>
+
+<h3 id="6">Angles d'optimisation d'un interpréteur (Benoît Zanotti)</h3>
+<span class="schedule">19h30 20h00</span>
+<p>De nombreux langages interprétés sont aujourd'hui très populaires et
+utilisés. Pour pallier à leur lenteur, l'un de leur plus gros
+désavantage contre les langages compilés, les interpréteurs utilisent
+des techniques d'optimisation toujours plus efficaces. À travers
+l'exemple d'un interpréteur Prolog, nous verrons les différents axes
+d'optimisation d'un interpréteur, ce qui motive ces optimisations, et
+l'impact potentiel sur l'exécution de programmes.</p>
+
+<h2>Mercredi 18</h2>
+
+<h3 id="7">Protocole de routage: BGP4 (Sylvain Laurent)</h3>
+<span class="schedule">18h00 19h00</span>
+<p>BGP4 (Border Gateway Protocol version 4) est le protocole de routage
+au centre de l’internet : c’est via ce protocole que les différents
+acteurs de l’internet (systèmes autonomes) échangent les informations
+nécessaires pour faire transiter les données d’un point à l’autre sur
+l’internet, ce qu’on appelle plus communément le routage. Cette
+conférence présentera une introduction à ce protocole ainsi que son
+rôle au sein de l’internet, réseaux privés et son rôle dans le maintien
+de la stabilité des réseaux.</p>
+
+<h3 id="8">WTF is ACPI ? (Ivan Delalande)</h3>
+<span class="schedule">19h00 20h00</span>
+<p>L’ACPI est le standard très largement répandu dans les PCs actuels
+définissant la couche logicielle qui sert d’interface entre le matériel
+et le système d’exploitation. Il est utilisé principalement pour la
+gestion de l’énergie et le contrôle de la consommation des
+périphériques. Nous verrons le fonctionnement général de ce système et
+nous attarderons sur son implémentation dans un noyau de système
+d’exploitation.</p>
+
+<h3 id="9">Forensics (Samuel Chevet)</h3>
+<span class="schedule">20h00 21h00</span>
+<p>Le laboratoire système de l’EPITA travaille dans le cadre d’un
+partenariat avec l’OCLCTIC (Office Central de Lutte contre la
+Criminalité liée aux Technologies de l'Information et de la
+Communication) sur l’analyse post-mortem de la mémoire volatile (RAM)
+d’un ordinateur. Nous verrons pendant cette présentation quels sont les
+intérêts de ce type d’analyses, quelles informations peuvent être
+récupérées à partir d’un image de la mémoire d’un PC, et quels outils
+l’expert en forensics va être amené à utiliser dans son travail.</p>
+
+<h2>Jeudi 19</h2>
+
+<h3 id="10">Tutoriel: Développement sur Arduino (Augustin Chéron)</h3>
+<span class="schedule">18h00 19h00</span>
+<p>L'électronique est un milieu boudé et méconnu par une majorité
+d'informaticiens. Il est pourtant rempli de challenges intéressants
+touchant tous les domaines "classiques" de l'informatique : langages
+(VHDL, Verilog), sécurité, systèmes d'exploitations, etc. Le projet
+Arduino veut donner à tous les moyens de réaliser et programmer le plus
+simplement possible des systèmes embarqués. Nous étudierons pendant
+cette conférence la plate-forme, ses limitations et comment les
+contourner, comment mettre en place un système de cross-compilation, le
+tout accompagné de quelque démonstrations techniques et de
+l'utilisation d'équipements électroniques de base (breadboard,
+ocilloscope, ...).</p>
+
+<h3 id="11">Tutoriel: Techniques d'exploitation (Clément Rouault)</h3>
+<span class="schedule">19h00 20h00</span>
+<p>Lors que l'on trouve une faille dans un programme (de type buffer
+overflow) il existe de nombreuses techniques permettant de l’exploiter
+pour faire exécuter son propre code. Ces techniques sont plus ou moins
+simples à mettre en oeuvre et plus ou moins universelles. Cette
+conférence montrera par la pratique comment monter certaines de ces
+attaques (recherche de gadgets par exemple), comment elles agissent sur
+le flux d'exécution du programme et leurs limites. Le but de cette
+conférence est de démystifier l'exploitation de binaire à travers de
+nombreuses démonstrations.</p>
+
+<h3 id="12">Introduction aux CTF (Nicolas Hureau)</h3>
+<span class="schedule">20h00 21h00</span>
+<p>Les CTF (capture the flag) sont des concours de sécurité
+informatique entre diverses équipes venant du monde entier, impliquant
+des épreuves de reverse engineering, d’exploit, réseau, de forensic,
+etc. En reprenant quelques exercices rencontrés lors de ces CTF, nous
+montrerons l’intérêt de participer à de tels concours.</p>
+
+<h2>Vendredi 20</h2>
+
+<h3 id="13">WPA2 Entreprise et Sécurité Wi-Fi (Pierre Bourdon)</h3>
+<span class="schedule">18h00 19h00</span>
+<p>Le standard 802.11i a normalisé en 2004 WPA2, sécurité maintenant
+omniprésente et (pour le moment) sûre. La plupart des gens sont
+familiers avec WPA2 PSK, où le client Wi-Fi partage une clé secrète
+avec le point d’accès. WPA2 Entreprise permet lui d’identifier et
+d’authentifier chaque client personnellement via un couple login/mot de
+passe unique. Nous verrons dans cette conférence les erreurs à ne pas
+faire lors d’un déploiement de WPA2 Entreprise et les conséquences
+qu’elles ont.</p>
+
+<h3 id="14">Évolution des Rootkits (Samuel Chevet)</h3>
+<span class="schedule">19h00 20h30</span>
+<p>Les techniques utilisées par les auteurs de rootkits évoluent avec
+les mesures de sécurité implémentées par les systèmes d’exploitation.
+L’apparition de la vérification cryptographique des drivers et de
+PatchGuard sur les systèmes Windows 64 bits a par exemple changé de
+manière majeure les mécanismes d’injection de ces malwares. Nous
+verrons à travers des exemples comme TDL4, XPAJ ou Cidox comment
+fonctionne un bootkit, comment les analyser dynamiquement, mais aussi
+comment s’y prendre pour les développer et les debugger.</p>
+
+<h3 id="15">Crackme LSE Week - Making Of (Pierre Bourdon)</h3>
+<span class="schedule">20h30 21h00</span>
+<p>Comme pour l’édition 2011 de la LSE Week, un exercice de type
+crackme a été diffusé avant la semaine de conférence pour que les gens
+intéressés puissent essayer de le résoudre. Nous verrons pendant cette
+conférence comment cet exercice a été créé, quelles étaient les mesures
+de sécurité mises en oeuvre ainsi que les méthodes permettant de le
+résoudre.</p>
+
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+    </body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Courses - STOS</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li >
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h2 id="materials-for-stos">Materials for STOS</h2>
+
+<h3 id="course">Course</h3>
+
+<ul>
+  <li><a href="/teaching/epita/stos/quick-start.html">getting started</a></li>
+  <li><a href="/teaching/epita/stos/creating-modules.html">module creation</a></li>
+  <li><a href="/teaching/epita/stos/commandline-usage.html">commandline-usage</a></li>
+</ul>
+
+<p>Slides:</p>
+
+<ul>
+  <li><a href="/teaching/epita/stos/ksto-1.pdf">Project presentation</a></li>
+  <li><a href="/teaching/epita/stos/ksto-1.1.pdf">Booting process</a></li>
+  <li><a href="/teaching/epita/stos/x86-asm.pdf">x86 asm</a></li>
+  <li><a href="/teaching/epita/stos/ksto-tp-1.pdf">ksto-tp-1</a></li>
+  <li><a href="/teaching/epita/stos/ksto-2.pdf">Memory Protection</a></li>
+  <li><a href="/teaching/epita/stos/ksto-3.pdf">Events</a></li>
+  <li><a href="/teaching/epita/stos/ksto-4.pdf">Pagination</a></li>
+  <li><a href="/teaching/epita/stos/ksto-5.pdf">Scheduling</a></li>
+</ul>
+
+<h3 id="links">Links</h3>
+
+<ul>
+  <li>base repository: git://git.lse.epita.fr/stos-student.git
+<!-- * gitlab: [http://git-stos.lse.epita.fr/](http://git-stos.lse.epita.fr/) --></li>
+</ul>
+
+<h3 id="bibliography-and-references">Bibliography and References</h3>
+
+<ul>
+  <li>Intel Manual : <a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html?iid=tech_vt_tech+64-32_manuals">Intel® 64 and IA-32 Architectures Software Developer Manuals</a></li>
+  <li>How to write a good commit message : <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">A Note About Git Commit Messages</a></li>
+  <li>8259A’s <a href="http://k.lse.epita.fr/data/8259A.pdf">datasheet</a></li>
+  <li>i8254’s <a href="http://k.lse.epita.fr/data/8254.pdf">datasheet</a></li>
+</ul>
+
+<h3 id="advices--instructions">Advices &amp; instructions</h3>
+
+<ul>
+  <li>You can submit your questions on the student mailing list
+(<a href="mailto:stos-student@lse.epita.fr">stos-student@lse.epita.fr</a>), the language
+of your question don’t matter (as long as it is in french or in english). If
+you are shy, you can submit your questions directly by mail, or in person to
+anyone of the lse members, they will redirect you if they don’t know. You can
+also use irc to submit your questions (#lse on rezosup) but most of the time,
+in order to have the question visible to everyone, we will redirect you to
+the mailing lists.</li>
+  <li>We accept patches that improve the code and documentation of all the code
+base. You need to submit them to the student mailing list
+(<a href="mailto:stos-student@lse.epita.fr">stos-student@lse.epita.fr</a>). You will
+have bonus points for accepted patches and for correctly reviewed/tested
+patches. Don’t hesitate to make suggestions and remarks on patches sent on
+this mailing list.</li>
+  <li>All your patches must respect the Linux coding style. (see
+Documentation/CodingStyle in you linux repository)</li>
+  <li>
+    <p>I will launch checkpatch on all your patches with the following command line:</p>
+
+    <p>checkpatch.pl –no-tree –strict –show-types –ignore=FILE_PATH_CHANGES,BIT_MACRO</p>
+  </li>
+  <li>You <em>must not</em> modify the headers in the <code class="language-plaintext highlighter-rouge">include/kernel/</code> directory. THis is
+the stos API, there is no need to change it. If you absolutely need a header,
+you can put one in your module directory. But there is no reason to add
+anything to a public header, most of the time, you will only leak
+implementation details to the rest of the stos kernel</li>
+  <li>Look at <em>all</em> the code available in stos, especially the headers. There is a
+lot of macros and inline functions that are already defined. You must use
+them if it is appropriate. For example, there is macros that already wrap the
+most used <code class="language-plaintext highlighter-rouge">__attribute__</code> directives.</li>
+  <li>All your includes must be alphabetized.</li>
+  <li>In the stos kernel, we like to use arch specific include with the <code class="language-plaintext highlighter-rouge">arch</code>
+directory instead of the directory with the name of the architecture. For
+example you should not include <code class="language-plaintext highlighter-rouge">kernel/i386/pm.h</code> but <code class="language-plaintext highlighter-rouge">kernel/arch/pm.h</code>.
+This have the nice side effect to put all the arch specific headers at the
+top of the includes blocks. There is a link <code class="language-plaintext highlighter-rouge">kernel/include/kernel/arch</code> done
+in the build directory to be able to use that.</li>
+  <li>Pay attention to your function names, they must give pertinent information of
+what your function does.</li>
+  <li>For a lot of things, as you are writing code that is only code one time, you
+don’t need to have a function, you can just add it (to your init module
+function for example). If you add a function for code that is called only one
+time, this is mostly for clarity and self-documentation.</li>
+  <li>
+    <p>When using bitfields in structure, avoid redefining size that are already
+defined in a basic type. For example, prefer to have:</p>
+
+    <p>struct foo { u16 a; };</p>
+
+    <p>instead of:</p>
+
+    <p>struct foo { u32 a : 16; };</p>
+  </li>
+  <li>Your commit message must explain what your patch is doing, and waht it is
+providing, as if it is a contribution for an open source project. You need to
+explain what it does, and why. You can read as an example linux commit
+messages. Also please avoid commit message like “add pm support in the stos
+kernel”, we already know that a commit to stos is for stos.</li>
+  <li>
+    <p>Pay attention to your symbols visibility, if a symbol does not need to be
+exported, it must be <code class="language-plaintext highlighter-rouge">static</code>. There is only 2 visibilities in C, <code class="language-plaintext highlighter-rouge">static</code>
+and <code class="language-plaintext highlighter-rouge">extern</code>, the default visibility is <code class="language-plaintext highlighter-rouge">extern</code>, so, for a function these 2
+declarations are the same:</p>
+
+    <p>extern void foo(void);
+  void foo(void);</p>
+  </li>
+  <li>Avoid unnecessary comments. This is useless to add a comment that explain
+<em>exactly</em> what are you doing next. In general, comments should be avoided,
+and if you really need one for your code to be clear, it is a sign that what
+you wrote is not simple enough.</li>
+</ul>
+
+<h3 id="mail-review-of-your-patches">Mail review of your patches</h3>
+
+<p>All your code submission must pass by a mail review to be validated, this will
+count as a bug part of your grade. Here is some advices and instructions for
+that:</p>
+
+<ul>
+  <li>For all your patches, you <em>must</em> respect the Linux way
+(Documentation/SubmittingPatches)</li>
+  <li>Don’t forget to sign you commits (“Signed-off-by” tag). You need to use your
+<em>real</em> name for that, the mail address is at your convenience, but must
+exists (<code class="language-plaintext highlighter-rouge">-s</code> option in <code class="language-plaintext highlighter-rouge">git commit</code> for example).</li>
+  <li>You must have a prefix “k1”, “k2”, “k3” in your mails, in order to see waht
+step your are sending your mail for. For example, if this is the second
+version of the second step, your prefix must be <code class="language-plaintext highlighter-rouge">[PATCH k2 v2]</code>. You can use
+<code class="language-plaintext highlighter-rouge">--subject-prefix</code> with <code class="language-plaintext highlighter-rouge">git format-patch</code> to have them generated
+automatically.</li>
+  <li>Please use a decent MUA (mail client) to send your mails, when in doubt,
+using <code class="language-plaintext highlighter-rouge">git send-email</code> is probably the simplest way to have something
+working.</li>
+  <li>Your patches will be considered accepted when you receive the <code class="language-plaintext highlighter-rouge">Acked-by:</code> tag
+by mail. You need to report it in your mail/commits, in order to not lost it,
+and for us to be able to see what has already been reviewed. These tags must
+also be in your submition repositories.</li>
+  <li>Don’t send the next step if you haven’t got validation of the first one.</li>
+  <li>
+    <p>When you send a step, please send all the precedent step with it. We only
+apply your patches to stos-student, so we need <em>all</em> your modification to be
+able to apply your code.
+So for example, if you are sending the step 2, you should have something like
+this:
+  [PATCH k2 0/4] Submit step k2: Interrupt handling and Timers
+    [PATCH k2 1/4] i386: add memory protection module
+    [PATCH k2 2/4] i386: add interrupts module
+    [PATCH k2 3/4] i386: add irq handling with 8259a
+    [PATCH k2 4/4] i386: add timer module with i8254</p>
+  </li>
+  <li>If you have multiple patches, consider adding a cover letter (<code class="language-plaintext highlighter-rouge">--cover</code>
+option for <code class="language-plaintext highlighter-rouge">git format-patch</code>)</li>
+  <li>When sending a new version, try to answer your patches or the discussion.</li>
+  <li>Use version tags to send new versions for your patches ([PATCH k1 v2] prefix
+to your subject for example). You can use <code class="language-plaintext highlighter-rouge">-vN</code> to add them automatically.</li>
+  <li>having a recent version of git helps a lot.</li>
+  <li><code class="language-plaintext highlighter-rouge">git format-patch</code> before using <code class="language-plaintext highlighter-rouge">git send-email</code> helps a lot, and <code class="language-plaintext highlighter-rouge">--dry-run</code>
+option of <code class="language-plaintext highlighter-rouge">git send-email</code> too.</li>
+  <li>You really need to have a MUA (mail client) correclty configured to read/send
+mails. This helps a lot to see your errors (no, gmail is not enough, it is
+not able to follow threads correctly).</li>
+  <li>When we are making a comment about your code, you can discuss about it if you
+don’t understand the meaning of the comment, just answer the mail with your
+questions.</li>
+  <li><em>All</em> remarks needs to be addressed.</li>
+  <li>If you have issues with git you can/should read <code class="language-plaintext highlighter-rouge">gitworkflows(7)</code> and
+<code class="language-plaintext highlighter-rouge">gittutorial(7)</code>, this can help a lot to understand.</li>
+  <li>Always try to reapply your commits after sending them to yourself. This helps
+a lot.</li>
+</ul>
+
+<h3 id="submission">Submission</h3>
+
+<p>For this project, you have to submit your work 2 times:</p>
+
+<ul>
+  <li>The test suite will run on the branch named “k1” of your personal repository.</li>
+  <li>You have also to submit a patchset of your work, by mail at <a href="mailto:stos-1@lse.epita.fr">stos-1@lse.epita.fr</a></li>
+</ul>
+
+<p>For the second part, we will review your patches, moslty the form, coding style
+and such. We will also give you advices on how to write better code.</p>
+
+<h3 id="assignments">Assignments</h3>
+
+<h4 id="ksto-1-memory-protection">ksto-1: Memory Protection</h4>
+
+<p>For this first part, that serve as an introduction, you will implement a module
+that handle the <code class="language-plaintext highlighter-rouge">GDT</code> for STOS.</p>
+
+<p>You have to submit your code on the branch named “k1”. For the patches sent by
+mail, you must have the prefix tag “k1”. (for example [PATCH k1])</p>
+
+<ul>
+  <li>module name : “pm”</li>
+  <li>compiled module filename : “pm.ko”</li>
+  <li>module directory : kernel/modules/arch/i386/pm</li>
+  <li>module type : <code class="language-plaintext highlighter-rouge">M_MEMORY_INIT</code></li>
+  <li>module config variable : <code class="language-plaintext highlighter-rouge">CONFIG_PM</code></li>
+</ul>
+
+<p>You will need to implement <code class="language-plaintext highlighter-rouge">set_gdt_gate()</code> like its described inside
+<code class="language-plaintext highlighter-rouge">&lt;kernel/arch/pm.h&gt;</code>. The init function should set the segments for standard
+protected flat model with an high memory kernel, and a userland.</p>
+
+<p>All the relevant segment selectors must also be set (don’t forget %es, %fs, and
+%gs.)</p>
+
+<p>Pay attention to <code class="language-plaintext highlighter-rouge">pm.h</code> header, <em>all</em> the segment described there must be
+usable with your code. They don’t need to be set at init time, as you don’t
+have all the informations yet, but other part of the code might need them.</p>
+
+<h4 id="ksto-2-events">ksto-2: Events</h4>
+
+<p>For this second part, you will have to implement 3 modules, in order to have an
+functionnal event subsystem.</p>
+
+<p>You have to submit your code on the branch named “k2”.</p>
+
+<h5 id="idt">IDT</h5>
+
+<ul>
+  <li>module name: “interrupts”</li>
+  <li>compiled module filename: “interrupts.ko”</li>
+  <li>module directory: kernel/modules/arch/i386/interrupts</li>
+  <li>module type: <code class="language-plaintext highlighter-rouge">M_INTERRUPTS</code></li>
+  <li>module config variable: <code class="language-plaintext highlighter-rouge">CONFIG_INTERRUPTS</code></li>
+  <li>module dependancies: <code class="language-plaintext highlighter-rouge">M_MEMORY_INIT</code></li>
+</ul>
+
+<p>For this first module, you will need to implement 2 functions:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">interrupt_add_isr()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">interrupt_rm_isr()</code></li>
+</ul>
+
+<h5 id="pic">PIC</h5>
+
+<ul>
+  <li>module name: “8259A”</li>
+  <li>compiled module filename: “8259A.ko”</li>
+  <li>module directory: kernel/modules/arch/i386/8259A</li>
+  <li>module type: <code class="language-plaintext highlighter-rouge">M_IRQ</code></li>
+  <li>module config variable: <code class="language-plaintext highlighter-rouge">CONFIG_8259A</code></li>
+  <li>module dependancies: <code class="language-plaintext highlighter-rouge">M_INTERRUPTS | M_KMALLOC</code></li>
+</ul>
+
+<p>For this first module, you will need to implement 6 functions:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">unmask_irq()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mask_irq()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">mask_all_irq()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">add_irq_handler()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">rm_irq_handler()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">acknowledge_irq()</code></li>
+</ul>
+
+<p>When you declare your irq handlers, the right type to use is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct irq_handler {
+	/* needed fields for you irq */
+	struct list_node next;
+};
+
+static struct list_node handlers[16];
+</code></pre></div></div>
+
+<h5 id="pit">PIT</h5>
+
+<ul>
+  <li>module name: “i8254”</li>
+  <li>compiled module filename: “i8254.ko”</li>
+  <li>module directory: kernel/modules/arch/i386/i8254</li>
+  <li>module type: <code class="language-plaintext highlighter-rouge">M_TIMER</code></li>
+  <li>module config variable: <code class="language-plaintext highlighter-rouge">CONFIG_I8254</code></li>
+  <li>module dependancies: <code class="language-plaintext highlighter-rouge">M_IRQ</code></li>
+</ul>
+
+<p>For this module, you will need to implement 1 function:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">set_periodic_timer()</code></li>
+</ul>
+
+<h4 id="ksto-3-pagination">ksto-3: Pagination</h4>
+
+<p>For this second part, you will have to implement 1 module, in order to have a
+working paging system.</p>
+
+<p>You have to submit your code on the branch named “k3”.</p>
+
+<h5 id="pagination">Pagination</h5>
+
+<ul>
+  <li>module name: “pagination”</li>
+  <li>compiled module filename: “pagination.ko”</li>
+  <li>module directory: kernel/modules/arch/i386/pagination</li>
+  <li>module type: <code class="language-plaintext highlighter-rouge">M_PAGINATION | M_PAGE_ALLOCATOR</code></li>
+  <li>module config variable: <code class="language-plaintext highlighter-rouge">CONFIG_PAGINATION</code></li>
+  <li>module dependancies: <code class="language-plaintext highlighter-rouge">M_INTERRUPTS | M_FRAME_ALLOCATOR</code></li>
+</ul>
+
+<p>For this module, you will need to implement 5 functions:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">alloc_pages()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">map_pages()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">map_io()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">unmap_pages()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">unmap_io()</code></li>
+</ul>
+
+<h4 id="ksto-4-scheduling">ksto-4: Scheduling</h4>
+
+<p>In this last part, you will have to implement the scheduling inside the stos
+kernel. After this one, you should have a working OS, with the userland
+enabled.</p>
+
+<p>You have to submit your code on the branch named “k3”.</p>
+
+<h5 id="scheduling">Scheduling</h5>
+
+<ul>
+  <li>module name: “scheduler”</li>
+  <li>compiled module filename: “scheduler.ko”</li>
+  <li>module directory: kernel/modules/scheduler</li>
+  <li>module type: <code class="language-plaintext highlighter-rouge">M_SCHED</code></li>
+  <li>module config variable: <code class="language-plaintext highlighter-rouge">CONFIG_SCHEDULER</code></li>
+  <li>module dependancies: <code class="language-plaintext highlighter-rouge">M_TASK | M_TIMER</code></li>
+</ul>
+
+<p>For this module, you will need to implement 4 functions:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">__sleep_on()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">enqueue_task()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">schedule()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">start_scheduling()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">wake_up()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">wake_up_task()</code></li>
+</ul>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

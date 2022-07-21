@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Accelerate Boolean Constraint Propagation for Boolean Satisfiability Solvers with FPGA</title>
+<meta name="author" content="(Maxence CARON--LASNE)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/white.css" id="theme"/>
+
+<link rel="stylesheet" href="./local.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'http://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<meta name="description" content="Implementing Boolean Constraint Propagation on FPGA"
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1>Accelerate Boolean Constraint Propagation for Boolean Satisfiability Solvers with FPGA</h1>
+<h3>Maxence CARON&#x2013;LASNE</h3>
+<h4><a href="mailto:maxence.caron-lasne@lse.epita.fr">maxence.caron-lasne@lse.epita.fr</a></h4>
+</section>
+<section id="table-of-contents">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-org57808c6">Satifiability problems and Boolean Constraint Propagation</a></li>
+<li><a href="#/slide-org0ebb059">Hardware acceleration?</a></li>
+<li><a href="#/slide-org850e6dd">General BCP Algorithm</a></li>
+<li><a href="#/slide-org6ec1efe">Many Inference Engines design</a></li>
+<li><a href="#/slide-org1b2e474">Sequencial Clause Traversal design</a></li>
+<li><a href="#/slide-org7610c70">Conclusion</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-org57808c6">
+<h2 id="org57808c6">Satifiability problems and Boolean Constraint Propagation</h2>
+<div class="outline-text-2" id="text-org57808c6">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgf23e175">
+<h3 id="orgf23e175">Satisfiability problems</h3>
+<p>
+Find if a set of values satisfies a given Boolean equation.
+</p>
+
+<p>
+Some examples:
+</p>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/sat_example.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org2cf5425">
+<h4 id="org2cf5425">Usecases</h4>
+<ul>
+<li class="fragment appear">SMT solvers</li>
+<li class="fragment appear">Symbolic execution</li>
+<li class="fragment appear">Formal verification</li>
+<li class="fragment appear">Circuit synthesis</li>
+<li class="fragment appear">&#x2026;</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf5f9fe0">
+<h3 id="orgf5f9fe0">Conjunctive Normal Form</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/cnf_example.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<ul>
+<li class="fragment appear">Clauses are composed of literals.</li>
+<li class="fragment appear">Literals are variables with a sign.</li>
+<li class="fragment appear">Clause size are not fix.</li>
+<li class="fragment appear">We tend to normalize the clause's size (3, 4, 16&#x2026;).</li>
+<li class="fragment appear">3-SAT, 4-SAT, k-SAT.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc2542d7">
+<h3 id="orgc2542d7">DPLL algorithm</h3>
+<p>
+Davis-Putman-Logemann-Loveland algorithm.
+</p>
+
+<ul>
+<li class="fragment appear">Backtracking-based.</li>
+
+</ul>
+
+<pre  class="example">
+def DPLL(CLAUSES):
+        if CLAUSES is a consistant set of literals:
+                return SAT
+
+        if CLAUSES contains an empty clause:
+                return UNSAT
+
+        for every unit clause U in CLAUSES:
+                CLAUSES = unit-propagate(U, CLAUSES)
+
+        for every literal L that occurs pure in CLAUSES:
+                CLAUSES = pure-literal-assign(L, CLAUSES)
+
+        L = choose-literal(CLAUSES)
+
+        return DPLL(CLAUSES and L) or DPLL(CLAUSES and not L)
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd183019">
+<h4 id="orgd183019">DPLL example</h4>
+
+<div class="figure">
+<p><img src="./images/dpll_example_2.png" alt="dpll_example_2.png" />
+</p>
+</div>
+
+<p>
+By Tamkin04iut - asdfasf Previously published: asdfasf, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=25661587">https://commons.wikimedia.org/w/index.php?curid=25661587</a>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org55e3809">
+<h4 id="org55e3809">DPLL example</h4>
+
+<div class="figure">
+<p><img src="./images/dpll_example.png" alt="dpll_example.png" />
+</p>
+</div>
+
+<p>
+By Tamkin04iut - asdfasf Previously published: asdfasf, CC BY-SA 3.0, <a href="https://commons.wikimedia.org/w/index.php?curid=25661587">https://commons.wikimedia.org/w/index.php?curid=25661587</a>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orga5fc12b">
+<h3 id="orga5fc12b">Boolean Constraint Propagation</h3>
+<p>
+Also called unit-propagation.
+</p>
+
+<p>
+In a clause, if all literals but one are assigned and false, the last literal must
+be assigned to true to satisfies the clause.
+</p>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/unit_1.svg" class="org-svg" width="50%" height="50%" background="none">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org2fceb4b">
+<h4 id="org2fceb4b">Cascade effect</h4>
+<p>
+BCP implies a variable value.
+</p>
+
+<ul>
+<li class="fragment appear">So, no choice to make.</li>
+<li class="fragment appear">Free implication.</li>
+<li class="fragment appear">Free infered variable.</li>
+
+</ul>
+
+<p class="fragment (t)">
+So we can see "cascades" of propagation.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgb3a3b6c">
+<h4 id="orgb3a3b6c">Example of cascade effect</h4>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/unit_2.svg" class="org-svg" width="70%" height="70%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<p>
+We cannot imply anything for d and e.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org0ebb059">
+<h2 id="org0ebb059">Hardware acceleration?</h2>
+<div class="outline-text-2" id="text-org0ebb059">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org2048cb1">
+<h3 id="org2048cb1">Is BCP worth accelerating?</h3>
+<ul>
+<li class="fragment appear">BCP is part of any software SAT solvers.</li>
+<li class="fragment appear">BCP is useful to prune branches.</li>
+<li class="fragment appear">BCP takes 80%-90% of CPU time because of cascades of implications.</li>
+
+</ul>
+
+<p class="fragment (t)">
+This part of the algorithm is worth accelerating.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org05a476d">
+<h3 id="org05a476d">What is an FPGA?</h3>
+<p>
+Field Programmable Gate Array.
+</p>
+
+<ul>
+<li class="fragment appear">Array of programmable logic blocks (gate).</li>
+<li class="fragment appear">Logic blocks can be wired together.</li>
+<li class="fragment appear">User can implements complex logic function and synthetise it on FPGA.</li>
+
+</ul>
+
+<p class="fragment (t)">
+FPGA is by nature highly parallel, so it can be faster for some tasks.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdcdcaca">
+<h3 id="orgdcdcaca">Why FPGA?</h3>
+<ul>
+<li class="fragment appear">The DPLL algorithm is a branching algorithm.</li>
+<li class="fragment appear">The BCP is a simple operation executed many times.</li>
+
+</ul>
+
+<p class="fragment appear">
+Divide the work between two chips may be worth.
+</p>
+
+<ul>
+<li class="fragment appear">Branching algorithm: CPU</li>
+<li class="fragment appear">Little operation with many workers: FPGA</li>
+
+</ul>
+
+
+
+<div class="figure">
+<p><img src="./images/cpu_to_fpga.png" alt="cpu_to_fpga.png" width="50%" height="50%" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org850e6dd">
+<h2 id="org850e6dd">General BCP Algorithm</h2>
+<div class="outline-text-2" id="text-org850e6dd">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org17cd407">
+<h3 id="org17cd407">General BCP Algorithm</h3>
+<p>
+Deducts variable values from input values
+</p>
+
+
+<div class="figure">
+<p><img src="./images/io.png" alt="io.png" />
+</p>
+</div>
+
+<p>
+Algorithm:
+</p>
+<ol>
+<li class="fragment appear">Fetch list of clauses</li>
+<li class="fragment appear">Fetch variable assignments</li>
+<li class="fragment appear">Verify if the clause is an unit clause</li>
+<li class="fragment appear">Update assignments</li>
+
+</ol>
+
+</section>
+</section>
+<section>
+<section id="slide-org6ec1efe">
+<h2 id="org6ec1efe">Many Inference Engines design</h2>
+<div class="outline-text-2" id="text-org6ec1efe">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org73db636">
+<h3 id="org73db636">Many Inference Engines design</h3>
+<p>
+J. D. Davis, Zhangxi Tan, Fang Yu and Lintao Zhang, "A practical reconfigurable hardware accelerator for boolean satisfiability solvers"
+</p>
+
+
+<div class="figure">
+<p><img src="./images/total_project.png" alt="total_project.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgae252b5">
+<h3 id="orgae252b5">Inference engine</h3>
+
+<div class="figure">
+<p><img src="./images/infengine.png" alt="infengine.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orge1ee31e">
+<h4 id="orge1ee31e">Clause partitionning</h4>
+<p>
+Each Inference Engine has only one occurence of a single variable.
+</p>
+
+<p class="fragment (t)">
+At each BCP, a single Inference Engine can only find a single inference.
+</p>
+
+<p class="fragment (t)">
+So the Inference Engine find the inference in a fixed number of clock cycles.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org66ec366">
+<h3 id="org66ec366">Clause fetching</h3>
+<ul>
+<li>Naive solution: just an array.</li>
+
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Index</th>
+<th scope="col" class="org-left">Match</th>
+<th scope="col" class="org-right">Index</th>
+<th scope="col" class="org-left">Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0000</td>
+<td class="org-left">No Match</td>
+<td class="org-right">1000</td>
+<td class="org-left">No Match</td>
+</tr>
+
+<tr>
+<td class="org-right">0001</td>
+<td class="org-left">CID: 1; PID: 1</td>
+<td class="org-right">1001</td>
+<td class="org-left">No Match</td>
+</tr>
+
+<tr>
+<td class="org-right">0010</td>
+<td class="org-left">No Match</td>
+<td class="org-right">1010</td>
+<td class="org-left">No Match</td>
+</tr>
+
+<tr>
+<td class="org-right">0011</td>
+<td class="org-left">No Match</td>
+<td class="org-right">1011</td>
+<td class="org-left">No Match</td>
+</tr>
+
+<tr>
+<td class="org-right">0100</td>
+<td class="org-left">No Match</td>
+<td class="org-right">1100</td>
+<td class="org-left">CID: 2; PID: 1</td>
+</tr>
+
+<tr>
+<td class="org-right">0101</td>
+<td class="org-left">No Match</td>
+<td class="org-right">1101</td>
+<td class="org-left">CID: 2; PID: 2</td>
+</tr>
+
+<tr>
+<td class="org-right">0110</td>
+<td class="org-left">No Match</td>
+<td class="org-right">1110</td>
+<td class="org-left">CID: 1; PID: 2</td>
+</tr>
+
+<tr>
+<td class="org-right">0111</td>
+<td class="org-left">No Match</td>
+<td class="org-right">1111</td>
+<td class="org-left">No Match</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li class="fragment appear">Problem: the array is too sparse.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org26b4314">
+<h4 id="org26b4314">Clause tree walking</h4>
+
+<div class="figure">
+<p><img src="./images/clause_trie.png" alt="clause_trie.png" />
+</p>
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org9ed2843">
+<h4 id="org9ed2843">Trie memory representation</h4>
+<p>
+The data is less sparse.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Index</th>
+<th scope="col" class="org-left">Match</th>
+<th scope="col" class="org-right">Index</th>
+<th scope="col" class="org-left">Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0000</td>
+<td class="org-left">Base index: 0100</td>
+<td class="org-right">0110</td>
+<td class="org-left">No Match</td>
+</tr>
+
+<tr>
+<td class="org-right">0001</td>
+<td class="org-left">No Match</td>
+<td class="org-right">0111</td>
+<td class="org-left">No Match</td>
+</tr>
+
+<tr>
+<td class="org-right">0010</td>
+<td class="org-left">No Match</td>
+<td class="org-right">1000</td>
+<td class="org-left">CID: 2; PID: 1</td>
+</tr>
+
+<tr>
+<td class="org-right">0011</td>
+<td class="org-left">Base index: 1000</td>
+<td class="org-right">1001</td>
+<td class="org-left">CID: 2; PID: 2</td>
+</tr>
+
+<tr>
+<td class="org-right">0100</td>
+<td class="org-left">No Match</td>
+<td class="org-right">1010</td>
+<td class="org-left">CID: 1; PID: 2</td>
+</tr>
+
+<tr>
+<td class="org-right">0101</td>
+<td class="org-left">CID: 1; PID: 1</td>
+<td class="org-right">1011</td>
+<td class="org-left">No Match</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+</section>
+<section>
+<section id="slide-orga610321">
+<h3 id="orga610321">Clause status fetching</h3>
+<ul>
+<li>A clause is identified with its CID.</li>
+<li>Putting clause status in an array is OK.</li>
+
+</ul>
+
+<pre  class="example">
+Address CID: [status0][status1][status2]...[status(n-1)]
+
+Status:
+00: false
+01: true
+10: unassigned
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-org4fbeeda">
+<h3 id="org4fbeeda">Inference computation</h3>
+<pre  class="example">
+00 00 00 00 10 00 00 00
+___________    ________
+  HI(i)      i   LO(i)
+
+is_implication(i) = HI(i) == LO(i) == 0 and lit(i) == unassigned
+</pre>
+
+<pre  class="example">
+for i in sizeof(clause_entry):
+    ret[i] = clause[:i] == 0 and clause[i+1:] == 0 and clause[i] == UNASSIGN
+</pre>
+
+<ul>
+<li>It is a combinational operation, it is done in one clock cycle.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org8be74f5">
+<h3 id="org8be74f5">Results</h3>
+<p>
+250 MHz
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">SAT Instance</th>
+<th scope="col" class="org-right">Clause-Variable Ratio</th>
+<th scope="col" class="org-right">Number of clock cycles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">miters-c3540</td>
+<td class="org-right">2.70</td>
+<td class="org-right">7</td>
+</tr>
+
+<tr>
+<td class="org-left">miters-c5315</td>
+<td class="org-right">2.96</td>
+<td class="org-right">9</td>
+</tr>
+
+<tr>
+<td class="org-left">miters-c880</td>
+<td class="org-right">5.08</td>
+<td class="org-right">12</td>
+</tr>
+
+<tr>
+<td class="org-left">bmc-galileo-8</td>
+<td class="org-right">5.08</td>
+<td class="org-right">5</td>
+</tr>
+
+<tr>
+<td class="org-left">bmc-ibm-12</td>
+<td class="org-right">4.67</td>
+<td class="org-right">6</td>
+</tr>
+
+<tr>
+<td class="org-left">crypto-md4</td>
+<td class="org-right">4.16</td>
+<td class="org-right">10</td>
+</tr>
+
+<tr>
+<td class="org-left">crypto-md5</td>
+<td class="org-right">4.17</td>
+<td class="org-right">11</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Supports up to 64,000 variables and clauses.
+</p>
+
+<p>
+x5 to x16 speedup relative to contemporary SAT Solvers.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org1b2e474">
+<h2 id="org1b2e474">Sequencial Clause Traversal design</h2>
+<div class="outline-text-2" id="text-org1b2e474">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org69a08b2">
+<h3 id="org69a08b2">Sequencial Clause Traversal design</h3>
+<p>
+J. Thong and N. Nicolici, "FPGA acceleration of enhanced boolean constraint propagation for SAT solvers"
+</p>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/zhong_design.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgfadc900">
+<h3 id="orgfadc900">Clauses fetching</h3>
+<p>
+Clauses are fetched by linked list traversal.
+</p>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/chain_clause.svg" class="org-svg" width="100%" height="100%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org912c032">
+<h3 id="org912c032">Implications fetching</h3>
+<p>
+Clauses are identified by their addresses.
+</p>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/memory_layout.svg" class="org-svg" width="30%" height="30%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<p>
+K threads, N local links, M global links
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org0de4901">
+<h4 id="org0de4901">Clause walking</h4>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/clause_walk.svg" class="org-svg" width="50%" height="50%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org13de6e9">
+<h3 id="org13de6e9">Memory accesses</h3>
+<p>
+4 steps:
+</p>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./images/memory_access.svg" class="org-svg" width="40%" height="40%">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<p>
+Memory is usualy dual-ported.
+</p>
+
+<p>
+Clause visit: 2 clock cycles.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orge8c87e0">
+<h3 id="orge8c87e0">Results</h3>
+<p>
+250 MHz
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+
+<colgroup>
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Nbr of clauses</th>
+<th scope="col" class="org-right">Nbr of variables</th>
+<th scope="col" class="org-right">Max Clause Size</th>
+<th scope="col" class="org-right">Number of clock cycles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">500</td>
+<td class="org-right">225</td>
+<td class="org-right">6</td>
+<td class="org-right">46.7</td>
+</tr>
+
+<tr>
+<td class="org-right">500</td>
+<td class="org-right">200</td>
+<td class="org-right">4</td>
+<td class="org-right">28.0</td>
+</tr>
+
+<tr>
+<td class="org-right">500</td>
+<td class="org-right">200</td>
+<td class="org-right">3</td>
+<td class="org-right">21.3</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Supports up to 250,000 variables and clauses.
+</p>
+
+<p>
+x2 speed up.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org7610c70">
+<h2 id="org7610c70">Conclusion</h2>
+<ul>
+<li class="fragment appear">The two designs are efficient in terms of speed.</li>
+<li class="fragment appear">The two designs only works on little SAT instances.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgf905065">
+<h3 id="orgf905065">Bibliography</h3>
+<p>
+J. D. Davis, Zhangxi Tan, Fang Yu and Lintao Zhang, "A practical reconfigurable hardware accelerator for boolean satisfiability solvers," 2008 45th ACM/IEEE Design Automation Conference, Anaheim, CA, 2008, pp. 780-785.
+</p>
+
+<p>
+Davis J.D., Tan Z., Yu F., Zhang L. (2008) Designing an Efficient Hardware Implication Accelerator for SAT Solving. In: Kleine Büning H., Zhao X. (eds) Theory and Applications of Satisfiability Testing – SAT 2008. SAT 2008. Lecture Notes in Computer Science, vol 4996. Springer, Berlin, Heidelberg
+</p>
+
+<p>
+J. Thong and N. Nicolici, "FPGA acceleration of enhanced boolean constraint propagation for SAT solvers," 2013 IEEE/ACM International Conference on Computer-Aided Design (ICCAD), San Jose, CA, 2013, pp. 234-241.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org4aab324">
+<h3 id="org4aab324">Questions?</h3>
+
+</section>
+</section>
+<section>
+<section id="slide-orgdbca103">
+<h3 id="orgdbca103">Thank you!</h3>
+</section>
+</section>
+</div>
+</div>
+<p> Created by Maxence CARON--LASNE. </p>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="http://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: false,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+overview: true,
+width: 1200,
+height: 800,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'http://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

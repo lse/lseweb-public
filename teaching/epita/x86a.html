@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Courses - x86a</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li >
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h2 id="materials-for-advanced-x86">Materials for Advanced x86</h2>
+
+<h3 id="course">Course</h3>
+
+<ul>
+  <li>lesson 1 : <a href="/teaching/epita/x86-part1.pdf">Architectural changes overview</a></li>
+  <li>lesson 2 : <a href="/teaching/epita/x86-part2.pdf">Firmware, Boot &amp; Devices</a></li>
+  <li>lesson 3 : <a href="/teaching/epita/x86-part3.pdf">Virtualization</a></li>
+  <li>lesson 4 : <a href="/teaching/epita/x86-part4.pdf">Device Virtualization</a></li>
+</ul>
+
+<h4 id="old-lessons-">old lessons :</h4>
+
+<ul>
+  <li>lesson 1 : <a href="/teaching/epita/2014/x86-part1.pdf">Architectural changes overview</a></li>
+  <li>lesson 2 : <a href="/teaching/epita/2014/x86-part2.pdf">Firmware, Boot &amp; Devices</a></li>
+  <li>lesson 3 : <a href="/teaching/epita/2014/x86-part3.pdf">Multi-Core</a></li>
+  <li>lesson 4 : <a href="/teaching/epita/2014/x86-part4.pdf">Virtualization</a></li>
+  <li>lesson 5 : <a href="/teaching/epita/2014/x86-part5.pdf">Qemu/KVM</a></li>
+</ul>
+
+<h3 id="bibliography-and-references">Bibliography and References</h3>
+
+<ul>
+  <li>Intel Manual : <a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html?iid=tech_vt_tech+64-32_manuals">Intel® 64 and IA-32 Architectures Software Developer Manuals</a></li>
+  <li>TLS explanation : <a href="http://www.akkadia.org/drepper/tls.pdf">Ulrich Drepper, ELF Handling For Thread-Local Storage</a></li>
+  <li>x86_64 ABI : <a href="http://www.x86-64.org/documentation/abi.pdf">System V Application Binary Interface - x86-64 Linux</a></li>
+  <li>Calling Conventions : <a href="http://stackoverflow.com/questions/2535989/what-are-the-calling-conventions-for-unix-linux-system-calls-on-x86-64">What are the calling conventions for UNIX &amp; Linux system calls on x86-64</a></li>
+  <li>Virtual Memory Explanation : <a href="http://www.akkadia.org/drepper/cpumemory.pdf">What Every Programmer Should Know About Memory</a></li>
+  <li>PAX implementation : <a href="http://pax.grsecurity.net/docs/pageexec.txt">Page Exec</a></li>
+  <li>Linux Boot Protocol : <a href="https://www.kernel.org/doc/Documentation/x86/boot.txt">Documentation/x86/boot.txt</a></li>
+  <li>x86 Firmware initialization : <a href="http://resources.infosecinstitute.com/system-address-map-initialization-in-x86x64-architecture-part-1-pci-based-systems/">Part 1</a> <a href="http://resources.infosecinstitute.com/system-address-map-initialization-x86x64-architecture-part-2-pci-express-based-systems/">Part 2</a></li>
+  <li>MultiProcessor Specification : <a href="http://www.intel.com/design/archives/processors/pro/docs/242016.htm">Specification</a></li>
+  <li>ACPI Specification : <a href="http://www.acpi.info/DOWNLOADS/ACPIspec40a.pdf">Specification</a></li>
+  <li>Virtio Specification : <a href="https://github.com/rustyrussell/virtio-spec">Specification</a></li>
+  <li>Shared Libraries : <a href="http://www.akkadia.org/drepper/dsohowto.pdf">Ulrich Drepper, How To Write Shared Libraries</a></li>
+</ul>
+
+<h3 id="assignments">Assignments</h3>
+
+<p>The git repository used for the assignments are on git-stos.lse.epita.fr</p>
+
+<h4 id="exercises-for-the-tue-may-19">Exercises for the Tue May 19</h4>
+
+<p>Every exercises must have a Makefile, and the source code. It should contains
+tests.</p>
+
+<h5 id="exercise-1--string">Exercise 1 : string</h5>
+
+<p>Assignment : Implement a dynamic library with string functions in x86_64 assembly.</p>
+
+<p>Your library should be usable with the following header :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#ifndef STRING_H
+#define STRING_H
+
+#include &lt;stddef.h&gt;
+
+size_t strlen(const char *s);
+char *strcpy(char *dest, const char *src);
+void *memcpy(void *dest, const void *src, size_t n);
+
+#endif
+</code></pre></div></div>
+
+<p>You should produce a library named <code class="language-plaintext highlighter-rouge">libstring.so</code></p>
+
+<h5 id="exercise-2--cat">Exercise 2 : cat</h5>
+
+<p>Assignment : Implement a <code class="language-plaintext highlighter-rouge">cat</code> binary in x86_64 assembly.</p>
+
+<ul>
+  <li>You binary must be PIE</li>
+  <li>without any external dependancies</li>
+  <li>you can still use the linux headers</li>
+  <li>you must use the <code class="language-plaintext highlighter-rouge">syscall</code> instruction for syscalls.</li>
+</ul>
+
+<p>Example :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ gcc -shared -nostartfiles -fno-builtin -nostdlib -o cat cat.S
+$ IFS=:
+$ for i in $PATH ; do sudo rm $i/cat ; done
+$ echo foo &gt; foo
+$ ./cat foo
+foo
+$ echo foo | ./cat
+foo
+$ rm -f bar
+$ ./cat bar
+cat: Error
+$
+</code></pre></div></div>
+
+<h5 id="exercise-3--mptables">Exercise 3 : mptables</h5>
+
+<p>Assignment : Implement a stos kernel module that dumps the content of the mptables</p>
+
+<ul>
+  <li>This is a test module</li>
+  <li>It will output the content of the mptables with klog()</li>
+</ul>
+
+<h4 id="project--mykvm">Project : MyKVM</h4>
+
+<p>Usage :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mykvm -f stos.boot
+mykvm --help
+mykvm -m 128 --kernel kernel/stos \
+	--initrd initramfs.img \
+	--modules module.ko,module2.ko \
+	init.mode=all
+</code></pre></div></div>
+
+<p>other modes must be described in <code class="language-plaintext highlighter-rouge">--help</code></p>
+
+<p>Assignment : Create a small vm tool with kvm. The goal is to be able to boot
+stos.</p>
+
+<p><code class="language-plaintext highlighter-rouge">stos.boot</code> is a simple <code class="language-plaintext highlighter-rouge">.ini</code> file that looks like this (you will probably
+have to change the paths to match have something that make sense on your
+machine):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>commandline=init.mode=all
+kernel=/kernel/stos
+initramfs=/kernel/initramfs.img
+module=/kernel/modules/8259A.ko
+module=/kernel/modules/cpuvar.ko
+module=/kernel/modules/i8042.ko
+module=/kernel/modules/i8254.ko
+module=/kernel/modules/ide.ko
+module=/kernel/modules/interrupts.ko
+module=/kernel/modules/isa-serial.ko
+module=/kernel/modules/pagination.ko
+module=/kernel/modules/pci.ko
+module=/kernel/modules/pm.ko
+module=/kernel/modules/zero.ko
+module=/kernel/modules/null.ko
+module=/kernel/modules/kmsg.ko
+module=/kernel/modules/16550.ko
+module=/kernel/modules/pci-serial.ko
+module=/kernel/modules/devfs.ko
+module=/kernel/modules/ext2.ko
+module=/kernel/modules/mbr_part_table.ko
+module=/kernel/modules/mbrfs.ko
+module=/kernel/modules/ramfs.ko
+module=/kernel/modules/vfs.ko
+module=/kernel/modules/bin_elf.ko
+module=/kernel/modules/block.ko
+module=/kernel/modules/char.ko
+module=/kernel/modules/commandline.ko
+module=/kernel/modules/fifo_io_sched.ko
+module=/kernel/modules/fifo_scheduler.ko
+module=/kernel/modules/first_fit_kmalloc.ko
+module=/kernel/modules/frame_allocator.ko
+module=/kernel/modules/libraries.ko
+module=/kernel/modules/posix.ko
+module=/kernel/modules/start_uland.ko
+module=/kernel/modules/test.ko
+module=/kernel/modules/syscall.ko
+module=/kernel/modules/syslog.ko
+module=/kernel/modules/task.ko
+module=/kernel/modules/init.ko
+</code></pre></div></div>
+
+<p>Steps :</p>
+
+<ul>
+  <li>Create basic VM</li>
+  <li>Boot some code directly in PM mode</li>
+  <li>Add serial handling</li>
+  <li>add pagination like in <code class="language-plaintext highlighter-rouge">stos.grub</code></li>
+  <li>start to handle stos boot protocol</li>
+  <li>start building from that :
+    <ul>
+      <li>module support</li>
+      <li>memory map support</li>
+      <li>commandline support</li>
+      <li>initramfs support</li>
+      <li>more devices</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Please note that the absolute minimum is to be able to boot the stos core,
+with commandline support, complete memory mapping.</p>
+
+<p>Module and initramfs support are the 2nd step.</p>
+
+<p>For debugging support, and to be able to see if the code behave correctly in
+qemu and in your code, you can implement a subset of the multiboot spec with :</p>
+
+<ul>
+  <li>32bit</li>
+  <li>multiboot</li>
+  <li>serial</li>
+</ul>
+
+<h3 id="more-explanation-in-french">More explanation (in French)</h3>
+
+<p>Voici quelques précisions sur le sujet et la marche à suivre (une
+update du site arrivera aussi, plus tard, histoire de refléter ces
+changements)</p>
+
+<ul>
+  <li>Donnez moi un README m’expliquant comment faire marcher votre projet
+exactement, avec les fichiers de conf, comment compiler la version de
+stos que vous avez utilisé, etc…</li>
+  <li>Il est a noter que je retirerai des points à tout ceux qui incluent
+directement stos dans leur dépots. Je préfère voir un
+script/submodule/whatever plutôt que ça (à préciser dans le README)</li>
+  <li>La partie <em>obligatoire</em> (comprendre, pour avoir 10 si ca marche) est :
+    <ul>
+      <li>chargement du core</li>
+      <li>pagination</li>
+      <li>gestion du protocole de boot de stos</li>
+      <li>commandline</li>
+      <li>serial en output</li>
+    </ul>
+  </li>
+  <li>Les étapes suivantes sont :
+    <ul>
+      <li>modules</li>
+      <li>initramfs</li>
+    </ul>
+  </li>
+  <li>En bonus potentiels :
+    <ul>
+      <li>tests pour valider le tout (dans stos, ou en userland)</li>
+      <li>gestion complète du serial (input, output, irq)</li>
+      <li>vga text</li>
+      <li>supprimer ioctl(<code class="language-plaintext highlighter-rouge">CREATE_IRQCHIP</code>)</li>
+    </ul>
+  </li>
+  <li>
+    <p>le multiboot est ici indiqué pour vous aider à debugger plus
+facilement, vu que vous pourrez lancer des exemples qui tournerons
+dans qemu et dans votre vm. Cela ne vaut <em>aucun</em> points si vous
+n’avez pas la partie mandatory.</p>
+  </li>
+  <li>
+    <p>Faites attention aux headers de stos, ils sont valide <em>uniquement</em> en
+32bit, comme votre binaire sera 64bit, il faut patcher les structures
+pour être aligné correctement (Attention à la règle de padding de
+gcc sur les valeurs 64bit).</p>
+  </li>
+  <li>
+    <p>Il y a une erreur dans les slides par rapport à l’ioctl
+<code class="language-plaintext highlighter-rouge">KVM_SET_IDENTITY_MAP_ADDR</code>. En effet, la définition de l’ioctl est :</p>
+
+    <p>#define KVM_SET_IDENTITY_MAP_ADDR _IOW(KVMIO,  0x48, __u64)
+et non
+  #define KVM_SET_IDENTITY_MAP_ADDR _IO(KVMIO,  0x48)
+je vous laisse en déduire ce qu’il fallait marquer.</p>
+  </li>
+  <li>Pour la pagination, il y a un petit détail que je ne vous ai pas
+précisé. KVM ne sait pas démarrer directement avec <code class="language-plaintext highlighter-rouge">%cr0.PG = 1</code>, il
+faut donc faire un trampoline pour activer la pagination avant de
+lancer stos.</li>
+</ul>
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

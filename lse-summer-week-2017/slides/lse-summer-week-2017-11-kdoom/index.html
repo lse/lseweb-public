@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>kDoom</title>
+    <meta name="description" content="How to debug a broken segmented toy kernel">
+    <meta name="author" content="Antoine Damhet">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/blood.css" id="theme">
+    <link rel="stylesheet" href="reveal.js/lib/css/agate.css">
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>kDoom</h1>
+          <h3>How to debug a broken segmented toy kernel</h3>
+          <p>Antoine Damhet</p>
+          <p><small>July 15, 2017</small></p>
+        </section>
+        <section data-markdown data-separator="
+
+---
+
+" data-separator-vertical="
+
+--
+
+">
+          <script type="text/template">
+## A broken toy kernel
+
+![Demo](imgs/demo.png)
+
+---
+
+### Is Doom broken ?
+
+```
+xdbob@didact [17:01:52] [~/DOOM/linuxdoom-1.10] [master]
+-> % make
+[...]
+
+gcc   -g -Wall -DNORMALUNIX -DLINUX  -c i_video.c -o linux/i_video.o
+i_video.c:49:10: fatal error: errnos.h: No such file or directory
+ #include <errnos.h>
+          ^~~~~~~~~~
+compilation terminated.
+make: *** [Makefile:91: linux/i_video.o] Error 1
+```
+<!-- .element style="width: 100%;" -->
+
+---
+
+### No but...
+
+> nm -D xdoom
+
+```txt
+[...]
+         U gethostbyname
+         U gethostname
+[...]
+         U inet_addr
+[...]
+         U ioctl
+[...]
+         U XNextEvent
+         U XOpenDisplay
+         U XPending
+         U XPutImage
+         U XShmAttach
+         U XShmQueryExtension
+[...]
+```
+
+---
+
+### ... It still doesnt work
+
+```txt
+                         DOOM 2: Hell on Earth v1.10                           
+[...]
+W_Init: Init WADfiles.
+ adding ./doom2.wad
+===========================================================================
+                 Commercial product - do not distribute!
+         Please report software piracy to the SPA: 1-800-388-PIR8
+===========================================================================
+[...]
+Error: xdoom currently only supports 256-color PseudoColor screens
+zsh: segmentation fault (core dumped)  ./xdoom
+```
+<!-- .element style="width: 115%;" -->
+
+---
+
+## The KFS
+
+Per inode:
+* Up to 10 directs data blocks with 4084 bytes available each.
+* Up to 16 indirects blocks containing up to 16 data blocks.
+
+> Total of 1086344 bytes (~1MiB) per file
+
+Note:
+Le binaire de doom: 318K sans les syms, 1.4M avec
+Plus petite rom jouable 4.1M
+
+---
+
+### Extend the SDK
+* to{lower,upper} in ctype.h
+* string.h
+* maths.h/FPU
+
+---
+
+### Missing a symbol... LOL
+* FILE\* functions -> dummy implem with special cases for std{out,err}
+* mkdir -> shall fail
+* struct stat...
+```c
+struct stat
+{
+	int st_size;
+};
+```
+* getenv...
+
+---
+
+### It "works"
+
+```
+[+] cmdline: /doom
+                            DOOM Shareware Startup v1.10
+V_Init: allocate screens.
+M_LoadDefaults: Load system defaults.
+Z_Init: Init zone memory allocation daemon. 
+W_Init: Init WADfiles.
+W_AddFile
+ adding //doom1.wad
+===========================================================================
+                                Shareware!
+===========================================================================
+M_Init: Init miscellaneous info.
+R_Init: Init DOOM refresh daemon - [FATAL] W_GetNumForName: PNAMES not found!
+```
+<!-- .element style="width: 115%;" -->
+
+---
+
+### GDB is *not* ready for K
+```markdown
+Only flat memory models are supported and debugging becomes very
+hairy when some segment uses a non-zero base address...
+```
+
+![Why](imgs/why.jpg)
+
+---
+
+### Let's load the rom in flat
+* All the roms works and can be debugged
+* Doom's code is null and thus fails
+<!-- .element class="fragment" -->
+
+![What](imgs/what.gif)
+<!-- .element class="fragment" -->
+
+---
+
+### What happened ?
+1. K loads the code segment
+2. K loads the data segment
+3. It jumps to the entry point
+
+```markdown
+Step 1 seems to work just fine. Let's look at step 2.
+```
+
+---
+
+### Data segment loading
+
+```c
+static u32 segment_copy(u32 seg_base, Elf32_Phdr *phdr, int fd)
+{
+	off_t cur_off = kfs_seek(fd, 0, SEEK_CUR);
+	char *base_addr = (char *)(seg_base + phdr->p_vaddr);
+
+	kfs_seek(fd, phdr->p_offset, SEEK_SET);
+	kfs_read(fd, base_addr, phdr->p_filesz);
+	memset(base_addr + phdr->p_filesz, 0, phdr->p_memsz - phdr->p_filesz);
+
+	kfs_seek(fd, cur_off, SEEK_SET);
+
+	return phdr->p_memsz + phdr->p_vaddr;
+}
+```
+<!-- .element style="width: 105%;" -->
+
+---
+
+### The fail happens during the memset of the .bss
+
+```c
+void *memset(void *s, int c, size_t n)
+{
+	char *p = s;
+
+	for (size_t i = 0; i < n; ++i)
+		p[i] = c;
+
+	return s;
+}
+```
+```c
+%esp == 0x7fe00
+s == 0x48214
+c == 0
+n == 443916
+note : s < %esp < s + n
+```
+<!-- .element style="width: 40%;" class="fragment" -->
+
+---
+
+## Behavioural fails
+1. Debug the original linuxdoom and the k-port
+1. Observe where the internal states differs
+1. ???
+
+---
+
+### Reading a manpage is hard (1/3)
+* Doom could find it's ressources
+* The hashtable was filled but hashes didn't match
+
+<div>
+```c
+char *strncpy(char *dest, const char *src, size_t n);
+```
+> It appears that some people rely on the fact that the end of `dest` is zero filled
+</div>
+<!-- .element class="fragment" -->
+
+---
+
+### Reading a manpage is hard (2/3)
+#### The menu is working !!!
+![Menu working](imgs/menu.png)
+<!-- .element style="width: 50%;" -->
+
+But it crashes at launch...
+
+---
+
+### Reading a manpage is hard (3/3)
+```c
+int abs(int j);
+```
+```c
+double abs(double j);
+```
+![Bug graphic](imgs/graphic.png)
+<!-- .element style="width: 45%;" class="fragment" -->
+```bash
+make -B
+```
+<!-- .element style="width: 15%;" class="fragment" -->
+
+---
+
+# DOOM IS WORKING !!!!
+<!-- .slide: data-background-video="imgs/demo.mp4" data-background-color="#000000" -->
+
+---
+
+## A last one for the road
+
+---
+
+### Ringbuffer fail
+
+```c
+static struct {
+	int key_p[20];
+	int id_p;
+} keys;
+
+void addkeylist(int key) {
+	keys.id_p = (keys.id_p + 1) % 20;
+	keys.key_p[keys.id_p] = key;
+}
+
+int sys_getkeymode() {
+	int res = keys.key_p[keys.id_p];
+	keys.key_p[keys.id_p] = -1;
+	return res;
+}
+```
+
+          </script>
+        </section>
+      </div>
+
+
+      <img style="position: absolute; bottom: 20px; right: 20px; border: 0; width: 8%;" src="imgs/logo.svg"/>
+
+
+
+      <script src="reveal.js/lib/js/head.min.js"></script>
+      <script src="reveal.js/js/reveal.js"></script>
+
+      <script>
+        Reveal.initialize({
+          controls: false,
+          progress: true,
+          slideNumber: true,
+          history: true,
+          keyboard: true,
+          overview: true,
+          center: true,
+          touch: true,
+          loop: false,
+          rtl: false,
+          fragments: true,
+          embedded: false,
+          help: false,
+          showNotes: false,
+          autoSlide: 0,
+          autoSlideStoppable: true,
+          mouseWheel: false,
+          hideAddressBar: true,
+          previewLinks: false,
+          transition: "slide",
+          transitionSpeed: "default",
+          backgroundTransition: "default",
+          viewDistance: 3,
+          parallaxBackgroundImage: "",
+          parallaxBackgroundSize: "",
+          parallaxBackgroundHorizontal: null,
+          parallaxBackgroundVertical: null,
+
+          dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+          ]
+        });
+    </script>
+  </body>
+</html>

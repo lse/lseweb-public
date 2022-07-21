@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>LSE Summer Week 2022 - Talks</title>
+        <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+        <style>
+            p {
+                text-align: justify;
+                margin-left: 5em;
+            }
+            span.schedule {
+                display: block;
+                width: 3em;
+                float: left;
+                margin: 1em 0;
+                padding: 0;
+                font-weight: bold;
+            }
+            h2, h3 { clear: both; }
+        </style>
+    </head>
+    <body>
+    <div style="margin: 0 auto; max-width: 900px;">
+      <h1>LSE Summer Week - July 7 + July 9 2022</h1>
+
+      <h2>Lieu et plan d'accès</h2>
+
+      <p>Amphithéatre 3, EPITA, 24 rue Pasteur, 94276 Le Kremlin-Bicêtre.</p>
+
+      <p>Transports en commun : métro 7 (station Porte d'Italie), bus
+      47/125/131/185/186 (station Roger Salengro-Fontainebleau).</p>
+
+      <div style="text-align: center">
+        <img src="/images/plan-amphi3.png" alt="Plan d'accès">
+      </div>
+
+      
+<h2>Thursday 7</h2>
+
+
+<span class="vevent">
+	<h3 id="0" class="summary">Trusted AI for secure critical systems  - Pierre Parrend</h3>
+	<span class="schedule"><span class="dtstart">10h00</span> <span class="dtend">10h45</span></span>
+<p class="description">
+Presentation of the LSE teams and the current work Pierre is involved in
+
+
+
+<a href="/lse-summer-week-2022/slides/20220707_LSE_Summer_week_Parrend_pub.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="1" class="summary">Generating synthetic traffic to improve the robustness of network intrusion detection  - Grégory Blanc</h3>
+	<span class="schedule"><span class="dtstart">10h45</span> <span class="dtend"></span></span>
+<p class="description">
+At the first level, Security Operations Center focus on triaging alerts raised by intrusion detection probes. With the emergence of new and evasive attacks, there is a need to develop anomaly-based detectors able to capture deviations from a known, nominal behaviour. Lately, machine learning, and then, deep learning have been largely exploited to produce models of traffic able to capture these legitimate traffic patterns. In operations, training these models require a source of legitimate traffic that is often hard to come by. And the absence of legitimate traffic is also detrimental to their evaluation. This is why a recent research trend has emerged proposing to generate synthetic traffic for augmenting training and testing datasets with legitimate samples that are important to prevent overfitting. Indeed, false positives that arise from previously unseen legitimate behaviour may result in additional noise for security operators. Conversely, a similar yet very different approach has led researchers to question the robustness of such detectors by generating evasive samples, known as adversarial examples. In this presentation, we will be presenting our first attempts at generating traffic data to tackle both problems.
+
+
+
+<a href="/lse-summer-week-2022/slides/lse-sw22_gblanc_traffic-generation.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="2" class="summary">Industrial communication with 0PC UA - Secure by design?  - Julius Pfrommer</h3>
+	<span class="schedule"><span class="dtstart">11h15</span> <span class="dtend"></span></span>
+<p class="description">
+Industrial Communication with OPC UA - Secure by Design?  OPC UA is the leading protocol for industrial communication in factory automation.  As industrial networks become larger and connected to the internet, OPC UA comes equipped with a range of security measures to protect data and the continuous operation.  This talk introduces OPC UA and the security measures defined in the standard.  This is contrasted with insights from the open62541 implementation by the author (and team) and the experience of practical deployments with industrial partners.
+
+
+
+<a href="/lse-summer-week-2022/slides/2206_open62541_Secure_by_Design.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="3" class="summary">Port scans and DDos detection by time series filtering  - Mark Angustures</h3>
+	<span class="schedule"><span class="dtstart">11h45</span> <span class="dtend"></span></span>
+<p class="description">
+Most network intrusion detection systems rely on signature-based methods and labeled data, but systems based on anomaly detection algorithms promise to detect unseen attacks without labeled data. However, anomaly detection on streaming data is a challenging task because real networks generate an endless stream of fast and high volume data. In this talk we propose an anomaly detection system for detecting port scan and DDoS anomalies in streaming NetFlow data. We extract features through different key combination of NetFlow aggregations. Within these aggregations we tried multiple sets of features to find the optimal ones  for detection. We computed Kalman filter and prediction interval on time serie of each feature, detecting attacks as outliers. We set up a MapReduce architecture using spark and Kafka to handle high-speed and high-volume data. Our experimental results show our anomaly detection algorithms as very promising for rapidly detecting port scans and DDoS.
+
+
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="4" class="summary">Vulnerabilities, risks, and countermeasures in IoT environments  - Badis Hammi</h3>
+	<span class="schedule"><span class="dtstart">14h00</span> <span class="dtend"></span></span>
+<p class="description">
+In the context of current smart cities, Cooperative Intelligent Transportation Systems (C-ITS) represent one of the main use case scenarios that aim to improve peoples' daily lives. Thus, during the last few years, numerous standards have been adopted to regulate such networks. Within a C-ITS, a large number of messages are exchanged continuously in order to ensure that the different applications operate efficiently. However, these networks can be the target of numerous attacks. The sybil attack is among the most dangerous ones.  In a sybil attack, an attacker creates multiple identities and then disguises as several fake stations in order to interfere with the normal operations of the system or profit from provided services. We analyze recently proposed sybil detection approaches regarding their compliance with the current C-ITS standards as well as their evaluation methods. We provide several recommendations such as network and attack models as well as an urban and highway datasets that can be considered in future research in sybil attack detection.
+
+
+
+<a href="/lse-summer-week-2022/slides/C-ITS_Security.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="5" class="summary">Anonymisation of DNS requests through blockchain  - Yves Elloh</h3>
+	<span class="schedule"><span class="dtstart">14h45</span> <span class="dtend"></span></span>
+<p class="description">
+Le système de noms de domaine ou DNS est un service informatique distribué utilisé pour traduire les noms de domaine Internet en adresses IP ou autres enregistrements. C'est l'un des protocoles critiques pour le bon fonctionnement de l'Internet actuel. Le DNS a été pendant longtemps ciblé par plusieurs attaques comme: les attaques d'empoisonnement du DNS, l'attaque d'amplification DNS etc. Un utilisateur malveillant ayant accès aux requêtes/réponses DNS d'un client pourra profiler ce dernier, Notamment ses habitudes, ses intérêts, etc. Ce serait une grave atteinte à sa vie privée. L'attaquant pourrait autant être une entité externe à la communication qu'un intermédiaire tel qu'un FAI ou un fournisseur de services DNS. Il existe différentes solutions pour authentifier, protéger l'intégrité et la confidentialité des requêtes DNS comme: le DNSSEC, DNSCRYPT, DNS-over-HTTPS (DoH) etc. Malheureusement, toutes ces solutions ne protège pas contre un intermédiaire malveillant, notamment un FAI agissant à des fins commerciales. Nos travaux visent à concevoir un protocole de sécurité basé sur la blockchain.
+
+
+
+<a href="/lse-summer-week-2022/slides/elloh.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="6" class="summary">Malware  - Mohammed Badreddine Zouhair</h3>
+	<span class="schedule"><span class="dtstart">15h30</span> <span class="dtend"></span></span>
+<p class="description">
+
+
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="7" class="summary">Cartography of submarine zones with lightweight means  - Loïca Avanthey and Laurent Beaudoin</h3>
+	<span class="schedule"><span class="dtstart">16h45</span> <span class="dtend"></span></span>
+<p class="description">
+
+
+
+
+
+</p>
+</span>
+
+
+
+
+<h2>Saturday 9</h2>
+
+
+<span class="vevent">
+	<h3 id="8" class="summary">Discovering new ways of attacking AES when trying to do something else  - Martin Grenouilloux</h3>
+	<span class="schedule"><span class="dtstart">14h00</span> <span class="dtend"></span></span>
+<p class="description">
+A promising attack on AES on an algebraic level can be done by computing the corresponding Gröbner basis.  However, this method is slow and inneficient but it can certainely be improved upon. This talk is about algebraic cryptanalysis and my work on the subject, and how, when searching to improve this algorithm, we found another angle of attack on AES using graphs.
+
+
+
+<a href="/lse-summer-week-2022/slides/slides_summerweek_martin.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="9" class="summary">Work on an UEFI driver rootkit with a bare metal hypervisor  - Alex Levigoureux and Antoine Jouan</h3>
+	<span class="schedule"><span class="dtstart">14h45</span> <span class="dtend"></span></span>
+<p class="description">
+UEFI aims to replace BIOS. It has a feature called UEFI drivers, which can be a good place to install rootkit.  UEFI drivers are executed before the operating system and has full privilege over the system.  Virtualizing an operating system makes the rootkit hard to detect...
+
+
+
+<a href="/lse-summer-week-2022/slides/hyperviseur.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="11" class="summary">Writing a bare metal GPU driver for the Raspberry PI 4  - Darius Engler</h3>
+	<span class="schedule"><span class="dtstart">15h45</span> <span class="dtend"></span></span>
+<p class="description">
+The Raspberry PI 4 is a great board for experimenting with OS development.  However, one thing that appears to be lacking is good documentation about some specific parts of the board. The GPU is one of these parts, and in this talk, I will discuss how I managed to write a bare-metal driver capable of rendering graphics by digging in Linux and Mesa and what problems I encountered along my path.
+
+
+
+<a href="/lse-summer-week-2022/slides/darius-gpu.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="12" class="summary">Secure user-defined abstractions using exokernels  - Daniel Frederic</h3>
+	<span class="schedule"><span class="dtstart">16h30</span> <span class="dtend"></span></span>
+<p class="description">
+
+
+
+<a href="/lse-summer-week-2022/slides/daniel-exo.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="13" class="summary">Rump session </h3>
+	<span class="schedule"><span class="dtstart">17h30</span> <span class="dtend"></span></span>
+<p class="description">
+
+
+
+
+
+</p>
+</span>
+
+
+
+
+
+
+
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+    </body>
+</html>

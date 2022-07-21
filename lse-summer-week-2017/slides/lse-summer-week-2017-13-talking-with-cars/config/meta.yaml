@@ -1,0 +1,11 @@
+title: "Talking with cars"
+description: "Introduction to automotive networks communications"
+abstract: ""
+authors: "Stanislas 'P1kachu' Lejay"
+date: "LSE Week - July 15, 2017"
+files:
+    - "src/slides.md"
+rjs_path: "reveal.js"
+separator: "\n\n---\n\n"
+rjs_theme: "black"
+hjs_theme: "darkula"

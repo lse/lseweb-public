@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Workshop - Lava Tests</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li >
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h3 id="how-to-create-lava-tests-and-use-them-locally">How to create Lava Tests and use them locally</h3>
+
+<p>You can run lava tests locally with the tools available here:
+https://git.linaro.org/qa/lava-local-test.git
+Instructions are provided in README.rst.</p>
+
+<p>Supported distros are in <code class="language-plaintext highlighter-rouge">lava_test_shell/distro</code>, Debian is recommended.
+When writing your test definitions, put ‘kvm’ in the ‘devices’ field.
+You must also adapt the ‘os’ field and your steps according to your test
+distro.</p>
+
+<p>Here is a sample test definition:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>metadata:
+    format: Lava-Test Test Definition 1.0
+    name: smoke-tests-basic
+    description: "Basic system test commands for Debian images"
+    os:
+        - debian
+    scope:
+        - functional
+    devices:
+        - kvm
+
+run:
+    steps:
+        - lava-test-case linux-linaro-debian-pwd --shell pwd
+        - lava-test-case linux-linaro-debian-uname --shell uname -a
+        - lava-test-case linux-linaro-debian-vmstat --shell vmstat
+        - lava-test-case linux-linaro-debian-ifconfig --shell ifconfig -a
+        - lava-test-case linux-linaro-debian-lscpu --shell lscpu
+        - lava-test-case linux-linaro-debian-lsb_release --shell lsb_release -a
+</code></pre></div></div>
+
+<p>If you need inspiration, a collection of various test definitions is
+available here: https://git.linaro.org/qa/test-definitions.git/</p>
+
+<p>See also:
+https://validation.linaro.org/static/docs/v2/writing-tests.html</p>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

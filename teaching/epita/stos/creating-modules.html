@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Courses - STOS - How to create a new Module ?</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li >
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h1 id="how-to-create-a-new-module-">How to create a new module ?</h1>
+
+<p>Modules in STOS behave mostly like modules in the Linux kernel. Is is an object
+file with special sections that contains metadata about itself, like its
+dependancies, its exposed APIs, and things like that. Here we will see how to
+create such modules.</p>
+
+<h2 id="a-simple-module-helloko">A Simple module <code class="language-plaintext highlighter-rouge">hello.ko</code></h2>
+
+<p>Let’s start by creating a simple module, that just display some output inside
+on the kernel log.</p>
+
+<p>In order to have a working module, we need to see first how to compile it
+inside the STOS tree.</p>
+
+<p>There is 2 possible place to put a module:</p>
+
+<ul>
+  <li>inside the <code class="language-plaintext highlighter-rouge">kernel/module</code> directory, for arch-independant modules,</li>
+  <li>or inside <code class="language-plaintext highlighter-rouge">kernel/arch/$ARCH/</code> directory, for arch-dependant modules.</li>
+</ul>
+
+<p>Since <code class="language-plaintext highlighter-rouge">hello.ko</code> will only output stuff on the screen, it will belong into the
+<code class="language-plaintext highlighter-rouge">kernel/modules</code> directory. We will need to create the module, and then hook it
+into the rest of the build system.</p>
+
+<p>let’s create a new directory inside kernel/modules for our module:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir $SRC/kernel/modules/hello
+</code></pre></div></div>
+
+<p>Inside it, we will need a Makefile and a simple C file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># $SRC/kernel/modules/hello/Makefile
+CUR_DIR			:= kernel/modules/hello/
+
+OBJS			:= hello.o	# here we need to place all the 
+					# object files needed for the module.
+MOD-$(CONFIG_HELLO)	:= hello.ko
+
+include $Omk/module.mk
+
+/* $SRC/kernel/modules/hello/hello.c */
+#include &lt;kernel/klog.h&gt;
+#include &lt;kernel/module.h&gt;
+#include &lt;kernel/stos.h&gt;
+
+static void __init_once lol(void)
+{
+	klog("Init once Hello World !\n");
+}
+
+static void __init init(void)
+{
+	klog("Hello World !\n");
+}
+
+MODINFO {
+	module_name("hello"),
+	module_init(init),
+	module_init_once(lol)
+};
+</code></pre></div></div>
+
+<p>In order to have it builded, we need to add it to the rest of the build system,
+quite simple, we just need to edit <code class="language-plaintext highlighter-rouge">$(SUBDIRS)</code> var inside
+<code class="language-plaintext highlighter-rouge">kernel/modules/Makefile</code>. Attention, you <em>MUST</em> add it before the <code class="language-plaintext highlighter-rouge">init/</code>
+modules, due to dependancies issues.</p>
+
+<p>Last part, add into the build config file the line to activate the compilation
+of the module:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "CONFIG_HELLO := M" &gt;&gt; $BUILD/stos-config
+</code></pre></div></div>
+
+<p>After all that we will have a working module inside STOS.</p>
+
+<h2 id="more-on-the-modinfo-section">More on the MODINFO section</h2>
+
+<p>Let’s now have a little explanation about the <code class="language-plaintext highlighter-rouge">MODINFO</code> part. It describe all
+the metadata we need for a module. The definitions of all the entries are
+inside <code class="language-plaintext highlighter-rouge">kernel/include/kernel/module.h</code> header.</p>
+
+<p>The MODINFO macro is in fact an hidden declaration of a variable of type
+<code class="language-plaintext highlighter-rouge">struct modinfo</code>. What we can feed it is :</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">module_name("&lt;module_name&gt;")</code>: the name of the module</li>
+  <li><code class="language-plaintext highlighter-rouge">module_type(&lt;enum module_type&gt;)</code>: the type of the module, more on that later.</li>
+  <li><code class="language-plaintext highlighter-rouge">module_deps(&lt;ORed values of enum module_type&gt;)</code>: dependancies of the module.</li>
+  <li><code class="language-plaintext highlighter-rouge">module_init(&lt;function&gt;)</code>: per-cpu init function (per-cpu, launch 1 time per-cpu.)</li>
+  <li><code class="language-plaintext highlighter-rouge">module_init_once(&lt;function&gt;)</code>: init function (global, launch only 1 time.)</li>
+</ul>
+
+<h2 id="module-types-and-exported-symbols">module types and exported symbols</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">module_type()</code> describe the kind of APIs that the module expose to other
+through the <code class="language-plaintext highlighter-rouge">EXPORT_SYMBOL()</code> macro.</p>
+
+<p>Let’s take a simple example:</p>
+
+<p>I have a module <code class="language-plaintext highlighter-rouge">module-a</code> that expose a <code class="language-plaintext highlighter-rouge">foo()</code> function, and a <code class="language-plaintext highlighter-rouge">module-b</code> that
+need to use it.</p>
+
+<p>our <code class="language-plaintext highlighter-rouge">module-a</code> will need to export the function:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int foo(void)
+{
+	return 0;
+}
+EXPORT_SYMBOL(foo);
+</code></pre></div></div>
+
+<p>And in order to have the dependancy mechanism load it at the right time for
+<code class="language-plaintext highlighter-rouge">module-b</code> to start, we need to explain the dependancy:</p>
+
+<p>First add a <code class="language-plaintext highlighter-rouge">module_type()</code> into the MODINFO of <code class="language-plaintext highlighter-rouge">module-a</code> and the dependancy inside <code class="language-plaintext highlighter-rouge">module-b</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/* inside module-a */
+MODINFO {
+	module_name("module-a"),
+	module_type(M_FOO)
+};
+
+/* inside module-b */
+MODINFO {
+	module_name("module-b"),
+	module_deps(M_FOO)
+};
+</code></pre></div></div>
+
+<p>And here we are, we can call a function from one module to another. In
+practice, a module can have multiple dependencies, and multiple types.</p>
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

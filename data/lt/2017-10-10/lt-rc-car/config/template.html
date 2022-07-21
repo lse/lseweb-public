@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{{ title }}</title>
+        <meta name="description" content="{{ description }}">
+        <meta name="author" content="{{ authors }}">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <link rel="stylesheet" href="{{ rjs_path }}/css/reveal.css">
+        <link rel="stylesheet" href="{{ rjs_path }}/css/theme/{{ rjs_theme }}.css" id="theme">
+        <link rel="stylesheet" href="{{ rjs_path }}/lib/css/{{ hjs_theme }}.css">
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '{{ rjs_path }}/css/print/pdf.css' : '{{ rjs_path }}/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <!--[if lt IE 9]>
+            <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>{{ title }}</h1>
+                    <h4>{{ description }}</h4>
+                    <img style="max-height: 235px;"  src="rsc/banner.png">
+                    <p>{{ authors }}</p>
+                    <p><small>{{ date }}</small></p>
+                </section>
+                {% for slide in slides %}
+                <section data-markdown data-separator-vertical='^\n\n--\n\n'>
+                    <script type="text/template">
+                        {{ slide }}
+                    </script>
+                </section>
+                {% endfor %}
+            </div>
+        </div>
+
+        <script src="{{ rjs_path }}/lib/js/head.min.js"></script>
+        <script src="{{ rjs_path }}/js/reveal.js"></script>
+        <a style="display: block;">
+            <img style="position: absolute; bottom: 20px; right: 20px; border: 0; width: 10%;" src="rsc/lse2.svg">
+        </a>
+        <script>
+            Reveal.initialize({
+                controls: {{ rjs_show_controls }},
+                progress: {{ rjs_progress_bar }},
+                slideNumber: {{ rjs_slide_number }},
+                history: {{ rjs_history }},
+                keyboard: {{ rjs_keyboard_shortcuts }},
+                overview: {{ rjs_slide_overview}},
+                center: {{ rjs_vertical_centering }},
+                touch: {{ rjs_touch_navigation}},
+                loop: {{ rjs_loop }},
+                rtl: {{ rjs_rtl }},
+                fragments: {{ rjs_fragments }},
+                embedded: {{ rjs_embedded }},
+                help: {{ rjs_help }},
+                showNotes: {{ rjs_show_notes }},
+                autoSlide: {{ rjs_auto_slide }},
+                autoSlideStoppable: {{ rjs_auto_slide_stoppable }},
+                mouseWheel: {{ rjs_mouse_wheel }},
+                hideAddressBar: {{ rjs_hide_address_bar }},
+                previewLinks: {{ rjs_preview_links }},
+                transition: {{ rjs_transition_style }},
+                transitionSpeed: {{ rjs_transition_speed }},
+                backgroundTransition: {{ rjs_background_transition }},
+                viewDistance: {{ rjs_view_distance }},
+                parallaxBackgroundImage: {{ rjs_parallax_background_image }},
+                parallaxBackgroundSize: {{ rjs_parallax_background_size }},
+                parallaxBackgroundHorizontal: {{ rjs_parallax_background_horizontal }},
+                parallaxBackgroundVertical: {{ rjs_parallax_background_vertical }},
+
+                dependencies: [
+                { src: '{{ rjs_path }}/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '{{ rjs_path }}/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '{{ rjs_path }}/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: '{{ rjs_path }}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: '{{ rjs_path }}/plugin/zoom-js/zoom.js', async: true },
+                { src: '{{ rjs_path }}/plugin/notes/notes.js', async: true }
+                ]
+            });
+        </script>
+
+    </body>
+</html>
