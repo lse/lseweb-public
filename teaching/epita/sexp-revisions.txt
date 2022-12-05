@@ -1,0 +1,121 @@
+* Kernel, Services, Libraries, Application: define the 4 terms, and their roles.
+
+* What are the different states for a task in an OS ?
+* Name and explain 3 scheduling algorithms
+
+* What are signals in UNIX systems ? give 5 common signal names and explain them
+* How can we execute custom behavior when receiving a signal ? Which signals can't have their default behavior overriden ?
+
+* Describe a mechanism for enforcing memory protection in order to prevent a program from modifying the memory associated with other programs.
+
+* Some computer systems do not provide a privileged mode of operation in hardware. Is it possible to construct a secure operating system for these computer systems? Give arguments both that it is and that it is not possible.
+
+* Which of the following instructions should be privileged?
+* a. Set value of a timer.
+* b. Read the clock.
+* c. Clear memory.
+* d. Issue a trap instruction.
+* e. Turn off interrupts.
+* f. Modify entries in device-status table.
+* g. Switch from user to kernel mode.
+* h. Access IO device.
+
+* What is the purpose of interrupts? What are the differences between a trap and an interrupt? Can traps be generated intentionally by a user program? If so, for what purpose?
+* What system calls have to be executed by a command interpreter or shell in order to start a new process?
+* What are the advantages and disadvantages of using the same system-call interface for manipulating both files and devices?
+
+* Describe the actions taken by a kernel to contex-switch between processes.
+* It is said that fork(2) uses a copy on write mechanism. Explain fork semantics, and how it works in practice
+
+* Give an example of a situation in which ordinary pipes are more suitable than named pipes and an example of a situation in which named pipes are more suitable that ordinary pipes.
+
+* Describe the differences among short-term, medium-term and long-term scheduling.
+* Using the following program, identify the values of pid at line A, B, C, and D, assuming that the actual pids of the parent and child are 2600 and 2603.
+
+	#include <err.h>
+	#include <stdio.h>
+	#include <sys/types.h>
+	#include <sys/wait.h>
+	#include <unistd.h>
+	
+	int main()
+	{
+		pid_t pid, pid1;
+	
+		pid = fork();
+	
+		if (pid < 0) {
+			err(1, "fork failed");
+		} else if (pid == 0) {
+			pid1 = getpid();
+			printf("pid = %u\n", pid); /* A */
+			printf("pid1 = %u\n", pid1); /* B */
+		} else {
+			pid1 = getpid();
+			printf("pid = %u\n", pid); /* C */
+			printf("pid1 = %u\n", pid1); /* D */
+	
+			wait(0);
+		}
+	
+		return 0;
+	}
+
+* Using the following program, explain what the output will be at line A.
+
+	#include <stdio.h>
+	#include <sys/types.h>
+	#include <sys/wait.h>
+	#include <unistd.h>
+	
+	int value = 5;
+	
+	int main()
+	{
+		pid_t pid = fork();
+	
+		if (pid == 0) {
+			value += 15;
+			return 0;
+		} else if (pid > 0) {
+			wait(0);
+			printf("value = %d\n", value); /* A */
+			return 0;
+		}
+	}
+
+* Which of the following components of program state are shared across threads in a multithreaded process ?
+  a. Register values
+  b. Heap memory
+  c. Global variables
+  d. Stack memory
+
+* What are two differences between user-level threads and kernel-level threads? Under what circumstances is one type better than the other?
+
+* Can a multithreaded solution using multiple user-level threads achieve better performance on a multiprocessor system than on a single-processor system? Explain.
+
+* Under what circumstances does a multithreaded solution using multiple kernel threads provide better performance than a single threaded solution on a single processor system?
+
+* Describe the actions taken by a thread library to context-switch between user-level threads.
+
+* Why is it important for the scheduler to distinguish IO-bound programs from CPU-bound programs?
+
+* Explain why interrupts are not appropriate for implementing synchronization primitives in multiprocessor systems.
+
+* Servers can be designed to limit the number of open connections. For example, a server may wish to have only N socket connections at any point in time. As soon as N connections are made, the server will not accept another incomming connection until an existing connection is released. Explain how semaphores can be used by a server to limit the number of concurrent connections.
+
+* Explain why implementing synchronization primitives by disabling interrupts is not appropriate in a single-processor system if the synchronization primitives are to be used in user-level programs.
+
+* What is a deadlock?
+
+* On a system with paging, a process cannot access memory that it does not own. Why? How could the operating system allow access to other memory? Why should it or should it not?
+* Under what circumstances do page faults occur? Describe the actions taken by the operating system when a page fault occurs.
+
+* What is the copy-on-write feature, and under what circumstances is it beneficial to use this feature?
+* Why do some systems keep track of the type of a file, while others leave it to the user and other simply do not implement multiple file types? Which system is "better"?
+* If the operating system knew that a certain application was going to access file data in a sequential manner, how could it exploit this information to improve performance?
+* Consider a file system that uses inodes to represent files. Disk blocks are 4kb in size, and a pointer to a disk block requires 8bytes. This file system has 6 direct blocks, as well as single, double and triple indirect disk blocks. What is the maximum size of a file that can be stored in this file system?
+* Why must the bit map for file allocation be kept on mass storage, rather than in main memory?
+
+* What is ioctl(2)? What are the issues solved by this system call? What are the problems caused by it? Propose a mechanism to solve its problems.
+* Describe how you could obtain a statistical profile of the amount of time spent by a program executing different sections of its code. Discuss the importance of obtaining such a statistical profile.

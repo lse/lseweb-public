@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>LSE Winter Day 2013 - Talks</title>
+        <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+        <style>
+            p {
+                text-align: justify;
+                margin-left: 5em;
+            }
+            span.schedule {
+                display: block;
+                width: 3em;
+                float: left;
+                margin: 1em 0;
+                padding: 0;
+                font-weight: bold;
+            }
+            h2, h3 { clear: both; }
+        </style>
+    </head>
+    <body>
+    <div style="margin: 0 auto; max-width: 900px;">
+      <h1>LSE Winter Day - 12 février 2013</h1>
+
+      <h2>Lieu et plan d'accès</h2>
+
+      <p>Amphith&eacute;&acirc;tre 4, EPITA, 24 rue Pasteur, 94276 Le Kremlin-Bicêtre.</p>
+
+      <p>Transports en commun : métro 7 (station Porte d'Italie), bus
+      47/125/131/185/186 (station Roger Salengro-Fontainebleau).</p>
+
+      <div style="text-align: center">
+        <img src="/images/plan-conferences.png" alt="Plan d'accès">
+      </div>
+
+      <h2>Système</h2>
+
+<h3 id="1">Reverse engineering et émulation d’un microcode DSP - Pierre
+    Bourdon</h3>
+<span class="schedule">10h00 10h45</span>
+<p>Les DSP sont des processeurs spécialisés dans le traitement de
+signaux de tous types : Software Defined Radio, mixage et filtrage
+audio, téléphonie (baseband), etc. De ce fait, ils contiennent de
+nombreuses fonctionnalités originales, telle que de la parallélisation
+au niveau de l’exécution d’une instruction ou la présence de nombreux
+registres spécialisés. Cette conférence parlera du reverse engineering
+de code pour ce type de processeur, des techniques utilisées pour
+l’analyser, et de l’implémentation d’un émulateur reproduisant les
+fonctionnalités du DSP. <a href="/lse-winter-day-2013/slides/dsp.pdf">Slides</a>
+ <a href="videos/lse-winter-day-20130212-Pierre Bourdon-DSP.mp4">Video</a>
+ <a href="http://www.youtube.com/watch?v=y9pzJFE_WV8">Youtube</a>
+ </p>
+
+<h3 id="2">Introduction à GDB Python - Pierre-Marie de Rodat</h3>
+<span class="schedule">10h45 11h15</span>
+<p>Lors du debugging d’un programme, on est souvent amené à faire des
+choses automatisables, comme afficher les différents éléments d’une
+liste chaînée, compter un certain nombre d’événements, … GDB permettait
+déjà de créer des scripts avec un langage dédié, mais depuis la version
+7, il est possible de scripter GDB en Python. Nous verrons un bref
+aperçu de l’API disponible, de la mise en place d’un script et de
+quelques exemples. <a href="/lse-winter-day-2013/slides/gdb-python.pdf">Slides</a>
+ <a href="videos/lse-winter-day-20130212-Pierre-Marie de Rodat-Introduction à GDB Python.mp4">Video</a>
+ <a href="http://www.youtube.com/watch?v=thNp1xpvVFs">Youtube</a>
+ </p>
+
+<h3 id="3">DWARF : lorsque le compilateur passe la main au debugger -
+    Pierre-Marie de Rodat</h3>
+<span class="schedule">11h30 12h15</span>
+<p>Les debuggers de programmes natifs comme GDB ou DBX reçoivent des
+informations du compilateur qu’il faut habituellement générer
+explicitement (option <code>-g</code>, …). Ces informations permettent,
+depuis un certain état du processus, de faire le lien avec les sources
+du programme, et ainsi retrouver les lignes de code exécutées, les
+fonctions appelées, la valeur et le type des variables disponibles, et
+bien d’autres. DWARF est un format utilisé par les compilateurs pour
+passer de telles informations : nous verrons quelles formes prennent
+les informations de debugging et leur utilisation par les
+debuggers. <a href="/lse-winter-day-2013/slides/dwarf.pdf">Slides</a>
+ <a href="videos/lse-winter-day-20130212-Pierre-Marie de Rodat-DWARF.mp4">Video</a>
+ <a href="http://www.youtube.com/watch?v=LohOddt6n_Q">Youtube</a>
+ </p>
+
+<h3 id="4">Écriture d’un driver pour contrôleur ethernet Intel e1000 - Ivan
+    Delalande</h3>
+<span class="schedule">12h15 12h45</span>
+<p>Pour pouvoir communiquer avec le réseau local ou Internet, la
+première étape pour un système d’exploitation est d’interagir avec le
+contrôleur ethernet de la machine. Le développement d’un driver
+permettant la communication avec un tel contrôleur sera présenté en
+prenant pour exemple le contrôleur e1000 d’Intel et en présentant les
+particuliarités du développement d’un driver pour un composants
+connecté par bus PCI. <a href="/lse-winter-day-2013/slides/e1000.pdf">Slides</a>
+ <a href="videos/lse-winter-day-20130212-Ivan Delalande-e1000.mp4">Video</a>
+ <a href="http://www.youtube.com/watch?v=HN66mRODSf0">Youtube</a>
+ </p>
+
+
+<h2>Sécurité</h2>
+
+<h3 id="5">Unpacking tips and tricks - Samuel Chevet</h3>
+<span class="schedule">14h30 15h15</span>
+<p>Souvent, lorsqu'on est amené à étudier des logiciels, des jeux ou
+mêmes des <em>malwares</em>, on ne peut pas faire du <em>reverse
+    engineering</em> sur les exécutables directement. La plupart du
+temps, ceux-ci sont compressés ou chiffrés avec le code pour
+décompresser ou déchiffrer au sein d'eux-même, et tout ce processus se
+fait de façon transparente aux yeux de l'utilisateur.</p>
+
+<p>Nous verrons ce que ce sont ces <em>packer</em>, les choses a
+connaître pour les déjoueur, ce qu'est la reconstruction d'imports, la
+redirection d'api, les <em>stolen bytes</em>, les <em>nanomites</em> ou
+encore d'autres methodes utilisées par ces protections pour faire
+perdre du temps aux personnes qui ont envie d'étudier les executables
+en question. <a href="/lse-winter-day-2013/slides/unpacking.pdf">Slides</a>
+ <a href="videos/lse-winter-day-20130212-Samuel Chevet-Unpacking tips and tricks.mp4">Video</a>
+ <a href="http://www.youtube.com/watch?v=WAxapyT-pnI">Youtube</a>
+ </p>
+
+<h3 id="6">Applications des solvers SAT en sécurité - Pierre Bourdon</h3>
+<span class="schedule">15h15 15h45</span>
+<p>Depuis des décénies, des chercheurs et programmeurs implémentent des
+logiciels dans le but de résoudre le problème de satisfaisabilité d’une
+formule booléenne (généralement appelé SAT) : chercher un ensemble de
+valeurs possibles pour les variables d’une formule afin que cette
+formule soit vraie. Ce problème n’a pas de solution rapide dans le cas
+général : il s’agit d’un problème NP-complet. De nombreuses
+simplifications peuvent cependant être utilisées pour le rendre rapide
+dans les cas usuels. SAT a de nombreuses applications en sécurité, de
+l’analyse statique de code à la recherche de préimages d’une fonction
+de hachage. Nous verrons pendant cette conférence comment réduire une
+recherche de préimage à la résolution de SAT sur une formule
+représentant une fonction de hachage, et quelques outils permettant de
+simplifier l’écriture de cette formule. <a href="/lse-winter-day-2013/slides/sat.pdf">Slides</a>
+ <a href="videos/lse-winter-day-20130212-Pierre Bourdon-SAT solvers.mp4">Video</a>
+ <a href="http://www.youtube.com/watch?v=ilonlOtLsSI">Youtube</a>
+ </p>
+
+<h3 id="7">Exploits réseau dans les jeux - Samuel Chevet, Clément Rouault</h3>
+<span class="schedule">16h00 16h45</span>
+<p>L’exploitation logicielle ne cesse d’augmenter de nos jours : Java,
+Flash, et Adobe Reader sont actuellement les vecteurs d’attaque les
+plus utilisés, mais est-ce que ce sont les seuls ?</p>
+
+<p>Les serveurs de jeux sont eux aussi vulnérables, et étant donné la
+population de joueurs sur Terre, serait-il intéressant d’étudier
+certains de ces logiciels pour trouver des vulnerabilités ?</p>
+
+<p>Durant cette conférence nous parlerons d’outils developpés pour
+aider à la recherche de vulnérabilités ainsi que de leur
+exploitation. <a href="/lse-winter-day-2013/slides/jv-expl.pdf">Slides</a>
+ <a href="videos/lse-winter-day-20130212-Samuel Chevet & Clément Rouault-Exploits réseau dans les jeux.mp4">Video</a>
+ <a href="http://www.youtube.com/watch?v=6qV8P1Zw4P8">Youtube</a>
+ </p>
+
+<h3 id="8">Réalisation d’un keylogger USB - Nicolas Hureau</h3>
+<span class="schedule">16h45 17h15</span>
+<p>Après une présentation du fonctionnement de l'USB, nous nous
+intéresserons aux Human Interface Devices, et plus particulièrement au
+clavier, dans le but de réaliser un keylogger. <a href="/lse-winter-day-2013/slides/usb.pdf">Slides</a>
+ <a href="videos/lse-winter-day-20130212-Nicolas Hureau-Réalisation d'un keylogger USB.mp4">Video</a>
+ <a href="http://www.youtube.com/watch?v=azp7wF9bQRA">Youtube</a>
+ </p>
+
+
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+    </body>
+</html>

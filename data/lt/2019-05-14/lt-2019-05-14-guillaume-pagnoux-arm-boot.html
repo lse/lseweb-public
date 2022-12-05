@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>How an environment variable annoyed me for three months</title>
+<meta name="author" content="(Guillaume Pagnoux)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3/css/theme/black.css" id="theme"/>
+
+<link rel="stylesheet" href="../local.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js@3/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">How an environment variable annoyed me for three months</h1><h2 class="author">Guillaume Pagnoux</h2><p class="date">Created: 2019-05-14 Tue 19:09</p>
+</section>
+<section id="table-of-contents">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-org31da632">Introduction</a></li>
+<li><a href="#/slide-org49a16e9">Context</a></li>
+<li><a href="#/slide-org22e1e48">The problem</a></li>
+<li><a href="#/slide-org8b6cad1">The solution</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-sec-">
+<h2 id="org31da632">Introduction</h2>
+<ul>
+<li class="fragment appear">I had to work on some ARM64 board</li>
+<li class="fragment appear">More specifically, add support for some device to it</li>
+<li class="fragment appear">It didn't go as I planned</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org49a16e9">Context</h2>
+<div class="outline-text-2" id="text-org49a16e9">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgf57e558">The board</h3>
+<ul>
+<li class="fragment appear">Marvell Espressobin</li>
+<li class="fragment appear">Aimed to be used in production</li>
+<li class="fragment appear">So we won't use Marvell's provided rootfs and build our own with Yocto</li>
+<li class="fragment appear">We also won't use Marvell's provided u-boot</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgb91c741">u-boot ?</h3>
+<ul>
+<li class="fragment appear">The <i>de facto</i> ARM bootloader</li>
+<li class="fragment appear">Lots of features..</li>
+<li class="fragment appear">Including something called <i>verified boot</i></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgd05f4ab">Verified boot ?</h3>
+<ul>
+<li class="fragment appear">Basically <i>secure boot</i></li>
+<li class="fragment appear">Supported by the EB thanks to its OTP and <i>trusted zone</i></li>
+<li class="fragment appear">Works by establishing a chain of trust (like basically every kind of secure
+booting ?)</li>
+<li class="fragment appear">We need to use <i>FIT Images</i></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org4960222">FIT images ??</h3>
+<ul>
+<li class="fragment appear">ARM boards comes with very specific hardware</li>
+<li class="fragment appear">Supporting that wide range of hardware is a pain for kernel developpers</li>
+<li class="fragment appear">So device trees were invented</li>
+
+</ul>
+
+</section>
+<section >
+
+<ul>
+<li class="fragment appear">The device tree is passed to the kernel by u-boot so the kernel knows which
+device to init, and how to initialize it</li>
+
+</ul>
+
+</section>
+<section >
+
+<p>
+You may be thinking:
+</p>
+<blockquote nil>
+<p>
+That's awesome! Why are you telling us this ?
+</p>
+</blockquote>
+
+<p class="fragment (appear)">
+Because we need to rebuild u-boot with Verified Boot and FIT images support.
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org22e1e48">The problem</h2>
+<p>
+It's more problems really&#x2026;
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgf170c19">Building the driver in the kernel</h3>
+<ul>
+<li class="fragment appear">So we enable our driver in menuconfig, generate an image with Yocto and flash it</li>
+<li class="fragment appear"><p>
+We reset the board and&#x2026;it fails silently..
+</p>
+
+<pre  class="example">
+## Booting image at 80500000 ...
+Image Name:   Linux-3.4.34-01535-g499e8d5-dirt
+Image Type:   ARM Linux Kernel Image (uncompressed)
+Data Size:    3519528 Bytes =  3.4 MB
+Load Address: 80008000
+Entry Point:  80008000
+Verifying Checksum ... OK
+
+Starting kernel ...
+</pre></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org77589c7">Debugging ?</h3>
+<ul>
+<li class="fragment appear">At this point, u-boot has passed control to Linux</li>
+<li class="fragment appear">There is no JTAG, or any other kind of debugging ports available</li>
+<li class="fragment appear">Early printk does nothing</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgd9f5831">Rebuilding u-boot with debug print ?</h3>
+<ul>
+<li class="fragment appear">At the time, we used an u-boot binary we built some time ago</li>
+<li class="fragment appear">Because we can't build a working one anymore for still unknown reasons..</li>
+<li class="fragment appear">Figuring this out requires reversing..I don't know what this is</li>
+
+</ul>
+
+</section>
+<section >
+
+<pre  class="example">
+  48   │ WRITE: 0xC0001010 0x00100100
+  49   │ WRITE: 0xC0001014 0x00080200
+  50   │ WRITE: 0xC000101C 0x90118011
+  51   │ WRITE: 0xC0001028 0x00000011
+  52   │ WRITE: 0xC0001040 0x00000607
+  53   │ WRITE: 0xC00010C0 0x51000000
+  54   │ WRITE: 0xC0001050 0x15150000
+  55   │ WRITE: 0xC0001054 0x20100000
+  56   │ WRITE: 0xC0001074 0x15150000
+  57   │
+  58   │ ;Setp7: init read fifo pointer and OFF spec parameter
+  59   │ WRITE: 0xC0001000 0x00004032
+  60   │ WRITE: 0xC00003bc 0x02020404
+  61   │
+  62   │ ;Step8: phyinit_sequence_sync2(1, 3, 2, 0)
+  63   │ WRITE: 0xC0001014 0x00080200
+</pre>
+
+<p class="fragment (appear)">
+I'll spare you the <i>Perl</i> code that comes along with this..
+</p>
+
+</section>
+<section >
+
+<p>
+So I basically spent three months in that situation:
+</p>
+
+<ul>
+<li class="fragment appear">A kernel that used to boot does not anymore because of a driver <i>(why?)</i></li>
+<li class="fragment appear">u-boot can't be modified, thanks to the super chinese code <i>(I hate you)</i></li>
+<li class="fragment appear">Early printk does not work <i>(but why?)</i></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h2 id="org8b6cad1">The solution</h2>
+<div class="outline-text-2" id="text-org8b6cad1">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orge3afd83">Let's observe what we've got</h3>
+<ul>
+<li class="fragment appear">The non-booting kernel is bigger (duh!)</li>
+<li class="fragment appear">Its signature and checksum are good</li>
+<li class="fragment appear">The device tree is sane</li>
+<li class="fragment appear">Wait..the non-booting kernel is <i>bigger</i></li>
+
+</ul>
+
+<p class="fragment (appear)">
+What is the thing loaded after the kernel?
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgf16f6f6">The device tree?</h3>
+<p>
+What can we observe about the device tree ?
+</p>
+
+<ul>
+<li class="fragment appear">It's the exact same one as before</li>
+<li class="fragment appear">It's load address <i>is different</i></li>
+
+</ul>
+
+<p class="fragment (appear)">
+(Disclaimer: from this point, this is really how <b>I think</b> it works based on my
+observations)
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgac274bf">What IF ?</h3>
+<p>
+If the kernel can't load the device tree:
+</p>
+
+<ul>
+<li class="fragment appear">Loading it to initialize the <b>hardware</b> is one of the first thing it does.
+Without the device tree, the kernel is doomed pretty early.</li>
+<li class="fragment appear">We access the console via serial. Technically, its a device too.</li>
+<li class="fragment appear">That would explain why even <code>early printk</code> can't help me.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgf90ec56">That makes no sense!</h3>
+<p>
+U-boot <b>does</b> load the FDT!
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="orgc63bbc4">Ever heard of lowmem pool?</h3>
+<ul>
+<li class="fragment appear">During early boot, the kernel can only access a memory area called <i>lowmem pool</i></li>
+<li class="fragment appear">By default, its something like <code>256M</code></li>
+<li class="fragment appear">So I took a look at the addresses</li>
+<li class="fragment appear">And realized the fdt is loaded after..</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org011d391">U-boot is a nice guy</h3>
+<ul>
+<li class="fragment appear">U-boot has a relocation mechanism used when loading binaries</li>
+<li class="fragment appear">This way it can make sure the loaded binaries don't overlap in memory</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org01c317e">Here comes the environment variable</h3>
+<p>
+U-boot has a notion of environment:
+</p>
+
+<pre  class="example">
+ bootdelay=1
+ baudrate=115200
+ ipaddr=192.168.0.2
+ serverip=192.168.0.1
+ netmask=255.255.255.0
+ bootfile="fitImage"
+ bootcmd=mmc read 80200000 280000 400000;bootm 80200000
+ bootargs=console=ttyS2,115200n8 console=tty0 root=/dev/mtdblock4 rw rootfstyp=jffs2 nohz=off
+ stdin=serial
+ stdout=serial
+ stderr=serial
+ kernel_addr=0x5....... /* Something we don't care */
+ fdt_addr=0x5....... /* Something whatever */
+ fdt_high=0xffffffff
+</pre>
+
+</section>
+<section >
+
+<p>
+See that <code>fdt_high</code> variable?
+</p>
+
+<ul>
+<li class="fragment appear">Its value is not random in the previous example</li>
+<li class="fragment appear"><code>0xffffffff</code> disables the relocation feature of u-boot!</li>
+<li class="fragment appear">What if we give it a value, let's say, <b>256M or before</b>?</li>
+
+</ul>
+
+</section>
+<section >
+
+<div class="org-src-container">
+
+<pre  class="src src-systemd">
+...
+[    0.636324] usbcore: registered new interface driver usbfs
+[    0.636328] usbcore: registered new interface driver hub
+[    0.636345] usbcore: registered new device driver usb
+[    0.636359] pps_core: LinuxPPS API ver. 1 registered
+[    0.636360] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti &lt;giometti@linux.it&gt;
+[    0.636361] PTP clock support registered
+[    0.636366] EDAC MC: Ver: 3.0.0
+[    0.636412] Registered efivars operations
+[    0.646290] PCI: Using ACPI for IRQ routing
+[    0.647520] PCI: pci_cache_line_size set to 64 bytes
+[    0.647520] e820: reserve RAM buffer [mem 0x0009f000-0x0009ffff]
+[    0.647520] e820: reserve RAM buffer [mem 0x40004000-0x43ffffff]
+[    0.647520] e820: reserve RAM buffer [mem 0xd3cff018-0xd3ffffff]
+[    0.647520] e820: reserve RAM buffer [mem 0xd3d08018-0xd3ffffff]
+...
+</pre>
+</div>
+
+<p class="fragment (appear)">
+Three months&#x2026;for an environment variable&#x2026;
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-">
+<h3 id="org2f1b5fc">Questions ?</h3>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: false,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Workshop - Development setup</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li >
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h2 id="development-setup">Development setup</h2>
+
+<h3 id="archlinux">Archlinux</h3>
+
+<h3 id="debian--ubuntu">Debian &amp; Ubuntu</h3>
+
+<h4 id="building-linux">building Linux:</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install build-essential git libncurses5-dev bc
+</code></pre></div></div>
+
+<p>We need to setup some variables (please adjust accordingly).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat env.sh
+export KSRC=/nfs/linux
+export KBUILD_OUTPUT=$HOME/build/linux
+export ROOTFS=$HOME/debian-rootfs
+
+export KERNEL=$KBUILD_OUTPUT/arch/x86/boot/bzImage
+$ . env.sh
+$ mkdir -p $KBUILD_OUTPUT
+$ make -C $KSRC defconfig
+
+$ make -C $KSRC
+</code></pre></div></div>
+
+<h4 id="creating-the-base-distribution-using-debootstrap">creating the base distribution using debootstrap</h4>
+
+<p>There is examples at the end of the man page of debootstrap.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install debootstrap
+$ sudo debootstrap jessie $ROOTFS
+$ sudo chroot $ROOTFS passwd -d root
+</code></pre></div></div>
+
+<h4 id="kernel-headers--modules-installation">kernel headers &amp; modules installation</h4>
+
+<p>You’ll probably need to adjust permissions</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo mkdir -p $ROOTFS/lib/modules
+$ sudo chown $USER $ROOTFS/usr/include/ $ROOTFS/lib/modules
+</code></pre></div></div>
+
+<p>You need to install your modules and kernel headers into the target root file system.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ make -C $KSRC INSTALL_HDR_PATH=$ROOTFS/usr headers_install
+$ make -C $KSRC INSTALL_MOD_PATH=$ROOTFS modules_install
+</code></pre></div></div>
+
+<h4 id="libvirt-configuration--installation">libvirt configuration &amp; installation</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ apt install libvirt-bin virtinst
+</code></pre></div></div>
+
+<p>In order to have virsh working for qemu:///system by default</p>
+
+<ul>
+  <li>you need to change /etc/libvirt/libvirt.conf and un comment or write <code class="language-plaintext highlighter-rouge">uri_default = "qemu:///system"</code></li>
+  <li>add your user to the <code class="language-plaintext highlighter-rouge">libvirt</code> group (you can use <code class="language-plaintext highlighter-rouge">gpasswd</code> for that)</li>
+</ul>
+
+<p>You can now create a vm that can use your kernel (YMMV with the version of
+<code class="language-plaintext highlighter-rouge">virt-install</code>)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ virt-install \
+	--name $vmname \
+	--memory 512 \
+	--os-variant virtio26 \
+	--graphics none \
+	--disk none \
+	--boot kernel=$KERNEL,kernel_args="console=ttyS0"
+</code></pre></div></div>
+
+<h4 id="setup-nfs">setup NFS</h4>
+
+<p>Of course, you’ll need to adapt the network with your network prefix for the
+nfs export.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt install nfs-kernel-server
+$ sudo mkdir -p /etc/exports.d
+$ cat &lt;&lt;EOF | sudo tee /etc/exports.d/$vmname.exports
+$ROOTFS 192.168.122.0/24(rw,no_root_squash,no_subtree_check)
+EOF
+$ sudo exportfs -rav
+$ sudo systemctl restart nfs-kernel-server
+</code></pre></div></div>
+
+<p>You should test that you can mount the nfs export in order to be sure that your
+server is correctly setup. tcpdump/wireshark can help debugging it.</p>
+
+<p>See also:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">exports(5)</code></li>
+</ul>
+
+<h4 id="nfs-root">nfs root</h4>
+
+<p>Now you only need to change the kernel command line for your nfs server.</p>
+
+<p>For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root=/dev/nfs nfsroot=$nfs_server_ip:$ROOTFS rw ip=dhcp
+</code></pre></div></div>
+
+<p>See also:</p>
+
+<ul>
+  <li>~linux/Documentation/filesystems/nfs/nfsroot.txt</li>
+</ul>
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

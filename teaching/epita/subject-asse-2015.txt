@@ -1,0 +1,139 @@
+Computer Architecture and Assembly Language - Lab sessions
+==========================================================
+
+For this assignment, you will push your code on the ACUs repositories. The
+deadline for the project is 21/12/2015 at 07h42.
+
+General structure of your work:
+
+	$ find .
+	.
+	./sparc
+	./sparc/cat
+	./sparc/fizzbuzz
+	./sparc/hello
+	./sparc/libstring
+	./sparc/lists
+	./x86
+	./x86/cat
+	./x86/fizzbuzz
+	./x86/hello
+	./x86/libstring
+	./x86/lists
+
+* Each folder should contain a Makefile that is creating the asked binaries.
+* `hello` and `cat` must be done in sparc *and* x86_64, for the others, choose
+  what you want. But this should be the same per exercise.
+* Compiler will be passed to make as a variable:
+
+	$ CC=sparc-gcc make
+
+* toolchain is available for archlinux (`yaourt -S asse-sparc-toolchain`, or as
+  a tarball for the others distribution[1]).
+
+  [1]: https://lse.epita.fr/data/sparc-unknown-linux-gnu.tar.gz
+* In order to compile your code for sparc, you will need to use a cross
+  compiler. On the PIE, it is installed in `/opt/sparc-unknown-linux-gnu/` and
+  it is named `sparc-unknown-linux-gnu-gcc`. You just need to add it to your
+  PATH:
+
+	$ export PATH=/opt/sparc-unknown-linux-gnu/bin:$PATH
+	$ sparc-unknown-linux-gnu-gcc -o hello hello.c
+
+* Your assembly files should finish by `.S` and be compiled with gcc, as if you
+  compile C code.
+* In order to test your code, if you are using dynamic libraries, you can use
+  the following script (the path is for the PIE, you'll need to change it for
+  your machine):
+
+	#!/bin/sh
+	export QEMU_LD_PREFIX=/opt/sparc-unknown-linux-gnu/sparc-unknown-linux-gnu/
+	qemu-sparc $QEMU_LD_PREFIX/lib/ld-linux.so.2 --inhibit-cache $@
+
+  If you are starting to launch a static binary, just use `qemu-sparc`.
+
+* You need to respect the calling conventions used on linux for all your
+  exported functions[2]. For the syscalls, see syscall(2). For sparc, arguments
+  are in %i0-%i5, and return value into %i0 (%i6 is for %fp, %i7 for %pc).
+
+[2]: https://en.wikipedia.org/wiki/X86_calling_conventions#x86-64_calling_conventions
+
+## hello world
+
+Implement an `hello` binary that says `Hello World!` followed by a newline on
+stdout, with no runtime, only syscalls and assembly (use `-nostdlib` gcc flag).
+
+Your symbol table should look like this:
+
+	hello$ nm hello
+	000000000060010f R __bss_start
+	000000000060010f R _edata
+	0000000000600110 R _end
+	00000000004000d4 T _start
+
+Authorized functions: none.
+
+## cat
+
+Implement a `cat` binary in x86_64, and sparc assembly.
+
+* you can use the linux headers
+* you must use the glibc functions in order to do it
+* you just have to output on the standard output the content of the standard
+  input.
+
+Authorized functions: everything from the libc.
+
+## FizzBuzz
+
+Write a program `fizzbuzz` that prints the numbers from 1 to `argv[1]`. But for
+multiples of three print "fizz" instead of the number and for the multiples of
+five print "buzz". For numbers which are multiples of both three and five print
+"fizzbuzz".
+
+Authorized functions: printf(3), puts(3), atoi(3).
+
+Example:
+
+	fizzbuzz$ ./fizzbuzz 15
+	1
+	2
+	fizz
+	4
+	buzz
+	fizz
+	7
+	8
+	fizz
+	buzz
+	11
+	fizz
+	13
+	14
+	fizzbuzz
+	fizzbuzz$ 
+
+
+## libstring
+
+For this exercise you need to create a shared library `libstring.so` that
+contains the following functions:
+
+	char *strchr(const char *s, int c);
+	char *strdup(const char *s);
+	char *strcpy(char *dest, const char *src);
+	char *strcat(char *dest, const char *src);
+	size_t strlen(const char *s);
+	void *memfrob(void *s, size_t n);
+	int strcasecmp(const char *s1, const char *s2);
+
+For all the functions, see their respective man pages.
+
+Authorized functions: malloc(3), free(3)
+
+## lists
+
+For this exercise you need to create a shared library `liblists.so` that
+implement the functions contained inside `lists.h`.
+
+Authorized functions: malloc(3), free(3)

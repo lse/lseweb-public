@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Userland NIC driver design on Linux</title>
+<meta name="author" content="(Guillaume Pagnoux)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@3/css/theme/black.css" id="theme"/>
+
+<link rel="stylesheet" href="./local.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/npm/reveal.js@3/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Userland NIC driver design on Linux</h1><h2 class="author">Guillaume Pagnoux</h2><p class="date">2019-03-12 Tue</p>
+</section>
+<section id="table-of-contents">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-org03449a7">Introduction</a></li>
+<li><a href="#/slide-org2e28998">Implementation details</a></li>
+<li><a href="#/slide-org7ba613e">ixgbe &amp; virtIO</a></li>
+<li><a href="#/slide-org978bc41">DMA in Userland</a></li>
+<li><a href="#/slide-org5a14930">Conclusion</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-org03449a7">
+<h2 id="org03449a7">Introduction</h2>
+<ul>
+<li class="fragment appear">I wanted to learn more about networking</li>
+<li class="fragment appear">So I tried to create a switch</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgd053f36">
+<h3 id="orgd053f36">What's a NIC driver ?</h3>
+<ul>
+<li>Tom talked about it last time.</li>
+<li>We can divide it in two parts:
+<ul>
+<li>The NIC driver itself (hardware specific)</li>
+<li>Some abstraction interface (for the user to use)</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section >
+
+<p>
+We generally find two kinds of implementations:
+</p>
+<ul class="org-ul">
+<li><a id="orgecfdaeb"></a>Userland interface backed by a kernel module<br />
+<ul>
+<li>Netmap</li>
+<li>XDP</li>
+
+</ul>
+</li>
+<li><a id="orga463afa"></a>Full userland implementation<br />
+<ul>
+<li>DPDK</li>
+<li>Snabb</li>
+<li>Ixy</li>
+
+</ul>
+</li>
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org2e28998">
+<h2 id="org2e28998">Implementation details</h2>
+<div class="outline-text-2" id="text-org2e28998">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org2fefd44">
+<h3 id="org2fefd44">Sending commands to the device</h3>
+<p>
+The kernel exposes pci devices in the sysfs:
+</p>
+<ul>
+<li><b>/sys/bus/pci/devices/&lt;domain_nb&gt;:&lt;pci_bus&gt;:&lt;pci_slot&gt;</b></li>
+<li>Divided in multiple <i>files</i></li>
+
+</ul>
+
+</section>
+<section >
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">file</th>
+<th scope="col" class="org-left">function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">config</td>
+<td class="org-left">PCI config space</td>
+</tr>
+
+<tr>
+<td class="org-left">enable</td>
+<td class="org-left">Whether the device is enabled</td>
+</tr>
+
+<tr>
+<td class="org-left">resource</td>
+<td class="org-left">PCI resource host addresses</td>
+</tr>
+
+<tr>
+<td class="org-left">resource0..N</td>
+<td class="org-left">PCI resource N, if present</td>
+</tr>
+
+<tr>
+<td class="org-left">resource0_wc..N_wc</td>
+<td class="org-left">PCI WC map resource N, if prefetchable</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>Full list: <a href="https://www.kernel.org/doc/Documentation/filesystems/sysfs-pci.txt">https://www.kernel.org/doc/Documentation/filesystems/sysfs-pci.txt</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org6a112a1">
+<h3 id="org6a112a1">Device detection</h3>
+<ul>
+<li><code>/sys/bus/pci/devices/&lt;device_addr&gt;/config</code></li>
+<li>Class id 2</li>
+<li>Check <code>vendor_id</code> and <code>device_id</code></li>
+
+</ul>
+
+</section>
+<section >
+
+<div class="org-src-container">
+
+<pre  class="src src-c"><span style="color: #61bfff;">int</span> <span style="color: #f8f8f2;">config</span> = pci_open_resource<span style="color: #61bfff;">(</span>pci_addr, <span style="color: #f1fa8c;">"config"</span><span style="color: #61bfff;">)</span>;
+<span style="color: #61bfff;">uint16_t</span> <span style="color: #f8f8f2;">vendor_id</span> = read_io16<span style="color: #61bfff;">(</span>config, <span style="color: #ff5555; font-weight: bold;">0</span><span style="color: #61bfff;">)</span>;
+<span style="color: #61bfff;">uint16_t</span> <span style="color: #f8f8f2;">device_id</span> = read_io16<span style="color: #61bfff;">(</span>config, <span style="color: #ff5555; font-weight: bold;">2</span><span style="color: #61bfff;">)</span>;
+<span style="color: #61bfff;">uint32_t</span> <span style="color: #f8f8f2;">class_id</span> = read_io32<span style="color: #61bfff;">(</span>config, <span style="color: #ff5555; font-weight: bold;">8</span><span style="color: #61bfff;">)</span> &gt;&gt; <span style="color: #ff5555; font-weight: bold;">24</span>;
+<span style="color: #50fa7b;">close</span><span style="color: #61bfff;">(</span>config<span style="color: #61bfff;">)</span>;
+
+<span style="color: #ff79c6;">if</span> <span style="color: #61bfff;">(</span>class_id != <span style="color: #ff5555; font-weight: bold;">2</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    error<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Device %s is not a NIC"</span>, pci_addr<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+
+<span style="color: #ff79c6;">if</span> <span style="color: #61bfff;">(</span>vendor_id == <span style="color: #ff5555; font-weight: bold;">0x1af4</span> &amp;&amp; device_id &gt;= <span style="color: #ff5555; font-weight: bold;">0x1000</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #ff79c6;">return</span> virtio_init<span style="color: #ff79c6;">(</span>pci_addr, rx_queues, tx_queues<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span> <span style="color: #ff79c6;">else</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4;">// </span><span style="color: #6272a4;">Our best guess is to try ixgbe</span>
+    <span style="color: #ff79c6;">return</span> ixgbe_init<span style="color: #ff79c6;">(</span>pci_addr, rx_queues, tx_queues<span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org7ba613e">
+<h2 id="org7ba613e">ixgbe &amp; virtIO</h2>
+<ul>
+<li>ixgbe uses memIO</li>
+<li>virtIO as three modes: transitionnal, modern, and legacy</li>
+<li>ixy only support legacy virtIO</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org7dad2fe">
+<h3 id="org7dad2fe">memIO</h3>
+<ul>
+<li>Simple. Just mmap(2):</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-c"><span style="color: #61bfff;">uint8_t</span>* <span style="color: #50fa7b;">pci_map_resource</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">const</span> <span style="color: #61bfff;">char</span>* <span style="color: #f8f8f2;">pci_addr</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #61bfff;">char</span> <span style="color: #f8f8f2;">path</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">PATH_MAX</span><span style="color: #ff79c6;">]</span>;
+    snprintf<span style="color: #ff79c6;">(</span>path, <span style="color: #8be9fd;">PATH_MAX</span>, <span style="color: #f1fa8c;">"/sys/bus/pci/devices/%s/resource0"</span>,
+             pci_addr<span style="color: #ff79c6;">)</span>;
+    remove_driver<span style="color: #ff79c6;">(</span>pci_addr<span style="color: #ff79c6;">)</span>;
+    enable_dma<span style="color: #ff79c6;">(</span>pci_addr<span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">int</span> <span style="color: #f8f8f2;">fd</span> = check_err<span style="color: #ff79c6;">(</span>open<span style="color: #50fa7b;">(</span>path, <span style="color: #8be9fd;">O_RDWR</span><span style="color: #50fa7b;">)</span>, <span style="color: #f1fa8c;">"open pci resource"</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #ff79c6;">struct</span> <span style="color: #61bfff;">stat</span> <span style="color: #f8f8f2;">stat</span>;
+    check_err<span style="color: #ff79c6;">(</span>fstat<span style="color: #50fa7b;">(</span>fd, &amp;stat<span style="color: #50fa7b;">)</span>, <span style="color: #f1fa8c;">"stat pci resource"</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #ff79c6;">return</span> <span style="color: #ff79c6;">(</span><span style="color: #61bfff;">uint8_t</span>*<span style="color: #ff79c6;">)</span> check_err<span style="color: #ff79c6;">(</span>mmap<span style="color: #50fa7b;">(</span><span style="color: #8be9fd;">NULL</span>, stat.st_size, <span style="color: #8be9fd;">PROT_READ</span> | <span style="color: #8be9fd;">PROT_WRITE</span>, <span style="color: #8be9fd;">MAP_SHARED</span>, fd, <span style="color: #ff5555; font-weight: bold;">0</span><span style="color: #50fa7b;">)</span>, <span style="color: #f1fa8c;">"mmap pci resource"</span><span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgc3934a3">
+<h3 id="orgc3934a3">portIO</h3>
+<ul>
+<li>ixy only support legacy virtIO NICs.</li>
+<li>This means we need portIO.</li>
+
+</ul>
+
+</section>
+<section >
+
+<p>
+Actually, it's almost the same thing!
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-c"><span style="color: #61bfff;">int</span> <span style="color: #50fa7b;">pci_open_resource</span><span style="color: #61bfff;">(</span><span style="color: #ff79c6;">const</span> <span style="color: #61bfff;">char</span>* <span style="color: #f8f8f2;">pci_addr</span>, <span style="color: #ff79c6;">const</span> <span style="color: #61bfff;">char</span>* <span style="color: #f8f8f2;">resource</span><span style="color: #61bfff;">)</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #61bfff;">char</span> <span style="color: #f8f8f2;">path</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">PATH_MAX</span><span style="color: #ff79c6;">]</span>;
+    snprintf<span style="color: #ff79c6;">(</span>path, <span style="color: #8be9fd;">PATH_MAX</span>, <span style="color: #f1fa8c;">"/sys/bus/pci/devices/%s/%s"</span>, pci_addr,
+             resource<span style="color: #ff79c6;">)</span>;
+    debug<span style="color: #ff79c6;">(</span><span style="color: #f1fa8c;">"Opening PCI resource at %s"</span>, path<span style="color: #ff79c6;">)</span>;
+    <span style="color: #61bfff;">int</span> <span style="color: #f8f8f2;">fd</span> = check_err<span style="color: #ff79c6;">(</span>open<span style="color: #50fa7b;">(</span>path, <span style="color: #8be9fd;">O_RDWR</span><span style="color: #50fa7b;">)</span>, <span style="color: #f1fa8c;">"open pci resource"</span><span style="color: #ff79c6;">)</span>;
+    <span style="color: #ff79c6;">return</span> fd;
+<span style="color: #61bfff;">}</span>
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org978bc41">
+<h2 id="org978bc41">DMA in Userland</h2>
+<ul>
+<li class="fragment appear">We want to use DMA</li>
+<li class="fragment appear">But we are in userland&#x2026;with virtual addresses</li>
+
+</ul>
+
+<p class="fragment (appear)">
+How can we get physical addresses ?
+</p>
+
+</section>
+<section >
+
+<ul>
+<li>Open <code>/proc/self/pagemap</code></li>
+<li>&#x2026;</li>
+<li>Profit!</li>
+
+</ul>
+
+<p>
+<a href="https://www.kernel.org/doc/Documentation/vm/pagemap.txt">https://www.kernel.org/doc/Documentation/vm/pagemap.txt</a>
+</p>
+
+</section>
+<section >
+
+<p>
+Not that simple..
+</p>
+
+<ul>
+<li class="fragment appear">The kernel can relocate pages</li>
+<li class="fragment appear">It can also swap them on the disk</li>
+
+</ul>
+
+</section>
+<section >
+
+<p>
+We can prevent swaping with mlock(2):
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-c"><span style="color: #50fa7b;">mlock</span><span style="color: #61bfff;">(</span>virt_addr, size<span style="color: #61bfff;">)</span>;
+</pre>
+</div>
+
+<p>
+How about page relocation?
+</p>
+
+</section>
+<section >
+
+<p>
+Let's use huge pages!
+</p>
+
+<ul>
+<li>Multiple avantages of using them:
+<ul>
+<li>The kernel won't relocate them</li>
+<li>Huge pages are contiguous in memory</li>
+
+</ul></li>
+
+</ul>
+
+<p>
+<a href="https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt">https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt</a>
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-org60d4ee4">
+<h3 id="org60d4ee4">virtIO driver</h3>
+<p>
+virtIO is a bit special..
+</p>
+
+<p>
+Let's take a look at ixy's packet buffers:
+</p>
+
+</section>
+<section >
+
+<div class="org-src-container">
+
+<pre  class="src src-c"><span style="color: #ff79c6;">struct</span> <span style="color: #61bfff;">pkt_buf</span> <span style="color: #61bfff;">{</span>
+    <span style="color: #6272a4;">// </span><span style="color: #6272a4;">physical address to pass a buffer to a nic</span>
+    <span style="color: #61bfff;">uintptr_t</span> <span style="color: #f8f8f2;">buf_addr_phy</span>;
+    <span style="color: #ff79c6;">struct</span> <span style="color: #61bfff;">mempool</span>* <span style="color: #f8f8f2;">mempool</span>;
+    <span style="color: #61bfff;">uint32_t</span> <span style="color: #f8f8f2;">mempool_idx</span>;
+    <span style="color: #61bfff;">uint32_t</span> <span style="color: #f8f8f2;">size</span>;
+    <span style="color: #61bfff;">uint8_t</span> <span style="color: #f8f8f2;">head_room</span><span style="color: #ff79c6;">[</span><span style="color: #8be9fd;">SIZE_PKT_BUF_HEADROOM</span><span style="color: #ff79c6;">]</span>;
+    <span style="color: #61bfff;">uint8_t</span> <span style="color: #f8f8f2;">data</span><span style="color: #ff79c6;">[]</span> <span style="color: #ff79c6;">__attribute__</span><span style="color: #ff79c6;">(</span><span style="color: #50fa7b;">(</span>aligned<span style="color: #61bfff;">(</span><span style="color: #ff5555; font-weight: bold;">64</span><span style="color: #61bfff;">)</span><span style="color: #50fa7b;">)</span><span style="color: #ff79c6;">)</span>;
+<span style="color: #61bfff;">}</span>;
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-org5a14930">
+<h2 id="org5a14930">Conclusion</h2>
+<div class="outline-text-2" id="text-org5a14930">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org88d6de8">
+<h3 id="org88d6de8">Potential improvements</h3>
+<ul>
+<li>ixy currently only supports polling</li>
+<li>Interrupts could be used using uio_pci_generic</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org84cd1be">
+<h3 id="org84cd1be">Questions?</h3>
+<hr />
+
+<ul>
+<li>Documentation
+
+<ul>
+<li><a href="https://github.com/emmericp/ixy">https://github.com/emmericp/ixy</a></li>
+<li><a href="https://github.com/Yumasi/ixy-vswitch">https://github.com/Yumasi/ixy-vswitch</a></li>
+<li><a href="https://www.net.in.tum.de/fileadmin/bibtex/publications/papers/ixy_paper_draft2.pdf">ixy's paper</a></li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@3/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: false,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/npm/reveal.js@3/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>

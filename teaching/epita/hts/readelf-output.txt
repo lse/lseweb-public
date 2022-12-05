@@ -1,0 +1,1391 @@
+$ cat example.c 
+int main()
+{
+        return 0;
+}
+$ make example
+cc     example.c   -o example
+$ ./simple-readelf example
+{
+    "header": {
+        "e_type": "ET_EXEC",
+        "e_machine": "EM_X86_64",
+        "e_version": "EV_CURRENT",
+        "e_entry": 4195248,
+        "e_phoff": 64,
+        "e_shoff": 6360,
+        "e_flags": 0,
+        "e_ehsize": 64,
+        "e_phentsize": 56,
+        "e_phnum": 9,
+        "e_shentsize": 64,
+        "e_shnum": 28,
+        "e_shstrndx": 25
+    },
+    "sections": [
+        {
+            "sh_name": 0,
+            "sh_type": "SHT_NULL",
+            "sh_flags": 0,
+            "sh_addr": 0,
+            "sh_offset": 0,
+            "sh_size": 0,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 0,
+            "sh_entsize": 0,
+            "name": ""
+        },
+        {
+            "sh_name": 27,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 2,
+            "sh_addr": 4194872,
+            "sh_offset": 568,
+            "sh_size": 28,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 1,
+            "sh_entsize": 0,
+            "name": ".interp"
+        },
+        {
+            "sh_name": 35,
+            "sh_type": "SHT_NOTE",
+            "sh_flags": 2,
+            "sh_addr": 4194900,
+            "sh_offset": 596,
+            "sh_size": 32,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 4,
+            "sh_entsize": 0,
+            "name": ".note.ABI-tag"
+        },
+        {
+            "sh_name": 49,
+            "sh_type": "SHT_NOTE",
+            "sh_flags": 2,
+            "sh_addr": 4194932,
+            "sh_offset": 628,
+            "sh_size": 36,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 4,
+            "sh_entsize": 0,
+            "name": ".note.gnu.build-id"
+        },
+        {
+            "sh_name": 68,
+            "sh_type": "SHT_GNU_HASH",
+            "sh_flags": 2,
+            "sh_addr": 4194968,
+            "sh_offset": 664,
+            "sh_size": 28,
+            "sh_link": 5,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 0,
+            "name": ".gnu.hash"
+        },
+        {
+            "sh_name": 78,
+            "sh_type": "SHT_DYNSYM",
+            "sh_flags": 2,
+            "sh_addr": 4195000,
+            "sh_offset": 696,
+            "sh_size": 72,
+            "sh_link": 6,
+            "sh_info": 1,
+            "sh_addralign": 8,
+            "sh_entsize": 24,
+            "name": ".dynsym"
+        },
+        {
+            "sh_name": 86,
+            "sh_type": "SHT_STRTAB",
+            "sh_flags": 2,
+            "sh_addr": 4195072,
+            "sh_offset": 768,
+            "sh_size": 56,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 1,
+            "sh_entsize": 0,
+            "name": ".dynstr"
+        },
+        {
+            "sh_name": 94,
+            "sh_type": "SHT_GNU_versym",
+            "sh_flags": 2,
+            "sh_addr": 4195128,
+            "sh_offset": 824,
+            "sh_size": 6,
+            "sh_link": 5,
+            "sh_info": 0,
+            "sh_addralign": 2,
+            "sh_entsize": 2,
+            "name": ".gnu.version"
+        },
+        {
+            "sh_name": 107,
+            "sh_type": "SHT_GNU_verneed",
+            "sh_flags": 2,
+            "sh_addr": 4195136,
+            "sh_offset": 832,
+            "sh_size": 32,
+            "sh_link": 6,
+            "sh_info": 1,
+            "sh_addralign": 8,
+            "sh_entsize": 0,
+            "name": ".gnu.version_r"
+        },
+        {
+            "sh_name": 122,
+            "sh_type": "SHT_RELA",
+            "sh_flags": 2,
+            "sh_addr": 4195168,
+            "sh_offset": 864,
+            "sh_size": 48,
+            "sh_link": 5,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 24,
+            "name": ".rela.dyn"
+        },
+        {
+            "sh_name": 132,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 6,
+            "sh_addr": 4195216,
+            "sh_offset": 912,
+            "sh_size": 23,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 4,
+            "sh_entsize": 0,
+            "name": ".init"
+        },
+        {
+            "sh_name": 138,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 6,
+            "sh_addr": 4195248,
+            "sh_offset": 944,
+            "sh_size": 386,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 16,
+            "sh_entsize": 0,
+            "name": ".text"
+        },
+        {
+            "sh_name": 144,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 6,
+            "sh_addr": 4195636,
+            "sh_offset": 1332,
+            "sh_size": 9,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 4,
+            "sh_entsize": 0,
+            "name": ".fini"
+        },
+        {
+            "sh_name": 150,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 18,
+            "sh_addr": 4195648,
+            "sh_offset": 1344,
+            "sh_size": 4,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 4,
+            "sh_entsize": 4,
+            "name": ".rodata"
+        },
+        {
+            "sh_name": 158,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 2,
+            "sh_addr": 4195652,
+            "sh_offset": 1348,
+            "sh_size": 44,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 4,
+            "sh_entsize": 0,
+            "name": ".eh_frame_hdr"
+        },
+        {
+            "sh_name": 172,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 2,
+            "sh_addr": 4195696,
+            "sh_offset": 1392,
+            "sh_size": 204,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 0,
+            "name": ".eh_frame"
+        },
+        {
+            "sh_name": 182,
+            "sh_type": "SHT_INIT_ARRAY",
+            "sh_flags": 3,
+            "sh_addr": 6295112,
+            "sh_offset": 3656,
+            "sh_size": 8,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 8,
+            "name": ".init_array"
+        },
+        {
+            "sh_name": 194,
+            "sh_type": "SHT_FINI_ARRAY",
+            "sh_flags": 3,
+            "sh_addr": 6295120,
+            "sh_offset": 3664,
+            "sh_size": 8,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 8,
+            "name": ".fini_array"
+        },
+        {
+            "sh_name": 206,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 3,
+            "sh_addr": 6295128,
+            "sh_offset": 3672,
+            "sh_size": 8,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 0,
+            "name": ".jcr"
+        },
+        {
+            "sh_name": 211,
+            "sh_type": "SHT_DYNAMIC",
+            "sh_flags": 3,
+            "sh_addr": 6295136,
+            "sh_offset": 3680,
+            "sh_size": 400,
+            "sh_link": 6,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 16,
+            "name": ".dynamic"
+        },
+        {
+            "sh_name": 220,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 3,
+            "sh_addr": 6295536,
+            "sh_offset": 4080,
+            "sh_size": 16,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 8,
+            "name": ".got"
+        },
+        {
+            "sh_name": 225,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 3,
+            "sh_addr": 6295552,
+            "sh_offset": 4096,
+            "sh_size": 24,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 8,
+            "name": ".got.plt"
+        },
+        {
+            "sh_name": 234,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 3,
+            "sh_addr": 6295576,
+            "sh_offset": 4120,
+            "sh_size": 16,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 8,
+            "sh_entsize": 0,
+            "name": ".data"
+        },
+        {
+            "sh_name": 240,
+            "sh_type": "SHT_NOBITS",
+            "sh_flags": 3,
+            "sh_addr": 6295592,
+            "sh_offset": 4136,
+            "sh_size": 8,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 1,
+            "sh_entsize": 0,
+            "name": ".bss"
+        },
+        {
+            "sh_name": 245,
+            "sh_type": "SHT_PROGBITS",
+            "sh_flags": 48,
+            "sh_addr": 0,
+            "sh_offset": 4136,
+            "sh_size": 52,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 1,
+            "sh_entsize": 1,
+            "name": ".comment"
+        },
+        {
+            "sh_name": 17,
+            "sh_type": "SHT_STRTAB",
+            "sh_flags": 0,
+            "sh_addr": 0,
+            "sh_offset": 6105,
+            "sh_size": 254,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 1,
+            "sh_entsize": 0,
+            "name": ".shstrtab"
+        },
+        {
+            "sh_name": 1,
+            "sh_type": "SHT_SYMTAB",
+            "sh_flags": 0,
+            "sh_addr": 0,
+            "sh_offset": 4192,
+            "sh_size": 1464,
+            "sh_link": 27,
+            "sh_info": 45,
+            "sh_addralign": 8,
+            "sh_entsize": 24,
+            "name": ".symtab"
+        },
+        {
+            "sh_name": 9,
+            "sh_type": "SHT_STRTAB",
+            "sh_flags": 0,
+            "sh_addr": 0,
+            "sh_offset": 5656,
+            "sh_size": 449,
+            "sh_link": 0,
+            "sh_info": 0,
+            "sh_addralign": 1,
+            "sh_entsize": 0,
+            "name": ".strtab"
+        }
+    ],
+    "segments": [
+        {
+            "p_type": "PT_PHDR",
+            "p_flags": 5,
+            "p_offset": 64,
+            "p_vaddr": 4194368,
+            "p_paddr": 4194368,
+            "p_filesz": 504,
+            "p_memsz": 504,
+            "p_align": 8
+        },
+        {
+            "p_type": "PT_INTERP",
+            "p_flags": 4,
+            "p_offset": 568,
+            "p_vaddr": 4194872,
+            "p_paddr": 4194872,
+            "p_filesz": 28,
+            "p_memsz": 28,
+            "p_align": 1
+        },
+        {
+            "p_type": "PT_LOAD",
+            "p_flags": 5,
+            "p_offset": 0,
+            "p_vaddr": 4194304,
+            "p_paddr": 4194304,
+            "p_filesz": 1596,
+            "p_memsz": 1596,
+            "p_align": 2097152
+        },
+        {
+            "p_type": "PT_LOAD",
+            "p_flags": 6,
+            "p_offset": 3656,
+            "p_vaddr": 6295112,
+            "p_paddr": 6295112,
+            "p_filesz": 480,
+            "p_memsz": 488,
+            "p_align": 2097152
+        },
+        {
+            "p_type": "PT_DYNAMIC",
+            "p_flags": 6,
+            "p_offset": 3680,
+            "p_vaddr": 6295136,
+            "p_paddr": 6295136,
+            "p_filesz": 400,
+            "p_memsz": 400,
+            "p_align": 8
+        },
+        {
+            "p_type": "PT_NOTE",
+            "p_flags": 4,
+            "p_offset": 596,
+            "p_vaddr": 4194900,
+            "p_paddr": 4194900,
+            "p_filesz": 68,
+            "p_memsz": 68,
+            "p_align": 4
+        },
+        {
+            "p_type": "PT_GNU_EH_FRAME",
+            "p_flags": 4,
+            "p_offset": 1348,
+            "p_vaddr": 4195652,
+            "p_paddr": 4195652,
+            "p_filesz": 44,
+            "p_memsz": 44,
+            "p_align": 4
+        },
+        {
+            "p_type": "PT_GNU_STACK",
+            "p_flags": 6,
+            "p_offset": 0,
+            "p_vaddr": 0,
+            "p_paddr": 0,
+            "p_filesz": 0,
+            "p_memsz": 0,
+            "p_align": 16
+        },
+        {
+            "p_type": "PT_GNU_RELRO",
+            "p_flags": 4,
+            "p_offset": 3656,
+            "p_vaddr": 6295112,
+            "p_paddr": 6295112,
+            "p_filesz": 440,
+            "p_memsz": 440,
+            "p_align": 1
+        }
+    ],
+    "symbols": [
+        {
+            "name": ".dynsym",
+            "data": [
+                {
+                    "st_name": 0,
+                    "st_shndx": "SHN_UNDEF",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 11,
+                    "st_shndx": "SHN_UNDEF",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "__libc_start_main",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 29,
+                    "st_shndx": "SHN_UNDEF",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "__gmon_start__",
+                    "st_info": {
+                        "bind": "STB_WEAK",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                }
+            ]
+        },
+        {
+            "name": ".symtab",
+            "data": [
+                {
+                    "st_name": 0,
+                    "st_shndx": "SHN_UNDEF",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 1,
+                    "st_value": 4194872,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 2,
+                    "st_value": 4194900,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 3,
+                    "st_value": 4194932,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 4,
+                    "st_value": 4194968,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 5,
+                    "st_value": 4195000,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 6,
+                    "st_value": 4195072,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 7,
+                    "st_value": 4195128,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 8,
+                    "st_value": 4195136,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 9,
+                    "st_value": 4195168,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 10,
+                    "st_value": 4195216,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 11,
+                    "st_value": 4195248,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 12,
+                    "st_value": 4195636,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 13,
+                    "st_value": 4195648,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 14,
+                    "st_value": 4195652,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 15,
+                    "st_value": 4195696,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 16,
+                    "st_value": 6295112,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 17,
+                    "st_value": 6295120,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 18,
+                    "st_value": 6295128,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 19,
+                    "st_value": 6295136,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 20,
+                    "st_value": 6295536,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 21,
+                    "st_value": 6295552,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 22,
+                    "st_value": 6295576,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 23,
+                    "st_value": 6295592,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": 24,
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_SECTION"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 1,
+                    "st_shndx": "SHN_ABS",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "init.c",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_FILE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 8,
+                    "st_shndx": "SHN_ABS",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "crtstuff.c",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_FILE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 19,
+                    "st_shndx": 18,
+                    "st_value": 6295128,
+                    "st_size": 0,
+                    "name": "__JCR_LIST__",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 32,
+                    "st_shndx": 11,
+                    "st_value": 4195296,
+                    "st_size": 0,
+                    "name": "deregister_tm_clones",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 34,
+                    "st_shndx": 11,
+                    "st_value": 4195360,
+                    "st_size": 0,
+                    "name": "register_tm_clones",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 53,
+                    "st_shndx": 11,
+                    "st_value": 4195424,
+                    "st_size": 0,
+                    "name": "__do_global_dtors_aux",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 75,
+                    "st_shndx": 23,
+                    "st_value": 6295592,
+                    "st_size": 1,
+                    "name": "completed.6917",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 90,
+                    "st_shndx": 17,
+                    "st_value": 6295120,
+                    "st_size": 0,
+                    "name": "__do_global_dtors_aux_fini_array_entry",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 129,
+                    "st_shndx": 11,
+                    "st_value": 4195456,
+                    "st_size": 0,
+                    "name": "frame_dummy",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 141,
+                    "st_shndx": 16,
+                    "st_value": 6295112,
+                    "st_size": 0,
+                    "name": "__frame_dummy_init_array_entry",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 172,
+                    "st_shndx": "SHN_ABS",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "example.c",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_FILE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 8,
+                    "st_shndx": "SHN_ABS",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "crtstuff.c",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_FILE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 182,
+                    "st_shndx": 15,
+                    "st_value": 4195896,
+                    "st_size": 0,
+                    "name": "__FRAME_END__",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 196,
+                    "st_shndx": 18,
+                    "st_value": 6295128,
+                    "st_size": 0,
+                    "name": "__JCR_END__",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 0,
+                    "st_shndx": "SHN_ABS",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_FILE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 208,
+                    "st_shndx": 16,
+                    "st_value": 6295120,
+                    "st_size": 0,
+                    "name": "__init_array_end",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 225,
+                    "st_shndx": 19,
+                    "st_value": 6295136,
+                    "st_size": 0,
+                    "name": "_DYNAMIC",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 234,
+                    "st_shndx": 16,
+                    "st_value": 6295112,
+                    "st_size": 0,
+                    "name": "__init_array_start",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 253,
+                    "st_shndx": 14,
+                    "st_value": 4195652,
+                    "st_size": 0,
+                    "name": "__GNU_EH_FRAME_HDR",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 272,
+                    "st_shndx": 21,
+                    "st_value": 6295552,
+                    "st_size": 0,
+                    "name": "_GLOBAL_OFFSET_TABLE_",
+                    "st_info": {
+                        "bind": "STB_LOCAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 294,
+                    "st_shndx": 11,
+                    "st_value": 4195632,
+                    "st_size": 2,
+                    "name": "__libc_csu_fini",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 350,
+                    "st_shndx": 22,
+                    "st_value": 6295576,
+                    "st_size": 0,
+                    "name": "data_start",
+                    "st_info": {
+                        "bind": "STB_WEAK",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 310,
+                    "st_shndx": 22,
+                    "st_value": 6295592,
+                    "st_size": 0,
+                    "name": "_edata",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 304,
+                    "st_shndx": 12,
+                    "st_value": 4195636,
+                    "st_size": 0,
+                    "name": "_fini",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 317,
+                    "st_shndx": "SHN_UNDEF",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "__libc_start_main@@GLIBC_2.2.5",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 348,
+                    "st_shndx": 22,
+                    "st_value": 6295576,
+                    "st_size": 0,
+                    "name": "__data_start",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 361,
+                    "st_shndx": "SHN_UNDEF",
+                    "st_value": 0,
+                    "st_size": 0,
+                    "name": "__gmon_start__",
+                    "st_info": {
+                        "bind": "STB_WEAK",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 376,
+                    "st_shndx": 22,
+                    "st_value": 6295584,
+                    "st_size": 0,
+                    "name": "__dso_handle",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_HIDDEN"
+                    }
+                },
+                {
+                    "st_name": 389,
+                    "st_shndx": 13,
+                    "st_value": 4195648,
+                    "st_size": 4,
+                    "name": "_IO_stdin_used",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 404,
+                    "st_shndx": 11,
+                    "st_value": 4195520,
+                    "st_size": 101,
+                    "name": "__libc_csu_init",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 220,
+                    "st_shndx": 23,
+                    "st_value": 6295600,
+                    "st_size": 0,
+                    "name": "_end",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 354,
+                    "st_shndx": 11,
+                    "st_value": 4195248,
+                    "st_size": 43,
+                    "name": "_start",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 420,
+                    "st_shndx": 23,
+                    "st_value": 6295592,
+                    "st_size": 0,
+                    "name": "__bss_start",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_NOTYPE"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 432,
+                    "st_shndx": 11,
+                    "st_value": 4195494,
+                    "st_size": 11,
+                    "name": "main",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                },
+                {
+                    "st_name": 437,
+                    "st_shndx": 22,
+                    "st_value": 6295592,
+                    "st_size": 0,
+                    "name": "__TMC_END__",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_OBJECT"
+                    },
+                    "st_other": {
+                        "visibility": "STV_HIDDEN"
+                    }
+                },
+                {
+                    "st_name": 414,
+                    "st_shndx": 10,
+                    "st_value": 4195216,
+                    "st_size": 0,
+                    "name": "_init",
+                    "st_info": {
+                        "bind": "STB_GLOBAL",
+                        "type": "STT_FUNC"
+                    },
+                    "st_other": {
+                        "visibility": "STV_DEFAULT"
+                    }
+                }
+            ]
+        }
+    ]
+}

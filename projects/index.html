@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Projects</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li class="active_nav">
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h1 id="2018-2019-projects">2018-2019 Projects</h1>
+
+<ul>
+  <li><a href="https://github.com/xar7/pacstalker">Violating your package manager’s privacy</a></li>
+  <li><a href="https://youtu.be/rQEUomyipgw">Secure lazy biding for x86_64</a></li>
+  <li><a href="https://github.com/balayette/ast-diff">Arbitrary tree differencing for code copy detection</a></li>
+  <li><a href="https://youtu.be/nY796be0exg">Accelerate Boolean Constraint Propagation for Boolean Satisfiability Solvers with FPGA</a></li>
+  <li><a href="https://youtu.be/it5MZRpDvns">slab/vmem: introduction to memory management</a></li>
+  <li><a href="https://youtu.be/nKvtXpgh7X8">Reverse engineering through execution trace analysis</a></li>
+  <li><a href="https://youtu.be/PK7gETZURx0">Implementing the pledge syscall on Linux</a></li>
+  <li><a href="https://github.com/multun/ipxe-bt">BitTorrent for iPXE</a></li>
+</ul>
+
+<p>For more details about the projects, see the LSE week pages
+(<a href="/lse-summer-week-2018/">2018</a>, <a href="/lse-summer-week-2019/">2019</a>), and this
+<a href="/data/misc/poster_projects_2019_2020.pdf">poster</a>.</p>
+
+<h1 id="bits">BITS</h1>
+
+<p>Bits was an educational kernel project which was designed to take a different
+approach to traditional kernel programming teaching by being highly modular.
+this enables students to work independantly on different subsystems and
+therefore increase productivity.</p>
+
+<p>Project is now superseded by <a href="/projects/stos.html">STOS</a></p>
+
+<h1 id="c">C!</h1>
+
+<p>C! (“<em>C-bang</em>”) is a programming language designed with system programming in
+mind and more specifically kernel programming.</p>
+
+<p>C! is greatly inspired by C, but its syntax differs in a few key points in order
+to suppress a few ambiguities. Moreover it extends C with constructs which aims
+at simplifying system programming, such as syntactic sugar for often used
+constructs. C! also adds object-oriented features.</p>
+
+<p>C! use a compiler-to-compiler model. It does not generate machine code directly.
+Instead it produces C99 code using a few GNU extensions (eg. for inline
+assembly) which should be easily compiled using <a href="http://gcc.gnu.org/">GCC</a> or <a href="http://clang.llvm.org/">clang</a>. It
+enables us to focus on the frontend, and leaves machine code optimisation to
+tools that are proven reliable.</p>
+
+<p>C! is a few key points:</p>
+
+<ul>
+  <li>Rationalised syntax</li>
+  <li>Simplified interactions with C</li>
+  <li>Integer size is explicit</li>
+  <li>Usage of integers as bit tables</li>
+  <li>Basic namespace support</li>
+  <li>Classes and objects</li>
+  <li>Macro classes: Add operations on types using an object syntax</li>
+  <li>Many more ideas not yet implemented</li>
+</ul>
+
+<p>A simple C! syntax example:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// A simple fibonacci function in C!</span>
+
+<span class="c1">// int&lt;+32&gt; indicates unsigned 32bits integer</span>
+<span class="n">fibo</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="kt">int</span><span class="o">&lt;+</span><span class="mi">32</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">:</span> <span class="kt">int</span><span class="o">&lt;+</span><span class="mi">32</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibo</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And now with objects:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Import some external module "lib"</span>
+<span class="n">import</span> <span class="n">lib</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Point</span>
+<span class="p">{</span>
+  <span class="n">x</span> <span class="o">:</span> <span class="kt">float</span><span class="o">&lt;</span><span class="mi">64</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// size also for float</span>
+  <span class="n">y</span> <span class="o">:</span> <span class="kt">float</span><span class="o">&lt;</span><span class="mi">64</span><span class="o">&gt;</span><span class="p">;</span>
+
+  <span class="n">getX</span><span class="p">()</span><span class="o">:</span> <span class="kt">float</span><span class="o">&lt;</span><span class="mi">64</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">getY</span><span class="p">()</span><span class="o">:</span> <span class="kt">float</span><span class="o">&lt;</span><span class="mi">64</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="n">setX</span><span class="p">(</span><span class="n">z</span> <span class="o">:</span> <span class="kt">float</span><span class="o">&lt;</span><span class="mi">64</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">=</span> <span class="n">z</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">setY</span><span class="p">(</span><span class="n">z</span> <span class="o">:</span> <span class="kt">float</span><span class="o">&lt;</span><span class="mi">64</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span> <span class="c1">// no ';' required !</span>
+
+<span class="n">addPoint</span><span class="p">(</span><span class="n">a</span><span class="o">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">b</span><span class="o">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">:</span> <span class="n">Point</span>
+<span class="p">{</span>
+  <span class="c1">// allocation is left to the programmer</span>
+  <span class="n">p</span> <span class="o">:</span> <span class="n">Point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">lib</span><span class="o">::</span><span class="n">alloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">)));</span>
+  <span class="c1">// lib::alloc designates the symbol alloc in the lib namespace</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span> <span class="o">+</span> <span class="n">b</span><span class="p">.</span><span class="n">getX</span><span class="p">());</span>
+  <span class="n">p</span><span class="p">.</span><span class="n">setY</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">getX</span><span class="p">()</span> <span class="o">+</span> <span class="n">b</span><span class="p">.</span><span class="n">getX</span><span class="p">());</span>
+  <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h1 id="cnorm">CNORM</h1>
+
+<p>CNORM is a research C frontend developped in <a href="http://www.codeworker.org">codeworker</a>. Its features
+include analysing and extending C code. It is used by both the <a href="/projects/rathaxes.html">Rathaxes</a>
+project and the <a href="/teaching/courses.html">KOOC</a> course.</p>
+
+<p>CNORM is available on <a href="http://code.google.com/p/kopul">Google Code</a>.</p>
+
+<h1 id="kopul--kind-of-pack-unpack-language">KOPUL : Kind Of Pack Unpack Language</h1>
+
+<p>KOPUL is an alternate solution to DSL such as ASN1, XDR, IDL, Datascript,
+Protobuf, and to the pack/unpack functions of Perl. It enables one to describe
+the layout of all binary data in memory or in a file. It uses <a href="http://www.llvm.org">LLVM</a> as a
+backend to be able to either generate an encoding/decoding library for the
+described file, or interpret KOPUL expressions at runtime thanks to LLVM’s Just
+In Time capabilities.</p>
+
+<p>KOPUL is available on <a href="http://code.google.com/p/kopul">Google Code</a>.</p>
+
+<h1 id="rathaxes">RATHAXES</h1>
+
+<p><img src="/images/logoRTX.png" alt="rtxlogo" /></p>
+
+<p>Rathaxes is a language for “code once, compile everywhere” device drivers
+development. Basically, it means that the developper writes the behavior of the
+hardware once. It will then be turned into calls to the kernel API targeted by
+the compiler.</p>
+
+<p>A majority of currently used OS are developped using C, and so are their kernel
+APIs, therefore it is the ouput language for Rathaxes. The abstraction layer is
+done at the language level, and not in the generated C. Output code might look
+as if it was hand-written by a developper.</p>
+
+<p>Using an internal template library, the compiler is able to translate its
+generic representation into a OS specific code. The ability to extend this
+template library enables Rathaxes to provide a driver environment for any OS
+which has been implemented.</p>
+
+<p>Rathaxes is available on <a href="http://git.lse.epita.fr/?p=stos-student.git;a=summary">Google Code</a>. It is developped as part of an
+EPITECH Innovative Project by LSE students.</p>
+
+<p>A proof of concept was presented at the <a href="http://2008.rmll.info/Projet-Rathaxes.html">RMLL 2008</a> and at the <a href="http://www.t-dose.org/2008/talk/rathaxes">T-DOSE
+2008</a>. The current goal is to provide a fully working prototype.</p>
+
+<h1 id="stos">STOS</h1>
+
+<p>STOS is a highly modular monolithic kernel inspired by <a href="/projects/bits.html">bits</a>. As such,
+each feature is not directly integrated into the kernel, but dynamically loaded
+during execution. The kernel in itself knows how to do one thing and one thing
+only: load a module and its dependencies.</p>
+
+<p>One of the project objective, besides being completely modular, is to be
+portable on different architectures. Currently, STOS boots on PowerPC, Sparc64,
+ARM and x86.</p>
+
+<p>This project is now used as a student project for the GISTRE and SRS
+specialisation.</p>
+
+<p>STOS public git repository: <a href="http://git.lse.epita.fr/?p=stos-student.git;a=summary">repository</a>.
+Course and materials around it: <a href="/teaching/epita/stos.html">materials</a></p>
+
+<h1>mikro
+<img src="/images/logoMikro.png" style="vertical-align:top; float:right" />
+</h1>
+
+<p>mikro is an experimental Micro Kernel written in C++.
+This micro kernel intends to be very lightweight and flexible.</p>
+
+<p>The default compiler for mikro is clang.</p>
+
+<h2 id="features">Features:</h2>
+<ul>
+  <li>Paging</li>
+  <li>Symmetric Multi Processor</li>
+  <li>Inter Process Communication</li>
+  <li>VM86 (on x86)</li>
+</ul>
+
+<h2 id="supported-architectures">Supported architectures:</h2>
+<p>Currently only i386 is supported but we aim to support x86_64 and armv7.</p>
+
+<h2 id="bootloader">Bootloader:</h2>
+<p>mikro can be booted using any multiboot compliant bootloader. By default,
+it comes with a lightweight bootloader called mikrob.</p>
+
+<h2 id="userland">Userland:</h2>
+
+<h3 id="libs">Libs:</h3>
+<ul>
+  <li>libmikro: communication with the kernel</li>
+  <li>minimal libc</li>
+  <li>ultra minimal libc++</li>
+</ul>
+
+<h2 id="founders">Founders:</h2>
+<p><a href="mailto:julien.freche@lse.epita.fr">Julien Freche</a>, <a href="mailto:viaxxx@lse.epita.fr">Victor Apercé</a></p>
+
+<h2 id="git-repositories">Git repositories:</h2>
+<ul>
+  <li><a href="http://git.lse.epita.fr/?p=mikro.git;a=summary">kernel repository</a></li>
+  <li><a href="http://git.lse.epita.fr/?p=mikro-userland.git;a=summary">userland repository</a></li>
+</ul>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

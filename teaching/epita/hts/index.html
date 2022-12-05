@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Workshop - HTS</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li >
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h2 id="materials-for-hts-harmonisation-technologique-système">Materials for HTS (<em>Harmonisation Technologique Système</em>)</h2>
+
+<p>Author: <a href="mailto:gabriel@lse.epita.fr">Gabriel Laskar</a></p>
+
+<p>Contributor: <a href="mailto:alizee@lse.epita.fr">Alizée Penel</a></p>
+
+<h3 id="repository">Repository</h3>
+
+<p>You must push your code to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;login&gt;@git.cri.epita.fr:p/2022-sys/hts-&lt;login&gt;.git
+</code></pre></div></div>
+
+<!-- CRI created the Gitolite pattern: p/202.?-sys/hse-LOGIN -->
+
+<p>You must change <code class="language-plaintext highlighter-rouge">&lt;login&gt;</code> with yours. You have to upload your ssh-key to
+<a href="https://cri.epita.fr/me/">accounts.cri.epita.net</a>.</p>
+
+<h3 id="deadline">Deadline</h3>
+
+<p>You work is due on the 31th of July 2021, 11:42 PM.</p>
+
+<h3 id="rules">Rules</h3>
+
+<ul>
+  <li>An exercise which does not compile will not be marked.</li>
+  <li>Your Git history will be reviewed and will be taken into account in the mark.</li>
+  <li>Cheating implies a zero to the course.</li>
+  <li>Your work will be tested on Archlinux.</li>
+</ul>
+
+<h3 id="exercises">Exercises</h3>
+
+<p>You <strong>have to</strong> complete the three following exercises.</p>
+
+<h4 id="hello-world">hello world</h4>
+
+<p>The objective is to print the famous <code class="language-plaintext highlighter-rouge">Hello World!</code> string on the standard
+output, where the only allowed function is <code class="language-plaintext highlighter-rouge">printf</code> from the <code class="language-plaintext highlighter-rouge">libc</code> but you are
+forbidden to call <code class="language-plaintext highlighter-rouge">printf</code> directly: you have to find it manually.</p>
+
+<h5 id="implementation-restrictions">Implementation restrictions</h5>
+
+<ul>
+  <li>you can not use assembly code</li>
+  <li>you code should be able to work on multiple architectures and versions of the
+<code class="language-plaintext highlighter-rouge">libc</code></li>
+  <li>you can not use any function provided by the <code class="language-plaintext highlighter-rouge">libc</code> except the ones you will
+gather manually.</li>
+</ul>
+
+<h5 id="build-restrictions">Build restrictions</h5>
+
+<ul>
+  <li>your work must be located in a folder called <code class="language-plaintext highlighter-rouge">hello</code></li>
+  <li>binary will be named <code class="language-plaintext highlighter-rouge">hello</code></li>
+  <li>you must use <code class="language-plaintext highlighter-rouge">autotools</code>, <code class="language-plaintext highlighter-rouge">meson</code> or <code class="language-plaintext highlighter-rouge">make</code> to generate your code</li>
+</ul>
+
+<h5 id="git-restrictions">Git restrictions</h5>
+
+<ul>
+  <li>commits messages should be prefixed with <code class="language-plaintext highlighter-rouge">hello:␣</code></li>
+</ul>
+
+<h5 id="steps">Steps</h5>
+
+<ul>
+  <li>find the link map of your process (auxv, phdr, dynamic, <code class="language-plaintext highlighter-rouge">r_debug</code>, <code class="language-plaintext highlighter-rouge">link_map</code>)</li>
+  <li>get the dynamic segment</li>
+  <li>get the symtab, strtab and hash</li>
+  <li>find the address of printf inside them</li>
+  <li>call it</li>
+</ul>
+
+<hr />
+
+<p><strong>Note</strong></p>
+
+<p>The description of the <code class="language-plaintext highlighter-rouge">elf</code> format (with the description of the hash table) can
+be find <a href="http://www.muppetlabs.com/~breadbox/software/ELF.txt">here</a>.</p>
+
+<hr />
+
+<h4 id="readelf">readelf</h4>
+
+<p>You have to write a small <code class="language-plaintext highlighter-rouge">readelf</code> clone that outputs json. You can find a
+sample output <a href="/teaching/epita/hts/readelf-output.txt">here</a>.</p>
+
+<h5 id="implementation-restrictions-1">Implementation restrictions</h5>
+
+<ul>
+  <li>you should handle elf binaries in the same ‘size’ as your machine (look into
+<code class="language-plaintext highlighter-rouge">link.h</code> for the macro <code class="language-plaintext highlighter-rouge">ElfW</code>)</li>
+</ul>
+
+<h5 id="test-restrictions">Test restrictions</h5>
+
+<ul>
+  <li>use <a href="http://libcheck.github.io/check/">check</a> and/or <code class="language-plaintext highlighter-rouge">make check</code> to test your code (do not forget to
+check that it is installed)</li>
+</ul>
+
+<h5 id="build-restrictions-1">Build restrictions</h5>
+
+<ul>
+  <li>you must use <code class="language-plaintext highlighter-rouge">autotools</code> or <code class="language-plaintext highlighter-rouge">meson</code> to generate your code</li>
+  <li>the directory for your sources is <code class="language-plaintext highlighter-rouge">readelf</code></li>
+  <li>binary should be named <code class="language-plaintext highlighter-rouge">simple-readelf</code></li>
+</ul>
+
+<h5 id="hint">Hint</h5>
+
+<p>I recommend you to clone <a href="https://github.com/strace/strace"><code class="language-plaintext highlighter-rouge">strace</code> source code</a> and take a look to the
+use of <code class="language-plaintext highlighter-rouge">xlat</code>. You will find an example of <code class="language-plaintext highlighter-rouge">xlat</code> use on <a href="https://github.com/lse/xlat-example">LSE Github</a>.</p>
+
+<h5 id="git-restrictions-1">Git restrictions</h5>
+
+<ul>
+  <li>commits should be prefixed with <code class="language-plaintext highlighter-rouge">readelf:␣</code></li>
+</ul>
+
+<h5 id="bonus">Bonus</h5>
+
+<ul>
+  <li>Support 32-bit and 64-bit architecture</li>
+  <li>Support little and big endianess</li>
+</ul>
+
+<h4 id="small-linker">small linker</h4>
+
+<p>You must implement our own linker.</p>
+
+<p>You will find the provided files on <a href="https://github.com/lse/hts-2021">LSE Github</a>.</p>
+
+<h5 id="implementation-restrictions-2">Implementation restrictions</h5>
+
+<ul>
+  <li>
+    <p>Command line usage:</p>
+
+    <div class="language-shell-session highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>my_ld <span class="nt">-o</span> output_file input_file.o
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>There is only 3 relocation types to handle:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">R_X86_64_32</code> (only for the debug versions)</li>
+      <li><code class="language-plaintext highlighter-rouge">R_X86_64_64</code></li>
+      <li><code class="language-plaintext highlighter-rouge">R_X86_64_PC32</code></li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">entry_point</code> address must be the address of <code class="language-plaintext highlighter-rouge">_start</code></p>
+  </li>
+</ul>
+
+<h5 id="build-restrictions-2">Build restrictions</h5>
+
+<ul>
+  <li>You need to be able to build all the binaires in the <code class="language-plaintext highlighter-rouge">tests</code> directory
+    <div class="language-shell-session highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>make my_ld
+<span class="gp">$</span><span class="w"> </span>make <span class="nt">-C</span> tests <span class="nv">MY_LD</span><span class="o">=</span>../my_ld
+</code></pre></div>    </div>
+  </li>
+  <li>you must use <code class="language-plaintext highlighter-rouge">autotools</code>, <code class="language-plaintext highlighter-rouge">gcov</code> and <code class="language-plaintext highlighter-rouge">check</code> to test your code (do not forget
+to check that it is installed)</li>
+  <li>you should have a complete coverage of your code</li>
+  <li>in your directory, expected results should be outputted on:
+    <div class="language-shell-session highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span>./autogen.sh <span class="o">&amp;&amp;</span> ./configure <span class="nt">--enable-code-coverage</span> <span class="o">&amp;&amp;</span> make distcheck
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr />
+
+<p><strong>Note</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">AX_CODE_COVERAGE</code> macro is your friend (either copy the macro inside your
+repository, or install autoconf-archive)</p>
+
+<hr />
+
+<h5 id="test-descriptions">Test descriptions</h5>
+
+<p>There are 3 samples:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">simple</code>: a really simple hello world with no relocation</li>
+  <li><code class="language-plaintext highlighter-rouge">hello</code>: a relocation in the .rodata</li>
+  <li><code class="language-plaintext highlighter-rouge">vars</code>: multiple relocations</li>
+</ul>
+
+<p>And 2 variants, one with debug symbols, and one without.</p>
+
+<p>Because of the time constrain, the debug versions are not mandatory.</p>
+
+<h5 id="hints">Hints</h5>
+
+<ul>
+  <li>
+    <p>instead of trying to handle all cases, assert that your are in a known code
+path. (for example, do not try to handle all the relocations, but write an
+error message for unhandled ones)</p>
+  </li>
+  <li>
+    <p>we only need at most 3 PHDR:</p>
+
+    <ul>
+      <li>one with RX permissions (for the section marked with <code class="language-plaintext highlighter-rouge">AX</code> flags)</li>
+      <li>one with R permissions (for the section marked with <code class="language-plaintext highlighter-rouge">A</code> flags)</li>
+      <li>one with RW permissions (for the section marked with <code class="language-plaintext highlighter-rouge">AW</code> flags)</li>
+      <li>drop every other sections.</li>
+    </ul>
+  </li>
+  <li>sections are useful only to be launched inside a debugger</li>
+  <li>for debugging, strace and dmesg will help</li>
+</ul>
+
+<hr />
+
+<p><strong>Note</strong></p>
+
+<ul>
+  <li>have a look to the <code class="language-plaintext highlighter-rouge">elf.h</code> header (<code class="language-plaintext highlighter-rouge">/usr/include/elf.h</code>)</li>
+  <li>for the relocations, you can look into <a href="https://refspecs.linuxfoundation.org/elf/x86_64-abi-0.95.pdf">x86_64 ABI</a> section 4.4</li>
+</ul>
+
+<hr />
+
+<!--
+#### Binary Exploitation Workshop
+
+* All the exercises are on the [ctf website][lsectf], under the event "Workshop HTS 2017".
+* Don't forget that the remote environment is running busybox, so you should call `execve()` correctly (`argv[0]` must be filled with the binary name).
+* Your scripts must be in the `ctf` directory
+* for each exercise, you need to create a script that outputs the flag.
+* There is no constraints on what should be in your script, you can do whatever
+  you want. If there is some exotic dependencies, explain and write them in a
+  README file.
+
+Sample exploit usage:
+
+	$ ./shellcode0 $host $port
+	[...]
+	FLAG: sample_flag
+
+Obviously, the script needs to get the flag from the server, not just print it.
+
+Exercises:
+
+* shellcode0
+* shellcode1
+* stackoverflow0
+* stackoverflow1
+* stackoverflow2
+* format0
+* heap0
+* rop0
+* rop1
+* rop2
+
+[lsectf]: https://ctf.lse.epita.fr
+
+Discovering Linux
+------------------
+
+Documentation:
+
+There is a lots of information & documentation about linux, here is some links that should help you:
+
+* http://www.makelinux.net/kernel_map/ a map that gives an overview of the
+  various subsystems of linux and how they are linked together
+* The `Documentation` directory in the linux kernel sources
+* https://kernel.org/doc/ links to lots of documentation and resources
+* https://github.com/0xAX/linux-insides is an online book that comments lots of
+  things about the linux kernel, it can help a lot to figure out how everything
+  is working
+
+* there is also books that can help:
+    * Linux Kernel in a Nutshell: http://www.kroah.com/lkn/ describe how to
+      build and configure the linux kernel
+    * Linux Device Drivers: https://lwn.net/Kernel/LDD3/
+    * Understanding the Linux Kernel: http://shop.oreilly.com/product/9780596005658.do
+
+Cloning Linux
+--------------
+
+	$ git clone --depth 1 git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+
+For this exercise, we just clone the repository, without all the history. If
+you are on your own machine, feel free to do as you like.
+
+Build Linux
+-----------
+
+There is multiple ways to build linux.
+
+tips:
+
+* `make help` can help a lot
+* there is lots of things in ~linux/Documentation/kbuild/makefiles.txt
+
+You should always try to avoid building in the same directory than the sources.
+In order to do that, you can specify a build directory with `KBUILD_OUTPUT`
+environment variable.
+
+In order to speed up the build a little, you can mount a tmpfs over the build
+dir, to have all the files stored in ram instead of on disk.
+
+	$ export KSRC=~/repo/linux
+	$ export KBUILD_OUTPUT=~/build/linux
+	$ mkdir -p $KBUILD_OUTPUT
+	$ make -C $KSRC defconfig
+
+The configuration is by default in `$KBUILD_OUTPUT/.config`. In order to not
+destroy it you can use a variable `$KCONFIG_CONFIG` with the absolute path to
+the configuration file.
+
+`make menuconfig` and its friends can be used to manage the various
+configuration variables. You can also use
+`~linux/scripts/kconfig/merge_config.sh` to create multiple configuration
+fragments.
+
+It takes time to have a working `.config`, you should try to not lose it, and
+try to version them (*not* in the linux repository!).
+
+After that you can build your first kernel!
+
+	$ make -C $KSRC -j16
+
+(adapt -j$N to your machine)
+
+After a while, you will have a kernel that can be used. The kernel will be in
+`$KBUILD_OUTPUT/arch/x86/boot/bzImage`. In order to install modules and kernel
+headers you can use:
+
+	$ make -C $KSRC INSTALL_HDR_PATH=$INSTALL_PATH/usr headers_install
+	$ make -C $KSRC INSTALL_MOD_PATH=$INSTALL_PATH modules_install
+
+It will be a good idea to start having some kind of script to avoir typing all
+that all the time.
+
+We will try to build a simple kernel with some options:
+
+* raid support should be deactivated
+* virtio devices should be enabled, with virtio nic driver enabled in kernel
+  (ie not as a module)
+
+Dev Box setup
+-------------
+
+In order to test your setup, one of the most flexible way is to use a complete
+distribution exported as nfs, and used as a rootfs by the kernel.
+
+Basically, the setup is:
+
+* libvirt to launch a vm (and handle all the network part)
+* the test vm will direct boot into the kernel
+* distribution will be installed into a directory on the dev box
+* nfs server with the filesystem exported for the vm
+
+Let's go step by step:
+
+* Create a sample vm:
+   * use virt-manager to create a vm with no disk, and setup direct kernel boot
+     with your kernel
+   * it is simpler to setup the vm the first time with virt-manager, but after
+     that, you should directly edit the vm file with `virsh edit $domain`
+   * command line parameters: `console=ttyS0`
+   * you can launch/restart your vm with `virsh` (relevant commands are edit, start, destroy and console)
+   ```
+	$ virsh -c qemu:///system start $vmname
+```
+* create the base system with pacstrap or debootstrap:
+	$ sudo pacstrap -cd $rootfsdir base base-devel git
+* add an export for the nfs server (you should use /etc/exports.d/ directory for that) for example:
+
+  ```
+$ cat /etc/exports.d/$name.exports
+$rootfsdir 192.168.122.0/24(rw,no_root_squash,no_subtree_check)
+```
+  The network specification is here for the default libvirt network. To apply
+  changes, run exportfs -ra or restart the NFS server.
+* Finally, you need to change the kernel command line to use your nfs as a root file system (~linux/Documentation/filesystems/nfs/nfsroot.txt for all the details), basically, you need something like this:
+
+   ```
+root=/dev/nfs nfsroot=192.168.122.1:$rootfsdir,vers=3 rw console=ttyS0 ip=dhcp
+```
+
+see also:
+
+* [setup vm][setup-vm]
+
+[setup-vm]: /teaching/epita/hts/setup-vm.html
+
+Debug linux
+-----------
+
+As always, there is a lot of ways to debug, here is how you can launch gdb
+with the qemu stub through libvirt and have debugging symbols in linux.
+
+As always, you can find some documentation in the linux source tree:
+~linux/Documentation/dev-tools/gdb-kernel-debugging.rst
+
+The only thing missing from this is how to launch the qemu gdbstub through
+libvirt.
+
+There is 2 ways to do that:
+
+* edit the vm file in order to add the qemu command line arguments (https://libvirt.org/drvqemu.html#qemucommand)
+* start the gdbstub from the monitor. In order to do that, you can use virsh:
+
+  ```
+$ virsh qemu-monitor-command --hmp $vmname gdbserver
+```
+
+First Module
+------------
+
+Let's write a first module. This will be an out of tree module. In order to
+avoid repetition, [here is a simple module][example-module] that only prints that it is loaded.
+
+In order to load/unload your module, you have multiple tools:
+
+* modprobe
+* insmod
+* rmmod
+* modinfo
+* lsmod
+* depmod
+
+For this part, you will use the kprobes subsystem to monitor some syscalls.
+
+The goal is to have a module that:
+
+* take a string parameter `filename` (look into `<linux/moduleparam.h>`,
+  especially `module_param()` and `module_param_string()`).
+* You need to use a kprobe to print in `dmesg` output when a file named
+  `filename` is open for writing. (~linux/Documentation/kprobes.txt, and
+  ~linux/samples/kprobes. You need to hook `do_sys_open()`)
+* You need to output something like `pr_info("open file %s\n", filename);`
+* Attention, you can't look into user memory without copying it safely into
+  kernel memory. (`copy_from_user`, `kmalloc`, `strlen_user`,
+  `strncpy_from_user` can help a lot. `<asm/uaccess.h>` will be a good starting
+  point).
+* Your module will be named "kprobe-open"
+* The Makefile is already in working, don't modify `KDIR` variable. You can
+  call `make KDIR=???` in order to set up your correct path.
+
+* The module should live in the "kprobe-open" directory
+* commits should be prefixed with `kprobe-open:␣`
+
+[example-module]: /teaching/epita/hts/example-module.tar.gz
+
+First Syscall
+-------------
+
+### Repositories
+
+Here is the repositories you must use to submit your work:
+
+* git@git.cri.epita.net:p/2018-sys/linux-$login : contains your linux
+* git@git.cri.epita.net:p/2018-sys/linux-test-$login : contains your lava test definitions
+* git@git.cri.epita.net:p/2018-sys/linux-build-$login : can contains all your build scripts, it will not be evaluated
+
+### Submission
+
+In order to submit you work you ned to send patches to `kernel-submission@lse.epita.fr`.
+
+### Tests
+
+Your tests will be pulled from your test repository, we will execute `epita/first-syscall.yaml`.
+
+Explanation: [writing lava test cases][lava-test]
+
+[lava-test]: /teaching/epita/hts/lava-tests.html
+
+### Assignment
+
+You will create a first syscall that is called `dummy`:
+
+* it must work for all architectures
+* syscall number should be:  1080 for generic, 383 on x86 32bit, and 332 on x86_64 & x32.
+* it should be activated with `CONFIG_SYSCALL_DUMMY`, should be disabled by
+  default and must be protected under EXPERT.
+* prototype is:
+
+	int dummy(const void *buffer, size_t size);
+
+* It will print on dmesg (info level) something like
+
+	dummy: called with \"$buffer\"
+
+* pay attention to details, and test it correctly, with all possible corner cases.
+
+See also:
+
+* `~linux/Documentation/process/adding-syscalls.rst`
+
+-->
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

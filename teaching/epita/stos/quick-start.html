@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Courses - STOS - How to get started with STOS ?</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li >
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h1 id="how-to-get-started-with-stos-">How to get started with STOS ?</h1>
+
+<h2 id="clone-the-student-repository">Clone the student repository</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone git://git.lse.epita.fr/stos-student
+</code></pre></div></div>
+
+<h2 id="build-stos">Build STOS</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir build &amp;&amp; cd build
+$ ../configure --arch=i386
+$ make
+$ make bootable # just for the first time
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">stos-config</code> file contains the module list</li>
+  <li><code class="language-plaintext highlighter-rouge">make bootable</code> is a bit hacky and racy, if nothing come out of the first
+launch, it is probably because it has failed.</li>
+</ul>
+
+<h2 id="running-stos">Running STOS</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ qemu-system-x86_64 -nographic \
+		-monitor pty \
+		-serial stdio \
+		-serial pty \
+		stos-i386-pc.boot
+</code></pre></div></div>
+
+<h2 id="how-to-debug-stos-with-qemu-and-gdb-">How to debug STOS with Qemu and gdb ?</h2>
+
+<p>In order to activate remote debugging of your Qemu virtual machine, you can
+activate the gdb stub of Qemu with the <code class="language-plaintext highlighter-rouge">-s</code> switch (or with <code class="language-plaintext highlighter-rouge">-gdb</code>). You can
+also stop the VM from starting anything with <code class="language-plaintext highlighter-rouge">-S</code>.</p>
+
+<p>With this option, you can now connect with gdb to your vm:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>build$ gdb kernel/stos
+(gdb) target remote localhost:1234
+</code></pre></div></div>
+
+<p>But with that, gdb “sees” only the stos core code. You can’t place any
+breakpoint on modules for example.</p>
+
+<p>In order to be able to see something, you have 2 choices:</p>
+
+<ul>
+  <li>use <code class="language-plaintext highlighter-rouge">add-symbol-file</code> and the <code class="language-plaintext highlighter-rouge">module</code> list in order to load the elf of your
+module correclty.</li>
+  <li>Compile every modules of stos in static.</li>
+</ul>
+
+<p>In order to compile your modules in static, you have to change <code class="language-plaintext highlighter-rouge">M</code> by <code class="language-plaintext highlighter-rouge">K</code> in
+your <code class="language-plaintext highlighter-rouge">$BUILD/stos-config</code>.</p>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>LSE Summer Week 2017 - Talks</title>
+        <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+        <style>
+            p {
+                text-align: justify;
+                margin-left: 5em;
+            }
+            span.schedule {
+                display: block;
+                width: 3em;
+                float: left;
+                margin: 1em 0;
+                padding: 0;
+                font-weight: bold;
+            }
+            h2, h3 { clear: both; }
+        </style>
+    </head>
+    <body>
+    <div style="margin: 0 auto; max-width: 900px;">
+      <h1>LSE Summer Week - July 14 - July 15 2017</h1>
+
+      <h2>Lieu et plan d'accès</h2>
+
+      <p>Amphith&eacute;&acirc;tre 4, EPITA, 24 rue Pasteur, 94276 Le Kremlin-Bicêtre.</p>
+
+      <p>Transports en commun : métro 7 (station Porte d'Italie), bus
+      47/125/131/185/186 (station Roger Salengro-Fontainebleau).</p>
+
+      <div style="text-align: center">
+        <img src="/images/plan-conferences.png" alt="Plan d'accès">
+      </div>
+
+      <!--
+<h2><a href="2017-lse-summer-week.pdf">Planning Complet</a></h2>
+<h2><a href="https://www.youtube.com/playlist?list=PLo31Bhg3nNkYBUgSIWiVT0_RRouwRi_3F">Playlist</a></h2>
+-->
+
+
+<h2>Friday 14</h2>
+
+
+<span class="vevent">
+	<h3 id="0" class="summary">Introducing the LSE Week </h3>
+	<span class="schedule"><span class="dtstart">13h55</span> <span class="dtend"></span></span>
+<p class="description">
+
+
+
+
+<a href="https://www.youtube.com/watch?v=g2JyVwkY-ws&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn&index=1">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="1" class="summary">How to Cluster (at Very Large Scale) a set of malware for fun & profit?  - Alexandre Letois</h3>
+	<span class="schedule"><span class="dtstart">14h00</span> <span class="dtend">14h45</span></span>
+<p class="description">
+Malware are now produced at an industrial rate and all of them cannot be analysed manually. Machine learning can be used as an answer to this problem. ViralStudio is a project, where we try to automatically detect similar malwares. This detection is made at a very large scale, to fit with real world restrictions.
+
+
+
+
+<a href="https://www.youtube.com/watch?v=aw5au9YCqSQ&index=2&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="2" class="summary">Grokking FPGA clock management  - Philémon Gardet & Jean-François Nguyen</h3>
+	<span class="schedule"><span class="dtstart">15h00</span> <span class="dtend">15h20</span></span>
+<p class="description">
+Among the signals flowing in a FPGA, those about clocks require a particular treatment to enable efficient distribution. FPGA includes some specifics mechanisms, synthesizers impose design constraints which strongly influences implementations. However what happens if we choose to play with these constraints?
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-02-fpga-clocking.pdf">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=iiWN9nyAF6E&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn&index=3">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="3" class="summary">Kprobes internals  - Thomas Bitzberger</h3>
+	<span class="schedule"><span class="dtstart">15h30</span> <span class="dtend">15h50</span></span>
+<p class="description">
+Kernel probes are a Linux mechanism to instrument kernel functions, mainly for debugging and tracing purpose. Let's take an in-depth look at how they are implemented and how they can be optimized on the x86 architecture.
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-03-kprobes-internals.pdf">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=OqRdP3OBAew&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn&index=4">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="4" class="summary">Code sandboxing  - Alpha Abdoulaye & Pierre Marsais</h3>
+	<span class="schedule"><span class="dtstart">16h30</span> <span class="dtend">17h15</span></span>
+<p class="description">
+Code sandboxing solutions already exist in order to limit usage of system resources. This however doesn't fulfill every potential needs: for instance one may need to limit usage of external code, such as calls to shared libraries' functions. We will see two approaches to solve this problem: using virtualisation, and ELF trickery.
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-04-code-sandboxing.pdf">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=MdZypmtIw4E&index=5&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="5" class="summary">When gdb is not enough  - Paul Semel & Kevin Tavukciyan</h3>
+	<span class="schedule"><span class="dtstart">17h30</span> <span class="dtend">17h50</span></span>
+<p class="description">
+During this talk, we'll first see how the DWARF format works and how to get data from it.  We'll then see how we can use it for multiple fun usages.
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-05-dwarf-printer.pdf">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=GMMBEksJVs4&index=6&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="6" class="summary">Live test 20ish student's Linux kernel assignment  - Antoine Damhet & Philémon Gardet</h3>
+	<span class="schedule"><span class="dtstart">18h00</span> <span class="dtend">18h20</span></span>
+<p class="description">
+How to implement a CI with tools like Patchwork, celery, Jenkins or Lava in order to ease a students assignment reviews.
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-06-linux-ci.pdf">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=xxnzuW6osls&index=7&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="7" class="summary">Virgl3D: 3D acceleration on Windows  - Nathan Gauër</h3>
+	<span class="schedule"><span class="dtstart">18h30</span> <span class="dtend">18h50</span></span>
+<p class="description">
+Windows guests on QEMU miss something pretty important: some 3D acceleration.  Let's see how we could use Virgl3D to enable some basic OpenGL on a Windows guest.
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-07-3d-acceleration-windows.pdf">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=_8z7gMPRm2Q&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn&index=8">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="8" class="summary">Apéro/bar </h3>
+	<span class="schedule"><span class="dtstart">19h00</span> <span class="dtend"></span></span>
+<p class="description">
+
+
+
+
+
+</p>
+</span>
+
+
+
+
+<h2>Saturday 15</h2>
+
+
+<span class="vevent">
+	<h3 id="9" class="summary">Dropping legacy devices in Qemu  - Gabriel Laskar</h3>
+	<span class="schedule"><span class="dtstart">14h00</span> <span class="dtend">14h45</span></span>
+<p class="description">
+Qemu emulation for legacy devices on x86 is fat, old and ugly.<br/> Can we build a Qemu machine without all this legacy devices?<br/> What could possibly go wrong?
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-09-dropping-legacy-in-qemu.pdf">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=xEHnPyodur8&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn&index=9">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="10" class="summary">My BSD sucks less than yours  - Baptiste Daroussin & Antoine Jacoutot</h3>
+	<span class="schedule"><span class="dtstart">15h00</span> <span class="dtend">15h45</span></span>
+<p class="description">
+This talk will look at some of the differences between the FreeBSD and OpenBSD operating systems. It is not intended to be solely technical but will also show the different "visions" and design decisions that rule the way things are implemented. It is expected to be a subjective view from two BSD developers and does not pretend to represent these projects in any way.<br/>
+We don't want it to be a troll talk but rather a casual and friendly exchange while nicely making fun of each other like we would do over a drink. Of course, we shall try and hit where it hurts when that makes sense. Obviously, we both have our personal subjective preferences and we will explain why. Showing some of the weaknesses may encourage people to contribute in some areas.<br/>
+Most of the topics discussed here could warrant their own talk and as such some may not get the deep analysis they deserve.<br/>
+This is a totally biased presentation from two different perspectives.
+
+
+
+<a href="https://www.scribd.com/document/342468195/My-Bsd-Sucks-Less-Than-Yours-AsiaBSDCon2017-Paper">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=MMpiDs-0EBM&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn&index=10">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="11" class="summary">From gcc to clang: waaaaat?  - Marc Espie</h3>
+	<span class="schedule"><span class="dtstart">16h15</span> <span class="dtend">17h00</span></span>
+<p class="description">
+Where trying to build the OpenBSD full ports tree with a clang/libc++ combination unearths a completely unprecedented pile of camel smelly poo that makes you go WAAAT.   Some interesting tidbits may hide among the insanity of it all.
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-10-clang-vs-gcc.pdf">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=RdKLK_h19NY&index=11&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="12" class="summary">Doom on the 'k' kernel  - Antoine Damhet</h3>
+	<span class="schedule"><span class="dtstart">17h15</span> <span class="dtend">17h35</span></span>
+<p class="description">
+Can we port doom on a toy kernel used for courses ? yes<br/> Should we ? probably not
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-11-kdoom/index.html">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=dYJRpOjRVaI&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn&index=12">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="13" class="summary">How to make money with the blockchain using your idle graphic cards -  - Stanislas Girard, Pierre Dalzotto & Axel Ottin</h3>
+	<span class="schedule"><span class="dtstart">17h40</span> <span class="dtend">18h00</span></span>
+<p class="description">
+Story of Three Students trying to make some side money.<br/>
+We will focus on our personnal experiences with mining. The errors that we've encountered and what we did to improve our revenue.
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-12-blockchain.pdf">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=9YP7j1vHoB0&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn&index=13">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="14" class="summary">Casually talking with my car  - Stanislas Lejay</h3>
+	<span class="schedule"><span class="dtstart">18h15</span> <span class="dtend">19h00</span></span>
+<p class="description">
+Lots of research are arising from the fairly unexplored world of automative communications.<br/> Cars are no longer becoming computers, they are fully connected networks where every ECU exchanges and operates the vehicles at some point.<br/> Here is an introduction of my immersion and discussions with…  my car.
+
+
+
+<a href="/lse-summer-week-2017/slides/lse-summer-week-2017-13-talking-with-cars/index.html">Slides</a>
+
+
+<a href="https://www.youtube.com/watch?v=Y5UtGGDRiBQ&index=14&list=PLwW61aXHkK_vQIESO_cNlcq3oyN7pKsGn">Youtube</a>
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="15" class="summary">Rump Session </h3>
+	<span class="schedule"><span class="dtstart">19h00</span> <span class="dtend">20h00</span></span>
+<p class="description">
+
+
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="16" class="summary">Barbecue </h3>
+	<span class="schedule"><span class="dtstart">20h00</span> <span class="dtend"></span></span>
+<p class="description">
+
+
+
+
+
+</p>
+</span>
+
+
+
+
+
+
+
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+    </body>
+</html>

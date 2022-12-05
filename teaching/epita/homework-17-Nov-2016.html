@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Courses - Operating Systems and Computer Architecture - Homework</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li >
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h1 id="homework-assignment">Homework assignment</h1>
+
+<p>For this assignment, you will have to code a small program that you already all
+know and use: cat.</p>
+
+<h2 id="repository--deadlines">Repository &amp; Deadlines</h2>
+
+<p>Deadline: Thu, November 17 2016, 23:59.</p>
+
+<p>You must push your code <em>before</em> the deadline to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git@git.cri.epita.net:p/2019-asm/cat-LOGIN.git
+</code></pre></div></div>
+
+<p>You must change <code class="language-plaintext highlighter-rouge">LOGIN</code> with yours. You have to upload your ssh-key to
+<a href="https://accounts.cri.epita.net">accounts.cri.epita.net</a>.</p>
+
+<p>You can send questions on the newsgroup: <code class="language-plaintext highlighter-rouge">labos.lse</code> on news.epita.fr, with the
+tag: <code class="language-plaintext highlighter-rouge">[ASM][HW] </code>. Any question without this tag will be ignored. You must as
+usual respect the basic rules for sending a news/email.</p>
+
+<h2 id="expectations">Expectations</h2>
+
+<p>You can have anything you want into your repository, but, I will only call either:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">make</code></li>
+  <li><code class="language-plaintext highlighter-rouge">./autogen.sh &amp;&amp; ./configure &amp;&amp; make</code></li>
+</ul>
+
+<p>in order to build your code.</p>
+
+<p>Here is some examples of the usage for your program:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "this is an example" &gt; foo
+$ echo "this is another example" &gt; bar
+$ ./cat &lt; foo 
+this is an example
+$ ./cat bar
+this is another example
+$ ./cat foo bar 
+this is an example
+this is another example
+$ ./cat foo non-exists
+this is an example
+cat: unable to open non-exists: No such file or directory
+$ 
+</code></pre></div></div>
+
+<h2 id="rules">Rules</h2>
+
+<ul>
+  <li><em>all</em> your code must be in <code class="language-plaintext highlighter-rouge">x86_64</code> assembly language, and compiled with <code class="language-plaintext highlighter-rouge">gcc</code>.</li>
+  <li>you be use AT&amp;T syntax as seen in courses.</li>
+  <li>you should export your function correctly, <em>don’t</em> have symbols for inner
+labels in your code.</li>
+  <li>no function should unnecessarly be exported (ie, only <code class="language-plaintext highlighter-rouge">main</code> should be
+exported)</li>
+  <li>you must use the libc for this assignement, authorised functions are:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">open</code></li>
+      <li><code class="language-plaintext highlighter-rouge">close</code></li>
+      <li><code class="language-plaintext highlighter-rouge">read</code></li>
+      <li><code class="language-plaintext highlighter-rouge">write</code></li>
+      <li><code class="language-plaintext highlighter-rouge">err</code></li>
+      <li><code class="language-plaintext highlighter-rouge">warn</code></li>
+    </ul>
+  </li>
+  <li>error messages <em>must</em> be on the standard error output</li>
+  <li>you can’t use any global or static data.</li>
+  <li>string literals must be stored in <code class="language-plaintext highlighter-rouge">.rodata</code>.</li>
+</ul>
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

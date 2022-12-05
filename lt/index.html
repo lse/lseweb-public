@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EPITA Systems Laboratory - Lightning talks</title>
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  </head>
+  <body>
+    <div id="global">
+      <aside>
+        <header>
+            <a href="/">
+            <div id="logo">
+            </div>
+          </a>
+        </header>
+        <nav>
+          <ul>
+  
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="1" type="checkbox"/>
+      <label for="1">Laboratory</label>
+      <ul>
+      
+        
+        <li >
+          <a href='/laboratory/contact.html'>Contact</a>
+        </li>
+      
+        
+        <li >
+          <a href='/laboratory/events.html'>Events</a>
+        </li>
+      
+        
+        <li >
+          <a href='/projects/'>Projects</a>
+        </li>
+      
+        
+        <li >
+          <a href='/teaching/courses.html'>Teaching</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+  <li class='nav_list'>
+    <div class='nav_first_level'>
+      <input id="2" type="checkbox"/>
+      <label for="2">Links</label>
+      <ul>
+      
+        
+        <li >
+          <a href='https://blog.lse.epita.fr'>Blog</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://ctf.lse.epita.fr'>CTF</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://github.com/lse/'>Git</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://twitter.com/lse_epita'>Twitter</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://fr-fr.facebook.com/lse.epita.official'>Facebook</a>
+        </li>
+      
+        
+        <li >
+          <a href='https://www.youtube.com/user/lseepita'>Youtube</a>
+        </li>
+      
+      </ul>
+    </div>
+  </li>
+  
+</ul>
+
+        </nav>
+      </aside>
+      <div id="content_overflow_wrapper">
+        <div id="content">
+	  <div style="text-align: center">
+	    <a href="/lse-summer-week-2022/">
+	    <img src="/images/summer-week-2022-teaser.jpg" 
+	    	alt="teaser" width="992" height="744">
+	    </a>
+	  </div>
+        <h1 id="lightning-talks">Lightning talks</h1>
+
+<p>The LSE is back with new lightning talks after the pandemic interruption.</p>
+
+<p>Every first Tuesday of the month (in theory), the LSE organises
+lightning talks. A lightning talk takes between 15 and 20 minutes
+and is a short perspective about a subject members have found
+interesting.</p>
+
+<h2 id="2022">2022</h2>
+
+<h3 id="june-7-2022">June 7, 2022</h3>
+
+<ul>
+  <li>
+    <p>To cache or not to cache, making pkg_add faster (Marc Espie) <a href="/data/lt/2022-06-07/lt-2022-06-07-marc-espie-pkg_add.pdf">slides</a> <a href="https://youtu.be/aUuQ07jj9mU">video</a></p>
+
+    <blockquote>
+      <p>There are lots of factors for designing a package distribution system: reliability, footprint, and speed. As for footprint, the strategy has always been: grab as little as we can, and decide to update or not. We’ve long resisted adding caching, because it’s so easy to get out-of-whack, and also because this would require supplementary tools in the base system,leading to a chicken&amp;egg problem. This talk is about the fairly low-tech approach to caching  I finally tried, the “too good to be true” speed-up,  and all the devillish details before it went into production.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Fixing hardware faults with software patches (Pierre-Emmanuel Patry) <a href="/data/lt/2022-06-07/lt-2022-06-07-pe-patry-spectre.pdf">slides</a> <a href="https://youtu.be/WoHHTq6tGDw">video</a></p>
+
+    <blockquote>
+      <p>Spectre and meltdown attacks are widely known exploits based on branch prediction mechanisms. Despite their wide media coverage, their internal behavior remains obscure for most people. We investigate the behavior of branch predictors to further understand such attacks and their scope. Finally we present a famous software mitigation technique and its impacts.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>A look at exokernels, today (Léo Benito et Daniel Frédéric) <a href="/data/lt/2022-06-07/lt-2022-06-07-benito-frederic-exokernel.pdf">slides</a> <a href="https://youtu.be/LALsuyPCtNk">video</a></p>
+
+    <blockquote>
+      <p>The exokernel operating system architecture, proposed in 1995, addresses the performance limits of traditional operating systems’ abstractions. It exports hardware resources allowing applications to use any abstraction through libraries. We will take a look at the exokernel design and how some operating systems’ abstractions evolved to reduce the performance limits.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="2022-1">2022</h2>
+
+<h3 id="april-5-2022">April 5, 2022</h3>
+
+<ul>
+  <li>
+    <p>Backdoor communications using mathematics and probabilistic primality tests (Martin Grenouilloux) <a href="/data/lt/2022-04-05/lt-2022-04-05-martin-grenouilloux-carmichael.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Classic public key cryptography relies on the generation of large prime numbers. However, deterministic prime testing is untractable, so probabilistic tests are used instead. We investigate a class of pseudo-primes based on Carmichael numbers that fool common tests, and thus can be used adversarially to break crypto-systems, along with a comparatively newer probabilistic test that’s harder to fool.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Microkernel challenges (Daniel Frederic) <a href="/data/lt/2022-04-05/lt-2022-04-05-daniel-frederic-microkernel.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Microkernel is a well-known kernel design combining modularity, minimalism, and robustness. Let’s introduce the key concepts of a microkernel, what makes it powerful and some design considerations. Let’s introduce the SeL4 kernel briefly, and present some research done about the Skybridge IPC.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Method of knowledge extraction applied to post-graduate computer science studies (Fabrice Boissier) <a href="/data/lt/2022-04-05/lt-2022-04-05-fabrice-boissier-knowledge.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Course material building is a difficult step in teaching as it requires combination of documents (extraction of main subjects and analysis of the order of chapters).
+CREA method aims at helping teachers by: 1) showing them relevancy of documents, and main topics to teach or explain 2) proposing sessions based on clusters of terms that are linked together in the existing documents 3) ordering those clusters of terms for presenting a complete syllabus. This method is still under development but show interesting results concerning the two first targets.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="2020">2020</h2>
+
+<h3 id="march-17-2020">March 17, 2020</h3>
+
+<ul>
+  <li>
+    <p>A weekend of CTF: the good, the bad, the ugly (Nicolas Manichon &amp; Tanguy Dubroca)</p>
+
+    <blockquote>
+      <p>CTF competitions are organized by security enthusiasts to be engaging and put the players skills to the test. But what happens when the organisers do not respect the basic security guidelines for their infrastructure ?
+We will do a case study of a good and a bad ctf we played a few weeks ago.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Turning your e-cigarette into a handheld game console (Paul Poincignon)</p>
+
+    <blockquote>
+      <p>A closed-source firmware on an unknown hardware architecture can be a real pain to understand. We will see how we can circumvent these issues by doing (a lot of) guessing.
+Let’s take a deep dive into firmware reverse-engineering with an e-cigarette from eLeaf, the iKuu i200.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Detailed Overview of the U2F protocol (Cesar Belley)</p>
+
+    <blockquote>
+      <p>U2F is an open authentification standard used worldwide. It enables elying parties to offer a strong cryptographic 2nd factor for end user authentification.
+Let’s see how U2F fully works by designing it from scratch, one another time.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="2019">2019</h2>
+
+<h3 id="december-10-2019">December 10, 2019</h3>
+
+<ul>
+  <li>
+    <p>OpenBSD: Can I haz debug ? (Marc Espie) <a href="/data/lt/2019-12-10/lt-2019-12-10-marc-espie-debug.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Compared to the base system, the OpenBSD package framework is huge, and takes hours and hours to build, thus leading to not so accurate bug-reports.
+However, including debug information everywhere by default is not an option, due to the sheer size of the files. During p2k19, Paul Irofti and I designed some glue to create debug packages in a more or less automated fashion.
+This is a story of agile development, as it took just a few days from the initial draft to V4 of the framework, and we can now produce debug packages for most relevant ports.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>A quick look at authentication vulnerabilities in OpenBSD (Guillaume Pagnoux) <a href="/data/lt/2019-12-10/lt-2019-12-10-guillaume-pagnoux-cve-openbsd.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Less than a week ago, four CVEs were published concerning authentication vulnerabilities in OpenBSD. Let’s take a look at how these work, and how they were fixed.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Through the SMM-Glass, And a vulnerability found there. (Bruno Pujos) <a href="https://www.synacktiv.com/ressources/smmOEMint15_2019.pdf">slides</a></p>
+
+    <blockquote>
+      <p>In last August Lenovo silently patched a vulnerability in one of their firmwares. After a quick explanation about what SMM is and how it works, the vulnerability and its discovery will be explained. Finally how to exploit such a vulnerability and bypass the SMM_CODE_CHK_EN mitigation will be presented.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="november-12-2019">November 12, 2019</h3>
+
+<ul>
+  <li>
+    <p>Classic gaming porn: the Game Boy (Gabriel Duque) <a href="/data/lt/2019-11-12/lt-2019-11-12-gabriel-duque-game-boy.pdf">slides</a></p>
+
+    <blockquote>
+      <p>We all grew up playing Game Boy! It’s incredible success launched the beginning of a new world: portable gaming. From it’s CPU to its pixel processing unit, lets go under the hood and check out how it really works!</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Hiding data in PDF files (Victor Collod)</p>
+
+    <blockquote>
+      <p>Introducing pdfid, a tool for hiding small amounts of data in pdf files. It was designed to enable identifying publishers of confidential data.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="october-15-2019">October 15, 2019</h3>
+
+<ul>
+  <li>
+    <p>Spawning kernel development environment: the pure way (Guillaume Pagnoux)</p>
+
+    <blockquote>
+      <p>The setup of a good, usable kernel development environment is a tedious task. It becomes very annoying when you want to develop on multiple machines. Let’s see how we can exploit NixOS capabilities to automate the creation of such an environment.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Unit Testing for Hardware Description Languages (Maxence Caron–Lasne) <a href="/data/lt/2019-10-15/lt-2019-10-15-maxence-caron-hardware-tdd.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Unit testing should be a mandatory step in most of projects. Unit tests should be easy to write and easy to launch. Yet, writing unit tests for Hardware Description Languages (Verilog, VHDL, Migen…) can be quite cumbersome.
+Migen is a Python library for hardware description. We will see how to take advantage of the expressivity given by Python for generating test modules dynamically.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Goroutines demystified (Mathieu Nativel) <a href="/data/lt/2019-10-15/lt-2019-10-15-mathieu-nativel-goroutines.pdf">slides</a></p>
+
+    <blockquote>
+      <p>The go standard implementation of concurrency lays on two main features: goroutines and channels. Let’s try focus on goroutines and to undertstand what make them attractive. In order to do so we’ll have to look on how they are implemented.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="may-14-2019">May 14, 2019</h3>
+
+<ul>
+  <li>
+    <p>trish2, un algo de détection du plagiat (Victor Collod)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>How an environment variable annoyed me for three months (Guillaume Pagnoux) <a href="/data/lt/2019-05-14/lt-2019-05-14-guillaume-pagnoux-arm-boot.html">slides</a></p>
+
+    <blockquote>
+      <p>A small, incomplete, could be wrong, story on how an environment variable caused a three months bug hunt, in an almost non-debugable environment.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Arbitrary tree differencing for code copy detection (Nicolas Manichon) <a href="/data/lt/2019-05-14/lt-2019-05-14-tree-differencing-for-code-copy-detection.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Code copy has always been a security problem, with open source projects checking in code from one another, applying modifications and not being able to backport security fixes in a timely manner. I present a project that can perform code copy detection on a large number of files.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>CTF: Two Noobs and a Plaid (Brendan Harley &amp; Mathis Raguin) <a href="/data/lt/2019-05-14/lt-2019-05-14-ctf-write-up.html">slides</a></p>
+
+    <blockquote>
+      <p>Let’s follow two young and innocent students on their way to solve the 2019 PlaidCTF’s challenges. On the menu: python, reverse engineering and docker archeology.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="april-9th-2019">April 9th, 2019</h3>
+
+<ul>
+  <li>
+    <p>KeraSH: A neural network toolkit written in shell (Jean-Adrien Ducastaing &amp; Audran Doublet) <a href="/data/lt/2019-04-09/lt-2019-04-09-jean-adrien-ducastaing--audran-doublet--kerash.pdf">slides</a></p>
+
+    <blockquote>
+      <p>A shell-based ML toolkit allowing you to train, evaluate neural networks and evolve your topology and hyper-parameters via AutoML-ish techniques.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>From execution traces to binary reconstruction (Gabriel Duque) <a href="/data/lt/2019-04-09/lt-2019-04-09-gabriel-duque-binary-reconstruction.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Obfuscated files often consist of complicated code that actually does something simple. Through execution trace capturing and binary reconstruction, we will see how it is possible to generate an executable file that has the same behaviour as the original file, but much simpler code.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="march-12th-2019">March 12th, 2019</h3>
+
+<ul>
+  <li>
+    <p>Accelerate Boolean Constraint Propagation for Boolean Satisfiability Solvers with FPGA (Maxence Caron-Lasne) <a href="/data/lt/2019-03-12/lt-2019-03-12-maxence-caron--lasne-fpga-sat-solving.html">slides</a></p>
+
+    <blockquote>
+      <p>Boolean Satisfiability (or SAT) problem is the problem of finding if a set of Boolean values that satisfies a given Boolean formula exists. SAT, even if it is the first problem proven NP-complete, is used in fields like circuit design and automatic theorem proving.
+The algorithm used to solve SAT problems is arborescent but the most time consuming operation used in it, the Boolean Constraint Propagation (BCP), is a good target for hardware acceleration.
+Based on the work of John D. Davis and Jason Thong, let’s explore two possible BCP co-processor designs on FPGA.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Sqlports, an adventure in sqlite (Marc Espie) <a href="/data/lt/2019-03-12/lt-2019-03-12-marc-espie-sql.pdf">slides</a></p>
+
+    <blockquote>
+      <p>This starts with an interesting use-case for sqlite, based on the need to collate metadata about 10000+ distinct ports on OpenBSD, an obvious use of relational database technology.
+However, designing a database schema for human consumption is tricky, between the desire of having human-readable views or table, and the need to have a sensible database schema with internal consistency.
+This is the tale of a pseudo ORM designed for human readability, as an exercise in futility, because “why not ?”</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Userland NIC driver design on Linux (Guillaume Pagnoux) <a href="/data/lt/2019-03-12/lt-2019-03-12-guillaume-pagnoux-linux-nic-slides.html">slides</a></p>
+
+    <blockquote>
+      <p>In my quest for a better understanding of computer networking, I tried making a switch using a userland NIC driver for ixgbe and virtIO network cards.
+Let’s take a look at how this driver is implemented, and the differences with an in-kernel one.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="february-12th-2019">February 12th, 2019</h3>
+
+<ul>
+  <li>
+    <p>Network stack in K (Tom Decrette) <a href="/data/lt/2019-02-12/lt-2019-02-12-tom-decrette-network-stack-in-k.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Once you finished K, you are a little bit confined by the possibilities. Let’s see how to add a network stack in your own kernel.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Bypassing SMM-EP (Bruno Pujos) <a href="/data/lt/2019-02-12/lt-2019-02-12-bruno-pujos-bypassing-smm_ep.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Intel introduced a hardening mitigation for SMM called SMM_CODE_CHK_EN. This mitigation prevents a processor in SMM mode from executing code outside the protected memory defined for SMM, the same way than SMEP prevents the kernel to execute userland code. In this talk we will see how to bypass it in a non-firmware-dependent way.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Trying to design a simple yet efficient L1 cache (Jean-François Nguyen) <a href="/data/lt/2019-02-12/lt-2019-02-12-jean-francois-nguyen-design-l1-cache.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Minerva is a recently released 32-bit RISC-V soft processor implemented with nMigen. This talk will provide a tour of its L1 cache infrastructure with a focus on its approach to reduce miss penalties efficiently while trying to keep its ressource usage adequate for embedded use cases.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="2018">2018</h2>
+
+<h3 id="december-11th-2018">December 11th, 2018</h3>
+
+<ul>
+  <li>
+    <p>Writing a hypervisor - Part 2 (Thomas Bitzberger)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>Séance de question-réponses sur le sujet de recrutement (Gabriel Laskar)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="november-13th-2018">November 13th, 2018</h3>
+
+<ul>
+  <li>
+    <p>Writing a hypervisor - Part 1 (Thomas Bitzberger)</p>
+
+    <blockquote>
+      <p>Let’s go through the first steps of coding a x86_64 hypervisor. During this first part, we’ll see how to use Intel virtualization extensions and how to launch a very simple guest.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>TCP, fonctionnement et implémentation (Victor Collod)</p>
+
+    <blockquote>
+      <p>TCP est peut-être le protocole le plus important d’internet, en tant que moyen le plus commun d’obtenir un canal de communication fiable. Parlons un peu de son fonctionnement et de son implémentation.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="october-9th-2018">October 9th, 2018</h3>
+
+<ul>
+  <li>
+    <p>Il ne faut pas toujours croire les spécialistes (Sebastien Larinier)</p>
+
+    <blockquote>
+      <p>En lisant un article de FireEye, les chercheurs détaillent qu’une nouvelle backdoor est uniquement dans l’overlay du première exécutable de la chaîne d’infection. Après quelques tests, il s’avère que c’est un peu plus compliqué. On a donc sorti le debugger et un desassembleur pour réellement comprendre ce qui passe.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>zeroconf, où comment on peut survivre sans serveur dhcp (Chewie) <a href="https://kevinsztern.fr/zeroconf.pdf">slides</a></p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>How to waste time during summer (Clementine Hayat and Alexandre Majed)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="june-12th-2018">June 12th, 2018</h3>
+
+<ul>
+  <li>
+    <p>Text classification models based on Deep Learning (Antoine Sainson) <a href="/data/lt/2018-06-12/lt-2018-06-12-Antoine_Saison-deft.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Text classification is one of the main tasks in natural language processing. Let’s see how we can use CNNs and RNNs to classify french tweets.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>iSCSI and Libvirt (Clementine Hayat)</p>
+
+    <blockquote>
+      <p>iSCSI protocol is famously used for block storage over TCP. Let’s see how the current libvirt implementation allows us to use iSCSI blocks for VM storage, and how we can improve it.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Edit and continue in GDB (Alexandre Bernard)</p>
+
+    <blockquote>
+      <p>Debugging is an everyday game to many developers. Stop, recompile and restart the debugging session are three annoying steps. Let’s see if we can get rid of it in gdb and apply code changes while our program is in break mode.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="april-10th-2018">April 10th, 2018</h3>
+
+<ul>
+  <li>
+    <p>Les canaux subliminaux dans DSA (Marin Hannache) <a href="/data/lt/2018-04-10/lt-2018-04-10-Marin_Hannache-dsa_sublim.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Comment détourner l’algorithme de signature DSA pour y faire apparaître des canaux subliminaux. C’est à dire un moyen de communiquer via des signatures en apparence anodines. Quelles contre-mesures sont envisageables et quelles sont leurs limites ?</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>How to catch cheaters ? (Paul Semel)</p>
+
+    <blockquote>
+      <p>Sometimes we want to avoid people from calling some shared libraries functions. Let’s play with dynamic binary instrumentation to see whether we can achieve this correctly !</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>The iPXE object model (Victor Collod)</p>
+
+    <blockquote>
+      <p>In order to achieve high reliability and flexibility, iPXE implements an object layer inspired by flow-based programming, in C.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="march-13th-2018">March 13th, 2018</h3>
+
+<ul>
+  <li>
+    <p>Great expectations for HTTPS (Marc Espie)</p>
+
+    <blockquote>
+      <p>Package updates on OpenBSD are done over HTTP usually. The authenticity of packages is already ensured at the application level. <br /> Is moving to HTTPS desireable ? <br /> Putting all the pieces together leads to surprising challenges and discoveries.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Dumping C/C++ structures, the return ! (Paul Semel)</p>
+
+    <blockquote>
+      <p>C/C++ programmers often need to dump the content of their structures. As one can’t have structures information at runtime, it’s not possible to write a generic structure pretty printer. <br /> The first attempt we made consisted of reading debugging information located in the ELF file; this was not a good idea.  Hopefuly, those information are known at compile time, so let’s implement a CLang structure pretty printing built-in.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>VirGL on Windows: Part 2 (Nathan Gauër)</p>
+
+    <blockquote>
+      <p>Last year began my journey in the grateful universe of graphic drivers on Windows.  This year, the goals have been updated. Let’s see how we can tackle a correct ICD implementation using Angle</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="february-13th-2018">February 13th, 2018</h3>
+
+<ul>
+  <li>
+    <p>Malware comparison with frequency analysis (Gabriel Duque) <a href="/data/lt/2018-02-13/lt-2018-02-13-Gabriel-Duque-simple-malware-analysis.pdf">slides</a></p>
+
+    <blockquote>
+      <p>A simple approach for information extraction in object code. Also an overview of the issues encountered while automating and scaling this process for a 2Tb malware database.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Windows Hello World (Thomas Bitzberger) <a href="/data/lt/2018-02-13/lt-2018-02-13-Thomas_Bitzberger-windows_hello_world.pdf">slides</a></p>
+
+    <blockquote>
+      <p>To learn more about Windows and the PE format, let’s see how we can do the exercice of calling the ‘printf’ function by manually resolving it’s address at runtime.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Playing with Clang’s Static analyzer (Paul Semel)</p>
+
+    <blockquote>
+      <p>During this talk, I will present the Clang’s static analyzer tool, by implementing an undefined behavior checker.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="2017">2017</h2>
+
+<h3 id="december-12th-2017">December 12th, 2017</h3>
+
+<ul>
+  <li>
+    <p>Speaker Recognition: Basic Concepts (Réda Dehak)</p>
+
+    <blockquote>
+      <p>Speaker recognition is the process of recognizing automatically who is speaking in a speech audio file. This allows to use people voices as an authentication mechanism. We deal with different statistical machine learning methods to solve this problem. We will present the principal statistical machine learning methods used in our recognition system which was submitted to NIST-SRE 2016 evaluation campaign.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>512 bytes to boot (Pierre Marsais) <a href="/data/lt/2017-12-12/lt-2017-12-12-Pierre_Marsais-Bootloader.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Let’s implement a minimal Multiboot x86 BIOS bootloader.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="november-14th-2017">November 14th, 2017</h3>
+
+<ul>
+  <li>
+    <p>A gentle introduction to TCP/IP (Gabriel Laskar)</p>
+
+    <blockquote>
+      <p>An introduction course on how Internet and TCP/IP works.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Better signal handling with Clang (Alpha Abdoulaye) <a href="/data/lt/2017-11-14/lt-2017-11-14-Alpha_Abdoulaye-signal_clang.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Let’s try to improve the detection of common programming errors specific to signal handlers and fix them by patching Clang.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>CPU exception and interrupt mechanisms (Jean-François Nguyen</p>
+
+    <blockquote>
+      <p>Exceptions and interrupts are unexpected events that disrupt the normal flow of instruction execution. This talk will cover their implementation on our own CPU design.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="october-10th-2017">October 10th, 2017</h3>
+
+<ul>
+  <li>
+    <p>My RC car just got itself a CAN Bus (Stanislas Lejay) <a href="/data/lt/2017-10-10/lt-rc-car/index.html">slides</a></p>
+
+    <blockquote>
+      <p>Car hacking is one of these difficult-to-reach kind of field, often because nobody wants to break their own car trying to make the headlights flash. So, how can one offer a cheap approach to car and CAN hacking ? Here is a new episode from the “give the impression you are working when you are in fact having fun” series.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Designing a homebrew RISC CPU (Jean-François Nguyen)</p>
+
+    <blockquote>
+      <p>CPU design does not have to be the realm of voodoo rituals and Fortune 500 companies. We’re living great times where any nerd can just go out and build their own microarchitecture. Let’s see how!</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="april-11th-2017">April 11th, 2017</h3>
+
+<ul>
+  <li>
+    <p>Linux and GPU : The frame and the pain (Nathan Gauër) <a href="/data/lt/2017-04-11/gauer-lt-2018-virtiogpu-and-windows.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Let’s go under the hood of an OpenGL application! See how we can spit some pixels out of Mesa and put them on our screen.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Backdooring Linux (Thomas Bitzberger) <a href="/data/lt/2017-04-11/lt-2017-04-11-Thomas_Bitzberger-backdooring_linux.pdf">slides</a></p>
+
+    <blockquote>
+      <p>Backdooring an operating system is quite an art. Let’s see how to implement a very simple one under Linux. We’ll take a look at the sys_call_table, search through the kernel memory and modify it.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Extending qemu/gdb for machine debugging (Gabriel Laskar)</p>
+
+    <blockquote>
+      <p>Let’s extend qemu for proper low level debugging on x86!</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="march-13th-2017">March 13th, 2017</h3>
+
+<ul>
+  <li>
+    <p>Runtime handling for thread local storage (Alpha Abdoulaye)</p>
+
+    <blockquote>
+      <p>A quick overview of the runtime handling of thread-specific data in ELF objects.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Playing with Mach-O and DYLD (Stanislas Lejay)</p>
+
+    <blockquote>
+      <p>Let’s take a look at macOS’s binary format and see how one can call any function by journeying from structures to internal memory.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Trap your friends with TCP! (Philemon Gardet) (slides not available)</p>
+
+    <blockquote>
+      <p>Look at some fun and expensive hardware to play with the TCP transport layer and make some pranks.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="2016">2016</h2>
+
+<h3 id="december-13th-2016">December 13th, 2016</h3>
+
+<ul>
+  <li>
+    <p>C++ internals (Francis Visoiu Mistrih)</p>
+
+    <blockquote>
+      <p>Quick look inside the implementation of high-level constructions in C++, such as name mangling, inheritance, virtual, etc. based on the Itanium C++ ABI.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Malware deobfuscation by program synthesis (Kevin Tavukciyan)</p>
+
+    <blockquote>
+      <p>During this talk, we’ll see how, using program synthesis, we can deobfuscate binaries in an “automated” way, without dynamic analysis.
+We’ll also see how to synthesize formal specifications of the x86_64 mnemonics, which are needed to get proper deobfuscation.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Introduction to abstract interpretation (Marc Chevalier)</p>
+
+    <blockquote>
+      <p>An introduction to abstract interpretation or how to statically prove semantic properties on programs.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="november-8th-2016">November, 8th 2016</h3>
+
+<ul>
+  <li>
+    <p>Write yourself a toolchain using LLVM (Francis Visoiu Mistrih)</p>
+
+    <blockquote>
+      <p>During this talk, we’ll see how to set up a fully functional toolchain for a new architecture using the LLVM Compiler Infrastructure.
+From Clang, going through the core of LLVM, up to LLD, we’ll try to add support for a new target: J Core 2, which is the open source version of Hitachi’s SuperH 2.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Lockdep, an inside out perspective (Nahim El Atmani)</p>
+
+    <blockquote>
+      <p>Quick dive into the linux kernel lock validator a.k.a lockdep.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>A peek into asynchronous processor design (Philémon Gardet)</p>
+
+    <blockquote>
+      <p>In the domain of the logic circuit programming, synchronous systems and their dependency to a ‘clock’ signal are a common pattern. What could happen if such signal did not exist ?
+This assumed constraint is the opportunity to expose some concepts like a simple asynchronous circuit design, some handshaking data transmission protocols and their implementation or even asynchronous pipelines.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="october-11th-2016">October, 11th 2016</h3>
+
+<ul>
+  <li>
+    <p>Debug code the hard way (Gabriel Laskar)</p>
+
+    <blockquote>
+      <p>A brief introduction to Linux debugging APIs</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Write yourself a JIT brainfuck compiler (Jean-François Nguyen)</p>
+
+    <blockquote>
+      <p>Some ING1 students had to write a toy brainfuck compiler during their first week at EPITA. Let’s have fun and rewrite it using JIT (Just-In-Time) compilation!</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>There and back again, how we fixed packages signatures before they were truely broken (Marc Espie)</p>
+
+    <blockquote>
+      <p>Signing the inside of a package is not so secure, as you depend on your unpacking tools being bug-free.  Moving the signature outside involved some redesign to allow just-in-time checking, and quite a few changes inside the tools involved.
+This code went from proof-of-concept to full scale deployment in about a month.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="may-10th-2016">May, 10th 2016</h3>
+
+<ul>
+  <li>
+    <p>Hotplug on linux (Gabriel Laskar)</p>
+
+    <blockquote>
+      <p>A survey of the linux hotplug system.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>PXE boot on PIE (Nicolas Géniteau)</p>
+
+    <blockquote>
+      <p>How to boot hundreds of diskless computers for EPITA.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>GCC as a dead simple cryptosystem obfuscator (Nahim El Atmani)</p>
+
+    <blockquote>
+      <p>While compiling, GCC plays a lot with intermediate representations to get optimal code after multiple optimization and reduction passes. These mechanisms can serve for weird code modifications too, and this talk is just an example of one of them. We’ll focus on a simple, yet effective way of hiding a cryptosystem.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="april-12th-2016">April, 12th 2016</h3>
+
+<ul>
+  <li>
+    <p>How-to fail porting a motherboard to coreboot (Vincent Gatine)</p>
+
+    <blockquote>
+      <p>This talk will be the post-mortem of an attempt to port a (not-so) new x86 motherboard to the foss firmware project coreboot.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>SecuROM v4 (Adrien Garin)</p>
+
+    <blockquote>
+      <p>SecuROM v4 is an old DRM and copy protection used by video games. How effective is it ?</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="march-8th-2016">March, 8th 2016</h3>
+
+<ul>
+  <li>
+    <p>LSE discount on Canadian’s transportation travel fares (Nahim El Atmani)</p>
+
+    <blockquote>
+      <p>After a quick reminder on contactless cards technologies we’ll see how one can subvert daily passes in order to get a special 70% LSE discount. Happy black friday folks!</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Cheating online in Age of Mythology (Adrien Garin)</p>
+
+    <blockquote>
+      <p>Age of Mythology released in 2002 is still playable online on the Voobly platform. We will see how to patch the game memory to disable entirely the fog of war and how to bypass the anticheat detection module of Voobly.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>CVE-2016-0728 vs Real World (Matthieu Tardy)</p>
+
+    <blockquote>
+      <p>CVE-2016-0728 has made some headlines in the security world for being a relatively easy to exploit Linux local privilege escalation vulnerability. We will see a teardown of this vulnerability and an estimation of its real impact.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="9th-february-2016">9th February 2016</h3>
+
+<ul>
+  <li>
+    <p>PFE Report: first steps in porting Stos on Intel Galileo (Zackary Ayoun)</p>
+
+    <blockquote>
+      <p>Implementation of an EFI bootloader Overview of the new device interface of Stos</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>16-bit DOS executable execution on the LSE-PC (Antoine Froger)</p>
+
+    <blockquote>
+      <p>An overview of the changes made to the LSE-PC software architecture in order to be able to execute 16-bit DOS executables.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Introduction to Reversing DXE drivers (Bruno Pujos)</p>
+
+    <blockquote>
+      <p>Most of the x86 computer firmware today follow the UEFI specification.  The DXE drivers are one of the most important part of the boot and reversing them is a key step for understanding your BIOS.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="2015">2015</h2>
+
+<h3 id="8th-december-2015">8th December 2015</h3>
+
+<ul>
+  <li>
+    <p>Introduction to SAT and SMT solvers (Zoé Delduc)</p>
+
+    <blockquote>
+      <p>From SAT to SMT solvers, a theorical overview of their algotrithm and some praticals examples using Z3.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>GreHack 2015: writeups (LSE team)</p>
+
+    <blockquote>
+      <p>Grehack is a security conference hosted in Grenoble. Their 3rd session was on November 15th, 2015. We will present writeups for some ctf challenges.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="10th-november-2015">10th November 2015</h3>
+
+<ul>
+  <li>
+    <p>Pledge: a new mitigation technology in OpenBSD (Marc Espie) <a href="http://www.openbsd.org/papers/hackfest2015-pledge/index.html">slides</a></p>
+
+    <blockquote>
+      <p>there’s a bleeding edge new system call in OpenBSD: pledge. It’s used to limit what a given process can do.
+There are some major usage differences to some prior technologies that should make it more effective.
+The most prominent comes from OpenBSD’s basic motto, namely that security measures should be on by default and driven by experience.
+I will give a small state-of-the-art presentation about how far we’ve come understanding what pledge can do for us, in terms of simplicity and efficacy.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>How to run unsigned kernel driver on Windows x64 (Nassim Eddequiouaq &amp; Adrien Garin)</p>
+
+    <blockquote>
+      <p>By default, 64-bit versions of Windows (starting from Vista) will only load signed kernel-mode drivers. Thanks to a vulnerable version of a signed VirtualBox kernel driver, we will see how to gain ring0 code execution and how to disable DSE to finally run our unsigned drivers without enabling debug mode or changing Windows boot options.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Designing a flexible on-chip debugger for the LSE-PC (Pierre Surply)</p>
+
+    <blockquote>
+      <p>Tracing execution on the LSE-PC used to be achieved by manually analysing 80386SX CPU signals. This talk will present an implemented solution to provide a efficient on-chip debug by automating and scripting bus controller operations.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="13th-october-2015">13th October 2015</h3>
+
+<ul>
+  <li>
+    <p>Hacking a Sega Whitestar Pinball: Focusing on the audio board (Pierre Surply)</p>
+
+    <blockquote>
+      <p>A reverse engineering of a BSMT2000 DSP used on the audio circuit of an old-school pinball.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Software programming on the LSE-PC (Antoine Froger)</p>
+
+    <blockquote>
+      <p>After the multiple presentations on the LSE-PC architecture and hardware, this talk will focus on the tools used to program on the LSE-PC and the complexity to code and debug on a board based on an Intel 80386SX processor conceived in 1985.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Tasks, multithreading and early scheduling setup in stos (Louis Feuvrier &amp; Fabien Goncalves)</p>
+
+    <blockquote>
+      <p>Our recent work to introduce userland threads in stos. From scheduling issues to jumping from a single execution thread to a full-blown scheduled environment, we will cover early task handling in stos.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="14th-april-2015">14th April 2015</h3>
+
+<ul>
+  <li>
+    <p>PS/2 Archeology (Gabriel Laskar)</p>
+
+    <blockquote>
+      <p>Let’s look at mouses, keyboards, and their protocols.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Understanding the PCI Passthrough (Nassim Eddequiouaq)</p>
+
+    <blockquote>
+      <p>An overview of the way PCI passthrough works, with an emphasis on network devices and the features provided by the Intel VT-d.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="10th-march-2015">10th March 2015</h3>
+
+<ul>
+  <li>
+    <p>Discovery of Ltrace On Steroid (Nahim El Atmani)</p>
+
+    <blockquote>
+      <p>LOSt is a dynamic binary analysis tool currently in early development phase in the Lab. It aims at tracing internal function calls of an unknown binary. Working closely with IDA and PIN, LOSt brings evolutive reports throughout the reversing phase. This talk will present the goal and the motivation of making such a tool.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Linux live patching (Adrien Schildknecht)</p>
+
+    <blockquote>
+      <p>Linux 4.0 introduces a first draft of a live patching API. Patching a running kernel is subject to many race conditions and constraints. We will study the different approaches and their limitations.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Testing the 8259A Soviet clone (Pierre Surply)</p>
+
+    <blockquote>
+      <p>Manufactured in USSR during the 80s, the KP580 family of n-MOS integrated circuits aimed to imitate the behaviour of the Intel chips used in the IBM-PC. We will focus on the Programmable Interrupt Controller to see if those components actually follow the Intel former design.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Two practical examples of obsolescence in electronic and software design, and easy fix (Jacques Laskar)</p>
+
+    <blockquote>
+      <p>HP 54601A  is a 4 channels 100 Mhz oscilloscope from 1990 with digital storage capabilities. Although it should have been able to survive many decades, it has been plagued with various electronic and software  design features that make it totally useless at present. By chance there are some easy fix.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="10th-febuary-2015">10th Febuary 2015</h3>
+
+<ul>
+  <li>
+    <p>Decoding evdev ioctls for strace (Etienne Gemsa)</p>
+
+    <blockquote>
+      <p>Strace, a debug tool, displays system calls of a program, some are not clearly displayed, in particular ioctls of evdev drivers. This talk will describe works on decoding of evdev ioctls in strace.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>BIOS patching for fun and profit (Vincent Gatine)</p>
+
+    <blockquote>
+      <p>Many PC vendors lock processors features within BIOS to create market segments. Let’s see if we can hack our way through the BIOS to get our hands on some cool features.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Containers and systemd: systemd-nspawn (Rémi Audebert)</p>
+
+    <blockquote>
+      <p>systemd-nspawn is simple and versatile container manager built on top of Linux namespaces. Booting full Linux distributions is trivial, and tight integration with systemd makes it a very powerful tool.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="13th-january-2015">13th January 2015</h3>
+
+<ul>
+  <li>
+    <p>Elf : Tips &amp; Tricks (Gabriel Laskar)</p>
+
+    <blockquote>
+      <p>A brief tour of some tricks that are commonly used in kernel development.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>DNSSEC and zone walking (Paul Hervot)</p>
+
+    <blockquote>
+      <p>A presentation of the DNSSEC extension of DNS, the issue it introduced regarding zone enumeration and existing solutions.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Bitcoin on FPGA (Bruno Pujos)</p>
+
+    <blockquote>
+      <p>Making of a bitcoin calculator in hardware: bitcoin principle, SHA-256 and its implementation on FPGA.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h2 id="2014">2014</h2>
+
+<h3 id="9th-december-2014">9th December 2014</h3>
+
+<ul>
+  <li>
+    <p>Having fun with Parallax Propeller (Pierre Surply)</p>
+
+    <blockquote>
+      <p>An introduction to the peculiar design of a 32-bit multi-core microcontroller.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Investigating sensors support in a tablet (Fabien Goncalves)</p>
+
+    <blockquote>
+      <p>Presenting my journey trying to add support for a sensor in a tablet running archlinux.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>On some physical attacks of RSA (Robert Erra)</p>
+
+    <blockquote>
+      <p>RSA is (probably) a secure algorithm but when it is used naively on some embedded system like smartcards, RSA can be attacked physicallly. We will show how this is possible and will present some known attacks.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>UEFI: How does that actually boot ? (Gabriel Laskar)</p>
+
+    <blockquote>
+      <p>An exploration and comparison of BIOS versus UEFI boot process.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Simulating a serial device with Linux and Python (Rémi Audebert)</p>
+
+    <blockquote>
+      <p>How-to create a fake serial device and use Python idioms to emulate it.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="12th-november">12th November</h3>
+
+<ul>
+  <li>
+    <p>Linux sandboxing (Gabriel Laskar)</p>
+
+    <blockquote>
+      <p>An overview of the available kernel APIs that can be used in order to control and limit the effect of untrusted code.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>CVE-2014-4114 (Bruno Pujos)</p>
+
+    <blockquote>
+      <p>A study of the Sandworm vulnerability in powerpoint.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Trusted Platform Module (Jérémy Lefaure)</p>
+
+    <blockquote>
+      <p>Discovery of this hardware cryptographic component, used among other things to set-up a trusted environment.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Learn D the hard way (by writing a kernel) (Nassim Eddequiouaq)</p>
+
+    <blockquote>
+      <p>A small dive into D language’s system features and runtime mechanisms through kernel programming.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="14th-october">14th October</h3>
+
+<ul>
+  <li>
+    <p>Go Reverse (Bruno Pujos)</p>
+
+    <blockquote>
+      <p>First steps in reverse engineering a golang binary.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Hacking a Sega pinball (Pierre Surply)</p>
+
+    <blockquote>
+      <p>How to reverse an old school pinball machine in order to modify it and execute our own code: A guided tour through the electronic design of an uncommon and discontinued machine.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Understanding Python by breaking it (Clément Rouault)</p>
+
+    <blockquote>
+      <p>The goal of this talk is to abuse the logic of the Python interpreter using the ctypes module. With that we will be able to expose some of the CPython internals from Python itself.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="10th-june">10th June</h3>
+
+<ul>
+  <li>
+    <p>Branch Tracing on x86 (Gabriel Laskar)</p>
+
+    <blockquote>
+      <p>An overview of the x86 CPU’s features that allow the user to trace and debug code without binary modification.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Nanomites, a funny anti-debugging technique (Nassim Eddequiouaq)</p>
+
+    <blockquote>
+      <p>An overview of the way Nanomites are implemented and work.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>TI84+ Bare-metal Programming (Pierre Surply)</p>
+
+    <blockquote>
+      <p>A guided tour through Z80 based Texas Instruments’s graphing calculators and how to program it without any operating system.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="13th-may">13th May</h3>
+
+<ul>
+  <li>
+    <p>Heartbleed, technical overview (Bruno Pujos)</p>
+
+    <blockquote>
+      <p>An explanation of the Heartbeat extension and how the Heartbleed bug is working, what kind of information can leak from it, and why it has not been found earlier.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>Anti-Virtual Machine Techniques (Pierre Rovis)</p>
+
+    <blockquote>
+      <p>An overview of some of the techniques being used by malwares to recognize virtual machine environments, how they work and what they are detecting.</p>
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="1st-april">1st April</h3>
+
+<ul>
+  <li>
+    <p>Portable Executable: Overview of the executables files on Windows (Jérémy Lefaure)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>A first peek at asymmetric cryptography: The RSA cryptosystem (Fabien Goncalves)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>Introduction to Register Transfer Level: a simple way to design synchronous digital circuits (Pierre Surply)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>Analysing unknown data with python (Rémi Audebert)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>The Hell of CPU debugging (Franck Michea)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="4th-march">4th March</h3>
+
+<ul>
+  <li>
+    <p>Malloc Internals (Bruno Pujos)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>vsyscall/vDSO (Adrien Schildknecht)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>Qemu integrated testing: liqtest / libqos (Nassim Eddequiouaq)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+<h3 id="11th-february">11th February</h3>
+
+<ul>
+  <li>
+    <p>Introduction to TI PRUSS (Pierre Surply)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>PS/2 Archeology (Gabriel Laskar)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+  <li>
+    <p>IDAPython walkthrough (Bruno Pujos)</p>
+
+    <blockquote>
+
+    </blockquote>
+  </li>
+</ul>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+  </body>
+</html>

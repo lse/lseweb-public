@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>LSE Winter Days 2021 - Talks</title>
+        <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+        <style>
+            p {
+                text-align: justify;
+                margin-left: 5em;
+            }
+            span.schedule {
+                display: block;
+                width: 3em;
+                float: left;
+                margin: 1em 0;
+                padding: 0;
+                font-weight: bold;
+            }
+            h2, h3 { clear: both; }
+        </style>
+    </head>
+    <body>
+    <div style="margin: 0 auto; max-width: 900px;">
+      <h1><center>LSE Winter Days</center>November 6 - November 7 2021</h1>
+
+      <h2>Location</h2>
+
+      <h4>EPITA</h4>
+      <p>14-16 rue Voltaire, 94270 Le Kremlin-Bicêtre</p>
+      <p>Amphitheater 401, 5th floor<p>
+
+      <h4>Public transports</h4>
+      <p>Métro 7: Porte d'Italie</p>
+      <p>Bus 47/125/131/185/186: station Roger Salengro-Fontainebleau</p>
+
+      <div style="text-align: center">
+        <img src="/images/plan-401.png" alt="Plan d'accès">
+      </div>
+
+      
+<h2>Saturday 6</h2>
+
+
+<span class="vevent">
+	<h3 id="0" class="summary">Introducing the LSE Week </h3>
+	<span class="schedule"><span class="dtstart">13h55</span> <span class="dtend">14h00</span></span>
+<p class="description">
+
+
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="1" class="summary">Performing open-syscall surgery on SSHd with eBPF as a scalpel  - Martin Schmidt</h3>
+	<span class="schedule"><span class="dtstart">14h00</span> <span class="dtend">14h45</span></span>
+<p class="description">
+eBPF is a revolutionary technology with origins in the Linux kernel that can run sandboxed programs in an operating system kernel. It is used to safely and efficiently extend the capabilities of the kernel without requiring to change kernel source code or load kernel modules. With eBPF, instead of a fixed kernel, you can now write mini programs that run on events like disk I/O, which are run in a safe virtual machine in the kernel. <br> In this talk we'll see the process of tracing OpenSSHd without debug symbols.
+
+
+
+<a href="/lse-winter-days-2021/slides/eBPF-on-OpenSSHd.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="2" class="summary">Rizin: refactoring of the elf plugin.  - Alexis Ehret</h3>
+	<span class="schedule"><span class="dtstart">14h50</span> <span class="dtend">15h20</span></span>
+<p class="description">
+The ELF format is an incredibly versatile format due to a lot of loose constraint in the specifications. Those constraints became disadvantages when a tool need to parse an untrusted binary. I will talk about my contribution to the elf plugin in Rizin and the difficulties encounter along the way during the GSoC 2021.
+
+
+
+<a href="/lse-winter-days-2021/slides/Rizin.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="3" class="summary">Dodging deadly signal using eBPF  - Esteban Blanc</h3>
+	<span class="schedule"><span class="dtstart">15h30</span> <span class="dtend">16h15</span></span>
+<p class="description">
+Tired of having your process getting killed? Catching SIGINT and SIGTERM is not enough for you? What if you could catch all signals sent to your process? Using eBPF this is now fairly simple without the need of kernel modules nor source code modification. <br> Follow the story of the development of blocksig, a tool to protect your process of deadly signals
+
+
+
+<a href="/lse-winter-days-2021/slides/eBPF-on-deadly-signals.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="4" class="summary">Blind Date, a journey into Blind ROP exploitation technique  - Thomas Berlioz</h3>
+	<span class="schedule"><span class="dtstart">16h30</span> <span class="dtend">17h15</span></span>
+<p class="description">
+Return Oriented Programming is a well-known exploitation technique in the world of pwn. This attack has numerous variations and this is what makes it so powerful. Blind ROP is one of them, and today we will see a CTF application of this fabulous trick. Let me be your guide in this quest for the flag!
+
+
+
+<a href="/lse-winter-days-2021/slides/blind_ROP.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="5" class="summary">How Ocarina of Time 64 was decompiled  - Darius Engler</h3>
+	<span class="schedule"><span class="dtstart">17h20</span> <span class="dtend">17h50</span></span>
+<p class="description">
+The goal of this presentation is to introduce the "Ocarina of Time 64" decompilation project. During this presentation I will mostly talk about the technical aspect by explaining first what "matching" decompilation is and what the associated benefits and drawbacks are. I will then talk about the faced difficulties and the tools that were developed for the project.
+
+
+
+<a href="/lse-winter-days-2021/slides/Ocarina.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="6" class="summary">Rump session </h3>
+	<span class="schedule"><span class="dtstart">18h00</span> <span class="dtend">19h00</span></span>
+<p class="description">
+- A closer look on the Gameboy system, Clothide Levesque <br> - Deeply understanding the blink program, Gabriel Jorge <br> - Site scrapping, Adrien Navratil
+
+
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="7" class="summary">Apéro & Barbecue </h3>
+	<span class="schedule"><span class="dtstart">19h00</span> <span class="dtend">00h00</span></span>
+<p class="description">
+
+
+
+
+
+</p>
+</span>
+
+
+
+
+<h2>Sunday 7</h2>
+
+
+<span class="vevent">
+	<h3 id="8" class="summary">Adding multi-file support to gccrs, an alternative Rust compiler for GCC  - Arthur Cohen</h3>
+	<span class="schedule"><span class="dtstart">14h00</span> <span class="dtend">14h45</span></span>
+<p class="description">
+The Rust language is a modern system programming language whose compiler rustc relies on the LLVM compiler framework. While LLVM is very recent and capable, it suffers from a lack of architectural target options compared to GCC, a much older and polyvalent compiler framework. <br> In order to improve the language as well as stabilize its design, an ongoing effort is being made to add Rust support to GCC: gccrs. This compiler is far from complete, and still lacks important features for the Rust ecosystem, such as the handling of projects with multiple source files. <br> In this talk, we will explore the challenges faced by gccrs as well as the experience and hurdles of contributing to this compiler and adding new necessary Rust features.
+
+
+
+<a href="/lse-winter-days-2021/slides/Rust-gcc.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="9" class="summary">Welcome to the world of Transformers: from moderation to code generation  - Pierre Guillaume & Corentin Dûchene</h3>
+	<span class="schedule"><span class="dtstart">14h55</span> <span class="dtend">15h25</span></span>
+<p class="description">
+Transformers models have been a major breakthrough in many fields starting in Natural Language Processing (NLP). These models were described for the first time in the paper: Attention Is All You Need in 2017. <br> Therefore, models like BERT/RoBERTa have shown to be really efficient in many NLP classification tasks. In addition, Transformers like GPT-3 (made by OpenAI) have been used for text generation and appears to have impressive results. <br> In this presentation, we will first describe how Transformers can be used for text moderation in social media and then how these models can be used for code generation tasks.
+
+
+
+<a href="/lse-winter-days-2021/slides/Transformers-LSEWinter.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="10" class="summary">Snapshot fuzzing with KVM and LibAFL  - Tanguy Dubroca & César Belley</h3>
+	<span class="schedule"><span class="dtstart">15h30</span> <span class="dtend">16h15</span></span>
+<p class="description">
+Fuzzing is a technique used to automatically find bugs in computer software. There is a wide spectrum of techniques to improve the fuzzing process, and lately all the craze is about snapshot fuzzing. <br> This talk will explain how we integrated virtualization technologies into the libAFL fuzzing framework to do snapshot fuzzing.
+
+
+
+<a href="/lse-winter-days-2021/slides/lse_winter_days_tartiflette.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+<span class="vevent">
+	<h3 id="11" class="summary">Developing a Linux driver in Rust for ARM  - Esteban Blanc, Arthur Cohen & Martin Schmidt</h3>
+	<span class="schedule"><span class="dtstart">16h25</span> <span class="dtend">17h10</span></span>
+<p class="description">
+While Linux is not primarily an embedded-focused operating system, it is still used on platforms such as the Raspberry Pi. In the case of these platforms, kernel modules provide a helpful way to interact with various devices at a kernel level, which often communicate using low- level protocols, such as SPI or I2C. <br> Using Rust for that kind of workloads provides numerous advantages, and while the kernel API for these protocols has been tried and tested for a very long  time, there are currently no Rust abstractions available. <br> In this presentation, we will talk about our ongoing effort to bring an abstraction over the SPI protocol in safe Rust, for Linux, on the ARM64 platform, and how we used it to implement a simple device driver. The talk will draw comparisons against the original implementation in C, which provides the same amount of features. Finally, we will dive into the techniques used and our  experience working with Rust-for-Linux.
+
+
+
+<a href="/lse-winter-days-2021/slides/Developing_a_Linux_driver_in_Rust_for_ARM.pdf">Slides</a>
+
+
+
+</p>
+</span>
+
+
+
+
+
+
+
+    </div>
+    
+
+
+  <!-- Google Analytics (http://google.com/analytics) -->
+  <script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+    (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+    L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+    L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+
+    </body>
+</html>
